@@ -10,6 +10,7 @@ export interface Release {
     accent: string;
     tag: string;
     description: string;
+    audio?: string;
 }
 
 export const RELEASES: Release[] = [
@@ -25,6 +26,7 @@ export const RELEASES: Release[] = [
         accent: "#780606",
         tag: "NEW DROP",
         description: "A relentless journey through the underbelly of the city. 14 tracks of uncut rage, hunger, and triumph. Phantom X's most ambitious project yet.",
+        audio: "/music/Mulchedi.mp3",
     },
     {
         id: "static-noise",
@@ -38,6 +40,7 @@ export const RELEASES: Release[] = [
         accent: "#00FF5E",
         tag: "OUT NOW",
         description: "Raw. Distorted. Kinetic cuts through the frequency with a single that hits like a power surge. Produced entirely on stolen studio time.",
+        audio: "/music/XXXTENTACION_-_Revenge_(Rilds.com).mp3",
     },
     {
         id: "ghost-protocol",
@@ -51,6 +54,7 @@ export const RELEASES: Release[] = [
         accent: "#E0E0E0",
         tag: "UNDERGROUND",
         description: "Six tracks of shadow. SHADE moves through the underground with surgical precision — lyricism that leaves marks long after the beat drops.",
+        audio: "/music/Mulchedi.mp3",
     },
     {
         id: "iron-crown",
@@ -64,5 +68,6 @@ export const RELEASES: Release[] = [
         accent: "#C9A84C",
         tag: "FEATURED",
         description: "The throne was never given. The Krown Kollective built it — bar by bar, track by track. 16 anthems for those who refuse to kneel.",
+        audio: "/music/XXXTENTACION_-_Revenge_(Rilds.com).mp3",
     },
 ];

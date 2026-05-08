@@ -6,8 +6,8 @@ import {
   Bebas_Neue,
 } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 const cinzel = Cinzel({
   weight: ["400", "700", "900"],
@@ -34,8 +34,8 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: "Devil Inside Records - A New Era Of Rap.",
-  description: "Devil Inside Records - A NEW ERA OF RAP.",
+  title: "Devil Inside Records — A New Era Of Rap.",
+  description: "Devil Inside Records — A NEW ERA OF RAP.",
 };
 
 export default function RootLayout({
