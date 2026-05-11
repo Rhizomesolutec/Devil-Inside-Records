@@ -37,7 +37,7 @@ export function DemoLatestReleaseSection() {
   return (
     <section className="relative bg-black overflow-hidden" style={{ minHeight: "780px" }}>
       <audio ref={audioRef} src={active?.audio} onEnded={() => setPlaying(false)} />
-      <div className="absolute inset-0 z-[1] bg-black/80 pointer-events-none" />
+      <div className="absolute inset-0 z-1 bg-black/80 pointer-events-none" />
 
       {/* ── Vertical label ── */}
       <div className="absolute left-6 top-1/2 -translate-y-1/2 z-20 hidden lg:flex flex-col items-center gap-3">
@@ -47,7 +47,7 @@ export function DemoLatestReleaseSection() {
         >
           SCROLL TO EXPLORE
         </span>
-        <div className="w-px h-24 bg-gradient-to-b from-white/10 to-transparent" />
+        <div className="w-px h-24 bg-linear-to-b from-white/10 to-transparent" />
       </div>
 
       {/* ── Main grid ── */}
@@ -69,7 +69,7 @@ export function DemoLatestReleaseSection() {
 
           {/* Divider */}
           <div className="flex items-center gap-4">
-            <div className="h-px flex-1 bg-gradient-to-r from-red-600/60 to-transparent" />
+            <div className="h-px flex-1 bg-linear-to-r from-red-600/60 to-transparent" />
             <span className="font-barlow text-red-600 text-[10px] tracking-[0.4em] uppercase">
               NOW PLAYING
             </span>
@@ -174,7 +174,7 @@ export function DemoLatestReleaseSection() {
                     className="object-cover"
                   />
                   {/* Dark gradient over image */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black via-black/20 to-transparent" />
 
                   {/* Type badge — top left */}
                   <span className="absolute top-3 left-3 z-10 font-barlow text-[8px] font-bold tracking-[0.35em] uppercase bg-red-600 text-black px-2 py-0.5">
@@ -222,7 +222,7 @@ export function DemoLatestReleaseSection() {
             <button
               key={release.id}
               onClick={() => setActiveIndex(i)}
-              className={`snap-start flex-shrink-0 w-48 border transition-all duration-300 ${
+              className={`snap-start shrink-0 w-48 border transition-all duration-300 ${
                 activeIndex === i
                   ? "border-red-600"
                   : "border-white/10"
@@ -251,7 +251,7 @@ export function DemoLatestReleaseSection() {
       </div>
 
       {/* ── Bottom border accent ── */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-600/50 to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-red-600/50 to-transparent z-10" />
     </section>
   );
 }

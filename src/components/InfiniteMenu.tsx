@@ -1136,8 +1136,8 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0, onActive
             ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
             ${
               isMoving
-                ? 'bottom-[-80px] opacity-0 pointer-events-none duration-[100ms] scale-0 -translate-x-1/2'
-                : 'bottom-[1em] md:bottom-[3.8em] opacity-100 pointer-events-auto duration-[500ms] scale-100 -translate-x-1/2'
+                ? 'bottom-[-80px] opacity-0 pointer-events-none duration-100 scale-0 -translate-x-1/2'
+                : 'bottom-[1em] md:bottom-[3.8em] opacity-100 pointer-events-auto duration-500 scale-100 -translate-x-1/2'
             }
           `}
         >
