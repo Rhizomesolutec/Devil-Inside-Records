@@ -56,7 +56,7 @@ export function HomeHeroSection() {
         <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-4">
           <Link
             href="/latest-release"
-            className="font-barlow bg-red-700 border border-red-700 text-black text-sm tracking-[0.3em] uppercase px-10 sm:px-14 py-4 hover:bg-red-600 hover:border-red-600 transition-all flex items-center justify-between gap-3 group"
+            className="font-barlow bg-red-700 border border-red-700 text-black hover:bg-black hover:text-white  hover:border-red-600 text-sm tracking-[0.3em] uppercase px-10 sm:px-14 py-4 transition-all flex items-center justify-between gap-3 group"
           >
             LISTEN NOW
           </Link>

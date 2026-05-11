@@ -110,19 +110,13 @@ export function Footer() {
 
                     {/* Contact */}
                     <motion.div variants={staggerItem}>
+
                         <p className="font-barlow text-[9px] tracking-[0.45em] uppercase text-gray-600 mb-6">CONTACT</p>
-                        <div className="space-y-4">
-                            <div>
+                        <div className="space-y-2">
+                            <div className="">
                                 <p className="font-barlow text-[9px] tracking-[0.35em] uppercase text-gray-700 mb-1">GENERAL</p>
-                                <p className="font-grotesk text-gray-400 text-sm">contact@devilinsiderecords.com</p>
-                            </div>
-                            <div>
-                                <p className="font-barlow text-[9px] tracking-[0.35em] uppercase text-gray-700 mb-1">DEMO SUBMISSIONS</p>
-                                <p className="font-grotesk text-gray-400 text-sm">demos@devilinsiderecords.com</p>
-                            </div>
-                            <div>
-                                <p className="font-barlow text-[9px] tracking-[0.35em] uppercase text-gray-700 mb-1">PRESS & MEDIA</p>
-                                <p className="font-grotesk text-gray-400 text-sm">press@devilinsiderecords.com</p>
+                                <p className="font-grotesk text-gray-400 text-sm">+91 81290 70856</p>
+                                <p className="font-grotesk text-gray-400 text-sm">info@devilinsiderecords.in</p>
                             </div>
                         </div>
                     </motion.div>
