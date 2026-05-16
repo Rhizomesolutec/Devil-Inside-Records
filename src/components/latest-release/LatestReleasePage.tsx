@@ -85,6 +85,10 @@ function ReleaseRow({ release, index, isActive, onActivate }: {
 
     const toggle = (e: React.MouseEvent) => {
         e.stopPropagation();
+        if (!release.audio) {
+            window.open(release.link, "_blank");
+            return;
+        }
         if (!isActive) {
             onActivate();
             // Start playing immediately when activated
@@ -104,7 +108,7 @@ function ReleaseRow({ release, index, isActive, onActivate }: {
                     : "transparent",
             }}
         >
-            <audio ref={audioRef} src={release.audio} onEnded={() => setPlaying(false)} />
+            {release.audio && <audio ref={audioRef} src={release.audio} onEnded={() => setPlaying(false)} />}
 
             {/* Active left bar */}
             <div
@@ -220,17 +224,14 @@ function ReleaseRow({ release, index, isActive, onActivate }: {
                         {/* CTA row */}
                         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-8">
                             <button
-                                onClick={toggle}
+                                onClick={() => window.open(release.link, "_blank")}
                                 className="font-barlow flex items-center justify-center gap-3 px-8 py-4 sm:py-3 text-sm tracking-[0.3em] uppercase font-bold transition-all hover:brightness-90 active:scale-95 text-black w-full sm:w-auto"
                                 style={{ background: release.accent }}
                             >
                                 <svg className="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24">
                                     <path d="M8 5v14l11-7z" />
                                 </svg>
-                                {playing ? "PAUSE" : "LISTEN NOW"}
-                            </button>
-                            <button className="font-barlow text-gray-500 hover:text-white text-sm tracking-[0.3em] uppercase transition-colors border border-white/10 px-8 py-4 sm:py-3 hover:border-white/30 w-full sm:w-auto">
-                                + SAVE
+                                LISTEN NOW
                             </button>
                         </div>
                     </div>

@@ -72,7 +72,7 @@ export function ContactForm({ className = "space-y-5", inputClassName = "", butt
                     value={formik.values.name} 
                     onChange={formik.handleChange} 
                     onBlur={formik.handleBlur}
-                    placeholder="E.g. KXNG VEX" 
+                    placeholder="E.g. M.H.R" 
                     error={formik.errors.name}
                     touched={formik.touched.name}
                     className={inputClassName}

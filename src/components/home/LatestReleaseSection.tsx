@@ -7,7 +7,7 @@ import InfiniteMenu from "../InfiniteMenu";
 
 const menuItems = RELEASES.map((release) => ({
     image: release.cover,
-    link: `/releases/${release.id}`,
+    link: release.link ?? "#",
     title: release.title,
     description: release.artist,
 }));
@@ -30,7 +30,10 @@ export function LatestReleaseSection() {
                         <span className="inline-block w-6 h-px bg-red-600" />
                     </p>
                     <h2 className="font-bebas text-6xl [-webkit-text-stroke:2px_white] text-transparent sm:text-7xl md:text-[6rem] uppercase leading-none tracking-wide mb-5">
-                        LATEST RELEASES
+                        <span className="text-white bg-red-600 px-2 mr-2.5">
+                            LATEST
+                        </span>
+                        RELEASES
                     </h2>
                     <p className="font-grotesk text-gray-500 text-sm tracking-widest">
                         Fresh sounds from the underground.&nbsp; No limits.&nbsp; No rules.
