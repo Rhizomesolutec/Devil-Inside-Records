@@ -4,8 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer, fadeIn } from "@/lib/animations";
+import { RELEASES } from "@/constants/releases";
 
 export function HomeHeroSection() {
+  const latestDrop = RELEASES[0];
+
   return (
     <section className="relative min-h-screen flex flex-col">
       {/* Background Hero Image */}
@@ -79,9 +82,9 @@ export function HomeHeroSection() {
             <div className="flex items-center gap-5">
               <div className="w-16 h-16 relative bg-zinc-900 overflow-hidden shadow-2xl shrink-0">
                 <Image
-                  src="/release-blood-meridian.png"
+                  src={latestDrop.cover}
                   fill
-                  alt="Bloodline Album"
+                  alt={latestDrop.title}
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
@@ -90,19 +93,28 @@ export function HomeHeroSection() {
               </div>
 
               <div className="flex flex-col space-y-1">
-                <span className="font-cinzel text-white text-sm tracking-widest font-bold">BLOODLINE</span>
-                <span className="font-barlow text-gray-500 text-xs tracking-widest font-bold">KXNG VEX</span>
-                <span className="font-barlow text-red-700 text-[10px] tracking-widest mt-1 font-bold">APR 24, 2026</span>
+                <span className="font-cinzel text-white text-sm tracking-widest font-bold">{latestDrop.title}</span>
+                <span className="font-barlow text-gray-500 text-xs tracking-widest font-bold">{latestDrop.artist}</span>
+                <span className="font-barlow text-red-700 text-[10px] tracking-widest mt-1 font-bold">{latestDrop.date}</span>
               </div>
             </div>
 
             {/* Player UI */}
             <div className="flex items-center gap-6">
-              <button className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center text-white hover:bg-white hover:text-black hover:border-white transition-all group shrink-0">
-                <svg className="w-4 h-4 ml-1 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
+              <a
+                href={latestDrop.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all"
+              >
+                <svg
+                    className="w-4 h-4 ml-1"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path d="M8 5v14l11-7z" />
                 </svg>
-              </button>
+              </a>
 
               {/* Visual Waveform Map */}
               <div className="hidden md:flex items-center gap-[3px] h-6">
