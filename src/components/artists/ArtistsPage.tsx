@@ -8,12 +8,22 @@ import { fadeUp, staggerContainer, staggerItem, slideLeft } from "@/lib/animatio
 
 export default function ArtistsPage() {
     const [hovered, setHovered] = useState<Artist | null>(null);
+    const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const containerRef = useRef<HTMLDivElement>(null);
 
     const handleMouseMove = (e: React.MouseEvent) => {
         setMousePos({ x: e.clientX, y: e.clientY });
     };
+
+    // Prevent scrolling when modal is open
+    if (typeof window !== "undefined") {
+        if (selectedArtist) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+    }
 
     return (
         <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -120,12 +130,13 @@ export default function ArtistsPage() {
                             artist={artist}
                             index={i}
                             onHover={setHovered}
+                            onClick={() => setSelectedArtist(artist)}
                         />
                     ))}
                 </motion.div>
             </section>
 
-            {/* ── Bottom CTA ── */}
+            {/* Bottom CTA */}
             <motion.section
                 className="border-t border-white/5 px-6 md:px-16 lg:px-24 py-20"
                 variants={staggerContainer(0.15)}
@@ -153,11 +164,18 @@ export default function ArtistsPage() {
                     </motion.a>
                 </div>
             </motion.section>
+
+            {/* Artist Modal */}
+            <AnimatePresence>
+                {selectedArtist && (
+                    <ArtistModal key="artist-modal" artist={selectedArtist} onClose={() => setSelectedArtist(null)} />
+                )}
+            </AnimatePresence>
         </div>
     );
 }
 
-function ArtistRow({ artist, index, onHover }: { artist: Artist; index: number; onHover: (a: Artist | null) => void }) {
+function ArtistRow({ artist, index, onHover, onClick }: { artist: Artist; index: number; onHover: (a: Artist | null) => void; onClick: () => void }) {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
@@ -165,7 +183,8 @@ function ArtistRow({ artist, index, onHover }: { artist: Artist; index: number; 
             variants={staggerItem}
             onMouseEnter={() => { setIsHovered(true); onHover(artist); }}
             onMouseLeave={() => { setIsHovered(false); onHover(null); }}
-            className="group relative flex items-center justify-between border-b border-white/5 py-6 md:py-8 cursor-default overflow-hidden"
+            onClick={onClick}
+            className="group relative flex items-center justify-between border-b border-white/5 py-6 md:py-8 cursor-pointer overflow-hidden"
         >
             {/* Full-row hover background */}
             <motion.div
@@ -254,6 +273,92 @@ function ArtistRow({ artist, index, onHover }: { artist: Artist; index: number; 
                     ↗
                 </motion.span>
             </div>
+        </motion.div>
+    );
+}
+
+function ArtistModal({ artist, onClose }: { artist: Artist; onClose: () => void }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-6 md:p-12"
+        >
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0 bg-black/80 backdrop-blur-md" 
+                onClick={onClose} 
+            />
+            <motion.div
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 40, scale: 0.95 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative w-full max-w-5xl max-h-[90vh] bg-[#111] border border-white/10 overflow-hidden flex flex-col md:flex-row shadow-2xl rounded-2xl md:rounded-none"
+            >
+                {/* Close Button */}
+                <button
+                    onClick={onClose}
+                    className="absolute top-4 right-4 z-20 p-2 bg-black/50 hover:bg-[#780606] text-white rounded-full transition-colors backdrop-blur-sm"
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+
+                {/* Image Section */}
+                <div className="relative w-full md:w-2/5 h-[45vh] min-h-[300px] md:h-auto md:min-h-full shrink-0">
+                    <Image
+                        src={artist.modalImage || artist.image}
+                        alt={artist.name}
+                        fill
+                        className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-[#111] via-[#111]/40 to-transparent md:bg-linear-to-r md:from-transparent md:via-[#111]/20 md:to-[#111]" />
+                </div>
+
+                {/* Content Section */}
+                <div className="relative p-8 md:p-12 flex-1 overflow-y-auto custom-scrollbar">
+                    <div className="mb-8">
+                        <span className="font-barlow text-[10px] tracking-[0.4em] uppercase text-[#780606] mb-2 block">
+                            {artist.genre}
+                        </span>
+                        <h2 className="font-cinzel text-4xl md:text-6xl font-black text-white uppercase leading-none tracking-tight">
+                            {artist.name}
+                        </h2>
+                    </div>
+
+                    <div className="space-y-6 mb-10">
+                        <p className="font-grotesk text-gray-300 text-sm md:text-base leading-relaxed">
+                            {artist.fullDescription}
+                        </p>
+                    </div>
+
+                    {/* Socials */}
+                    <div>
+                        <span className="font-barlow text-[10px] tracking-[0.3em] text-gray-500 uppercase mb-4 block">Connect</span>
+                        <div className="flex items-center gap-4">
+                            {artist.socials?.instagram && (
+                                <a href={artist.socials.instagram} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-[#780606] hover:bg-[#780606]/10 hover:text-[#780606] transition-all">
+                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                                </a>
+                            )}
+                            {artist.socials?.spotify && (
+                                <a href={artist.socials.spotify} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-[#1DB954] hover:bg-[#1DB954]/10 hover:text-[#1DB954] transition-all">
+                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.45 17.34c-.21.345-.667.457-1.011.247-2.775-1.694-6.262-2.077-10.375-1.139-.395.09-.785-.157-.875-.552-.09-.395.157-.785.552-.875 4.502-1.029 8.358-.598 11.462 1.303.344.21.456.666.247 1.016zm1.448-3.238c-.266.43-832.573-.243-2.613-.35-4.148-1.574-8.875-1.722-12.285-.948-.48.11-8.528-.19-.638-.67-.11-.48.19-.853.67-.963 3.906-.889 9.117-.714 13.716 1.03.43.266.573.832.307 1.263zm.092-3.376c-3.418-2.03-9.055-2.217-12.315-1.228-.564.17-1.156-.148-1.326-.712-.17-.564.148-1.156.712-1.326 3.774-1.144 10.013-.923 13.978 1.436.51.305.675.961.37 1.472-.306.51-.962.675-1.42.358z"/></svg>
+                                </a>
+                            )}
+                            {artist.socials?.youtube && (
+                                <a href={artist.socials.youtube} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-[#FF0000] hover:bg-[#FF0000]/10 hover:text-[#FF0000] transition-all">
+                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 00-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                                </a>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
         </motion.div>
     );
 }
