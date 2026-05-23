@@ -141,29 +141,29 @@ export const ARTISTS: Artist[] = [
     {
         id: "fazil-as",
         name: "Fazil AS",
-        genre: "MELODIC RAP",
-        description: "Smooth flows and infectious hooks. Fazil AS bridges the gap between raw and refined.",
-        image: "/artist-image.png",
-        fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artist-image.png",
+        genre: "Experimental / Hip Hop",
+        description: "a genre-bending artist blending hip hop, experimental, and Cultural sounds.",
+        image: "/artists/fazil as.png",
+        fullDescription: "a genre-bending artist blending hip hop, experimental, and Cultural sounds.",
+        modalImage: "/artists/fazil1.jpeg",
         socials: {
-            instagram: "#",
-            spotify: "#",
-            youtube: "#"
+            instagram: "https://www.instagram.com/fazil_as_music?igsh=ZG1xMnVxMzEyaWc4",
+            spotify: "https://open.spotify.com/artist/6CwkEW6hoZyH96fUkUg6I6?si=Apq-NATpTq6cbG6OQVDhzQ",
+            youtube: "https://youtube.com/@fazilasmusic?si=CPEAZ85Z4M9dkgbT"
         }
     },
     {
         id: "amani-kl10",
         name: "AMANI KL10",
-        genre: "REGIONAL HIP HOP",
-        description: "Representing the roots. AMANI KL10 brings the flavor of KL10 to the world.",
-        image: "/artist1.png",
-        fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artist1.png",
+        genre: "MUSIC PRODUCER / DJ / ARTIST",
+        description: "AMANI KL10 is a music producer, DJ, and artist from Malappuram, Kerala, whose sound blends emotion, culture, and experimentation.",
+        image: "/artists/AMANI KL10-1.jpeg",
+        fullDescription: "AMANI KL10 is a music producer, DJ, and artist from Malappuram, Kerala, whose sound blends emotion, culture, and experimentation. Inspired by artists like Martin Garrix, Amani began exploring music through EDM and DJing apps during school, gradually shaping his own independent creative path. Rooted deeply in Kerala’s evolving music scene, he has collaborated with artists including SA, JOKER390P, emzii, Sage End, and MC Mushti, steadily building a sound and identity that feel personal, grounded, and distinctly his own.",
+        modalImage: "/artists/AMANI KL10-2.jpeg",
         socials: {
-            instagram: "#",
-            spotify: "#",
-            youtube: "#"
+            instagram: "https://www.instagram.com/amanikl10?igsh=aG12YXl1djM3Y3A4",
+            spotify: "https://open.spotify.com/artist/0f9QWfK1JSGrmCo2MEXuMr?si=zlcmSyLjRgy0HUa40M6GcQ",
+            youtube: "http://www.youtube.com/@AMANIKL10"
         }
     },
     {
