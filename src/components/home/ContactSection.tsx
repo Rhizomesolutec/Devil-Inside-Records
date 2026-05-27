@@ -48,7 +48,7 @@ export function ContactSection() {
                                 </svg>
                             }
                             label="EMAIL"
-                            value="contact@devilinsiderecords.com"
+                            value="info@devilinsiderecords.in"
                         />
                         <ContactDetail
                             icon={

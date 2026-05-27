@@ -6,18 +6,24 @@ import { motion } from "framer-motion";
 import { ARTIST_NAMES, VIBES } from "@/constants/artists";
 import { fadeUp, staggerContainer, fadeIn } from "@/lib/animations";
 
-function Marquee({ items, speed = "20s", direction = "left", size = "text-xs" }: { 
+function Marquee({ items, speed = "20s", mobileSpeed, direction = "left", size = "text-xs" }: { 
     items: string[], 
     speed?: string, 
+    mobileSpeed?: string,
     direction?: "left" | "right",
     size?: string 
 }) {
     const doubled = [...items, ...items, ...items, ...items];
+    const activeMobileSpeed = mobileSpeed || speed;
     return (
         <div className="w-full overflow-hidden py-4 border-y border-white/5 bg-black/40 backdrop-blur-xs">
             <div 
-                className={`flex gap-12 whitespace-nowrap ${direction === "left" ? "animate-[marquee_linear_infinite]" : "animate-[marquee-reverse_linear_infinite]"}`}
-                style={{ animationDuration: speed }}
+                className={`flex gap-12 whitespace-nowrap marquee-inner ${direction === "left" ? "animate-[marquee_linear_infinite]" : "animate-[marquee-reverse_linear_infinite]"}`}
+                style={{ 
+                    animationDuration: "var(--marquee-duration)",
+                    "--speed-desktop": speed,
+                    "--speed-mobile": activeMobileSpeed
+                } as React.CSSProperties}
             >
                 {doubled.map((item, i) => (
                     <span
@@ -78,10 +84,10 @@ export function ArtistSection() {
 
                 {/* ── The Wall of Names ── */}
                 <div className="flex flex-col gap-2 -rotate-3 scale-110 mb-20">
-                    <Marquee items={VIBES} speed="35s" direction="right" size="text-[10px]" />
-                    <Marquee items={ARTIST_NAMES} speed="25s" direction="left" size="text-4xl md:text-6xl font-cinzel" />
-                    <Marquee items={VIBES} speed="40s" direction="right" size="text-[10px]" />
-                    <Marquee items={ARTIST_NAMES.slice().reverse()} speed="30s" direction="left" size="text-2xl md:text-4xl font-cinzel opacity-40" />
+                    <Marquee items={VIBES} speed="35s" mobileSpeed="12s" direction="right" size="text-[10px]" />
+                    <Marquee items={ARTIST_NAMES} speed="25s" mobileSpeed="10s" direction="left" size="text-4xl md:text-6xl font-cinzel" />
+                    <Marquee items={VIBES} speed="40s" mobileSpeed="15s" direction="right" size="text-[10px]" />
+                    <Marquee items={ARTIST_NAMES.slice().reverse()} speed="30s" mobileSpeed="12s" direction="left" size="text-2xl md:text-4xl font-cinzel opacity-40" />
                 </div>
 
                 {/* ── CTA ── */}
