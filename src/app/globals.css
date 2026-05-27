@@ -73,3 +73,13 @@ body {
   from { transform: scaleY(0.3); }
   to   { transform: scaleY(1); }
 }
+
+.marquee-inner {
+  --marquee-duration: var(--speed-desktop);
+}
+
+@media (max-width: 767px) {
+  .marquee-inner {
+    --marquee-duration: var(--speed-mobile);
+  }
+}
