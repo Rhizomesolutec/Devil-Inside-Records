@@ -254,7 +254,7 @@ export const ARTISTS: Artist[] = [
         name: "Haniya Nafisa",
         genre: "INDEPENDENT / MULTI-GENRE",
         description: "Haniya Nafisa is a Kerala-based independent artist known for exploring various music genres with a fresh and modern style.",
-        image: "/artists/Haniya.JPEG",
+        image: "/artists/Haniya.jpg",
         fullDescription: "Haniya Nafisa is a Kerala-based independent artist known for exploring various music genres with a fresh and modern style.",
         modalImage: "/artists/Haniya1.JPEG",
         socials: {
