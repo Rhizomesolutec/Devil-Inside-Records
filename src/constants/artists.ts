@@ -19,9 +19,9 @@ export interface Artist {
     image: string;
     modalImage: string;
     socials: {
-        instagram: string;
-        spotify: string;
-        youtube: string;
+        instagram?: string;
+        spotify?: string;
+        youtube?: string;
     };
 }
 
@@ -191,7 +191,6 @@ export const ARTISTS: Artist[] = [
         socials: {
             instagram: "https://www.instagram.com/thedhstories?igsh=cWl0MGdmaWl0MTNo",
             spotify: "https://open.spotify.com/artist/5SG8gtaSlus7rlP6BYqSCa?si=JS20ZoniR0mF_KiE9TdI5g",
-            youtube: "#"
         }
     },
     {
