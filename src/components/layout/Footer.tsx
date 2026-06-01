@@ -112,11 +112,22 @@ export function Footer() {
                     <motion.div variants={staggerItem}>
 
                         <p className="font-barlow text-[9px] tracking-[0.45em] uppercase text-gray-600 mb-6">CONTACT</p>
-                        <div className="space-y-2">
-                            <div className="">
-                                <p className="font-barlow text-[9px] tracking-[0.35em] uppercase text-gray-700 mb-1">GENERAL</p>
+                        <div className="space-y-3">
+                            <div>
+                                <p className="font-barlow text-[9px] tracking-[0.35em] uppercase text-gray-700 mb-0.5">PHONE</p>
                                 <p className="font-grotesk text-gray-400 text-sm">+91 81290 70856</p>
-                                <p className="font-grotesk text-gray-400 text-sm">info@devilinsiderecords.in</p>
+                            </div>
+                            <div>
+                                <p className="font-barlow text-[9px] tracking-[0.35em] uppercase text-gray-700 mb-0.5">GENERAL</p>
+                                <a href="mailto:info@devilinsiderecords.in" className="font-grotesk text-gray-400 text-sm hover:text-[#780606] transition-colors block">info@devilinsiderecords.in</a>
+                            </div>
+                            <div>
+                                <p className="font-barlow text-[9px] tracking-[0.35em] uppercase text-gray-700 mb-0.5">SONG DEMOS</p>
+                                <a href="mailto:demos@devilinsiderecords.in" className="font-grotesk text-gray-400 text-sm hover:text-[#780606] transition-colors block">demos@devilinsiderecords.in</a>
+                            </div>
+                            <div>
+                                <p className="font-barlow text-[9px] tracking-[0.35em] uppercase text-gray-700 mb-0.5">CONTENT RELATED</p>
+                                <a href="mailto:siva@devilinsiderecords.in" className="font-grotesk text-gray-400 text-sm hover:text-[#780606] transition-colors block">siva@devilinsiderecords.in</a>
                             </div>
                         </div>
                     </motion.div>
