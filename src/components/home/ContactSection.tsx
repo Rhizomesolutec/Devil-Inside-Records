@@ -47,8 +47,29 @@ export function ContactSection() {
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                                 </svg>
                             }
-                            label="EMAIL"
+                            label="GENERAL INFO"
                             value="info@devilinsiderecords.in"
+                            href="mailto:info@devilinsiderecords.in"
+                        />
+                        <ContactDetail
+                            icon={
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                                </svg>
+                            }
+                            label="SONG DEMOS"
+                            value="demos@devilinsiderecords.in"
+                            href="mailto:demos@devilinsiderecords.in"
+                        />
+                        <ContactDetail
+                            icon={
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            }
+                            label="CONTENT RELATED"
+                            value="siva@devilinsiderecords.in"
+                            href="mailto:siva@devilinsiderecords.in"
                         />
                         <ContactDetail
                             icon={
@@ -77,13 +98,17 @@ export function ContactSection() {
     );
 }
 
-function ContactDetail({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function ContactDetail({ icon, label, value, href }: { icon: React.ReactNode; label: string; value: string; href?: string }) {
     return (
         <div className="flex items-start gap-4">
             <div className="text-[#780606] mt-0.5 shrink-0">{icon}</div>
             <div>
                 <p className="font-barlow text-[9px] tracking-[0.4em] uppercase text-gray-600 mb-1">{label}</p>
-                <p className="font-grotesk text-white text-sm">{value}</p>
+                {href ? (
+                    <a href={href} className="font-grotesk text-white hover:text-[#780606] transition-colors text-sm">{value}</a>
+                ) : (
+                    <p className="font-grotesk text-white text-sm">{value}</p>
+                )}
             </div>
         </div>
     );

@@ -27,6 +27,14 @@ export default function ContactPage() {
                 title="GENERAL INQUIRIES" 
                 detail="info@devilinsiderecords.in" 
               />
+              <ContactInfoItem 
+                title="SONG DEMOS" 
+                detail="demos@devilinsiderecords.in" 
+              />
+              <ContactInfoItem 
+                title="CONTENT RELATED" 
+                detail="siva@devilinsiderecords.in" 
+              />
             </div>
 
             <div className="pt-8 border-t border-white/10">
