@@ -12,6 +12,9 @@ export function DemoLatestReleaseSection() {
   const active = RELEASES[activeIndex];
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  const uniqueTypes = Array.from(new Set(RELEASES.map((r) => r.type).filter(Boolean)));
+  const showTypeUI = uniqueTypes.length > 1;
+
   // Pause audio when active item changes
   useEffect(() => {
     setPlaying(false);
@@ -78,9 +81,11 @@ export function DemoLatestReleaseSection() {
           {/* Active release details */}
           <div className="flex flex-col gap-3 transition-all duration-500">
             {/* Type badge */}
-            <span className="inline-flex w-fit font-barlow text-[9px] font-bold tracking-[0.35em] uppercase text-black bg-red-600 px-3 py-1">
-              {active?.type ?? "SINGLE"}
-            </span>
+            {showTypeUI && (
+              <span className="inline-flex w-fit font-barlow text-[9px] font-bold tracking-[0.35em] uppercase text-black bg-red-600 px-3 py-1">
+                {active?.type ?? "SINGLE"}
+              </span>
+            )}
 
             {/* Title */}
             <h3 className="font-cinzel text-white font-black text-4xl md:text-5xl uppercase leading-tight">
@@ -177,9 +182,11 @@ export function DemoLatestReleaseSection() {
                   <div className="absolute inset-0 bg-linear-to-t from-black via-black/20 to-transparent" />
 
                   {/* Type badge — top left */}
-                  <span className="absolute top-3 left-3 z-10 font-barlow text-[8px] font-bold tracking-[0.35em] uppercase bg-red-600 text-black px-2 py-0.5">
-                    {release.type}
-                  </span>
+                  {showTypeUI && (
+                    <span className="absolute top-3 left-3 z-10 font-barlow text-[8px] font-bold tracking-[0.35em] uppercase bg-red-600 text-black px-2 py-0.5">
+                      {release.type}
+                    </span>
+                  )}
 
                   {/* Parental advisory — bottom right of image */}
                   <div className="absolute bottom-3 right-3 z-10 bg-white px-1.5 py-0.5 text-black text-center leading-none">

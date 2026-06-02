@@ -29,15 +29,15 @@ export const ARTISTS: Artist[] = [
     {
         id: "mhr",
         name: "M.H.R",
-        genre: "HIP HOP / RAP",
-        description: "Hard-hitting bars and uncompromising flow. M.H.R is the voice of the streets.",
-        image: "/artist-image.png",
-        fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artist-image.png",
+        genre: "EDM / HIP HOP",
+        description: "M.H.R is an emerging artist, EDM and Hip-Hop music producer, lyricist, and vocalist known for blending energetic electronic sounds with modern hip-hop influences.",
+        image: "/artists/mhr1.jpeg",
+        fullDescription: "M.H.R is an emerging artist, EDM and Hip-Hop music producer, lyricist, and vocalist known for blending energetic electronic sounds with modern hip-hop influences. With a unique creative style and versatile musical approach, M.H.R creates tracks that combine powerful beats, expressive lyrics, and dynamic vocal performances.",
+        modalImage: "/artists/mhr2.jpeg",
         socials: {
-            instagram: "#",
-            spotify: "#",
-            youtube: "#"
+            instagram: "https://www.instagram.com/mhrofficial__/",
+            spotify: "https://open.spotify.com/artist/5A5bbXuMkVh28lxVO4y25g?si=k3MxS5KrT86WCln-rbOPKg",
+            youtube: "https://youtube.com/@mhrmusic.?si=IMn423aEEOYC8Rs4"
         }
     },
     {
