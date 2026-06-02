@@ -54,11 +54,12 @@ function PlayButton({ playing, color, onToggle }: { playing: boolean; color: str
 }
 
 /* ── Individual Release Row ── */
-function ReleaseRow({ release, index, isActive, onActivate }: {
+function ReleaseRow({ release, index, isActive, onActivate, showTypeUI }: {
     release: Release;
     index: number;
     isActive: boolean;
     onActivate: () => void;
+    showTypeUI: boolean;
 }) {
     const [playing, setPlaying] = useState(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -161,12 +162,14 @@ function ReleaseRow({ release, index, isActive, onActivate }: {
 
                 {/* Type / Date — hidden on mobile */}
                 <div className="hidden md:flex items-center gap-8 shrink-0">
-                    <span
-                        className="font-barlow text-[9px] tracking-[0.3em] uppercase px-3 py-1 border"
-                        style={{ color: release.accent, borderColor: `${release.accent}40` }}
-                    >
-                        {release.type}
-                    </span>
+                    {showTypeUI && (
+                        <span
+                            className="font-barlow text-[9px] tracking-[0.3em] uppercase px-3 py-1 border"
+                            style={{ color: release.accent, borderColor: `${release.accent}40` }}
+                        >
+                            {release.type}
+                        </span>
+                    )}
                     <span className="font-barlow text-gray-600 text-[10px] tracking-widest w-28 text-right">
                         {release.date}
                     </span>
@@ -246,7 +249,10 @@ export default function LatestReleasePage() {
     const [active, setActive] = useState<string>(RELEASES[0].id);
     const [filter, setFilter] = useState<string>("ALL");
 
-    const FILTERS = ["ALL", "ALBUM", "EP", "SINGLE"];
+    const uniqueTypes = Array.from(new Set(RELEASES.map((r) => r.type).filter(Boolean)));
+    const showTypeUI = uniqueTypes.length > 1;
+    const FILTERS = ["ALL", ...uniqueTypes];
+    
     const filtered = filter === "ALL" ? RELEASES : RELEASES.filter((r) => r.type === filter);
 
     return (
@@ -283,29 +289,31 @@ export default function LatestReleasePage() {
             </section>
 
             {/* ── Filter Bar ── */}
-            <div className="border-b border-white/5 px-6 md:px-16 lg:px-24 sticky top-0 z-40 bg-black/80 backdrop-blur-md">
-                <div className="max-w-screen-2xl mx-auto flex items-center py-2 md:py-4">
-                    <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-2">
-                        <span className="font-barlow text-[8px] md:text-[9px] tracking-[0.4em] text-gray-600 uppercase mr-2 md:mr-4 shrink-0">FILTER</span>
-                        {FILTERS.map((f) => (
-                            <button
-                                key={f}
-                                onClick={() => setFilter(f)}
-                                className={`font-barlow text-[9px] md:text-[10px] tracking-[0.3em] uppercase px-3 md:px-4 py-2 transition-all shrink-0 ${
-                                    filter === f
-                                        ? "text-white border-b-2 border-[#780606]"
-                                        : "text-gray-600 hover:text-white"
-                                }`}
-                            >
-                                {f}
-                            </button>
-                        ))}
+            {showTypeUI && (
+                <div className="border-b border-white/5 px-6 md:px-16 lg:px-24 sticky top-0 z-40 bg-black/80 backdrop-blur-md">
+                    <div className="max-w-screen-2xl mx-auto flex items-center py-2 md:py-4">
+                        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-2">
+                            <span className="font-barlow text-[8px] md:text-[9px] tracking-[0.4em] text-gray-600 uppercase mr-2 md:mr-4 shrink-0">FILTER</span>
+                            {FILTERS.map((f) => (
+                                <button
+                                    key={f}
+                                    onClick={() => setFilter(f)}
+                                    className={`font-barlow text-[9px] md:text-[10px] tracking-[0.3em] uppercase px-3 md:px-4 py-2 transition-all shrink-0 ${
+                                        filter === f
+                                            ? "text-white border-b-2 border-[#780606]"
+                                            : "text-gray-600 hover:text-white"
+                                    }`}
+                                >
+                                    {f}
+                                </button>
+                            ))}
+                        </div>
+                        <span className="ml-auto font-barlow text-[8px] md:text-[9px] tracking-widest text-gray-700 uppercase hidden sm:block">
+                            {filtered.length} RELEASES
+                        </span>
                     </div>
-                    <span className="ml-auto font-barlow text-[8px] md:text-[9px] tracking-widest text-gray-700 uppercase hidden sm:block">
-                        {filtered.length} RELEASES
-                    </span>
                 </div>
-            </div>
+            )}
 
             {/* ── Track List ── */}
             <section className="max-w-screen-2xl mx-auto py-4 md:py-6">
@@ -317,7 +325,7 @@ export default function LatestReleasePage() {
                         <span className="font-barlow text-[8px] tracking-[0.5em] text-gray-700 uppercase">TITLE</span>
                     </div>
                     <div className="flex items-center gap-8 shrink-0">
-                        <span className="font-barlow text-[8px] tracking-[0.5em] text-gray-700 uppercase w-16">TYPE</span>
+                        {showTypeUI && <span className="font-barlow text-[8px] tracking-[0.5em] text-gray-700 uppercase w-16">TYPE</span>}
                         <span className="font-barlow text-[8px] tracking-[0.5em] text-gray-700 uppercase w-28 text-right">DATE</span>
                         <span className="font-barlow text-[8px] tracking-[0.5em] text-gray-700 uppercase w-10 text-right">TIME</span>
                     </div>
@@ -337,6 +345,7 @@ export default function LatestReleasePage() {
                             index={i}
                             isActive={active === release.id}
                             onActivate={() => setActive(release.id)}
+                            showTypeUI={showTypeUI}
                         />
                     ))
                 )}
