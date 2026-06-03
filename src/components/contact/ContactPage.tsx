@@ -36,16 +36,6 @@ export default function ContactPage() {
                 detail="siva@devilinsiderecords.in" 
               />
             </div>
-
-            <div className="pt-8 border-t border-white/10">
-              <h3 className="font-bebas text-2xl tracking-wider mb-6">FOLLOW THE MOVEMENT</h3>
-              <div className="flex gap-4">
-                <SocialSquare label="IG" />
-                <SocialSquare label="X" />
-                <SocialSquare label="YT" />
-                <SocialSquare label="SC" />
-              </div>
-            </div>
           </div>
 
           {/* Contact Form */}

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ABOUT_STATS, ABOUT_FEATURES } from "@/constants/about";
+import { ABOUT_STATS } from "@/constants/about";
 import { fadeUp, staggerContainer, staggerItem, scaleIn } from "@/lib/animations";
 
 export default function AboutPage() {
@@ -79,25 +79,6 @@ export default function AboutPage() {
                             This is just the beginning.
                         </motion.p>
                     </motion.div>
-                </motion.div>
-
-                {/* Features Grid */}
-                <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mt-24 pt-12 border-t border-white/10"
-                    variants={staggerContainer(0.12, 0.2)}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-80px" }}
-                >
-                    {ABOUT_FEATURES.map((f) => (
-                        <motion.div key={f.id} variants={staggerItem}>
-                            <Feature
-                                icon={featureIcons[f.id as keyof typeof featureIcons]}
-                                title={f.title}
-                                desc={f.desc}
-                            />
-                        </motion.div>
-                    ))}
                 </motion.div>
 
                 {/* Stats Section */}

@@ -60,9 +60,6 @@ export function MerchSection() {
                     </div>
 
                     <div className="space-y-3">
-                        <p className="font-barlow text-gray-300 text-sm md:text-base tracking-[0.4em] uppercase font-medium">
-                            REAL MERCH. REAL ENERGY.
-                        </p>
                         <p className="font-barlow text-gray-500 text-[10px] md:text-xs tracking-[0.3em] uppercase">
                             STAY TUNED.
                         </p>
