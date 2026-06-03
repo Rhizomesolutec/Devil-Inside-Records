@@ -253,7 +253,14 @@ export default function LatestReleasePage() {
     const showTypeUI = uniqueTypes.length > 1;
     const FILTERS = ["ALL", ...uniqueTypes];
     
-    const filtered = filter === "ALL" ? RELEASES : RELEASES.filter((r) => r.type === filter);
+    const parseDate = (d: string) => {
+        const cleaned = d.replace(/,/g, "");
+        const parts = cleaned.split(" ");
+        const dateStr = parts.length === 3 ? `${parts[0]} ${parts[1]} ${parts[2]}` : `${parts[0]} 1 ${parts[1]}`;
+        return new Date(dateStr).getTime();
+    };
+    const sortedReleases = [...RELEASES].sort((a, b) => parseDate(b.date) - parseDate(a.date));
+    const filtered = filter === "ALL" ? sortedReleases : sortedReleases.filter((r) => r.type === filter);
 
     return (
         <div className="min-h-screen bg-black text-white">
