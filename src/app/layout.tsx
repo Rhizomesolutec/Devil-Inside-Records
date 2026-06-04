@@ -10,7 +10,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 const cinzel = Cinzel({
-  weight: ["400", "700", "900"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-cinzel",
 });
