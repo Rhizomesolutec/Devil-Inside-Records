@@ -29,9 +29,12 @@ export function LatestReleaseSection() {
                         LATEST DROPS
                         <span className="inline-block w-6 h-px bg-red-600" />
                     </p>
-                    <h2 className="font-bebas text-6xl [-webkit-text-stroke:2px_white] text-transparent sm:text-7xl md:text-[6rem] uppercase leading-none tracking-wide mb-5">
-                        <span className="text-white bg-red-600 px-2 mr-2.5">
-                            VIEW ALL
+                    <h2 
+                        className="font-bebas [-webkit-text-stroke:1px_white] md:[-webkit-text-stroke:2px_white] text-transparent uppercase leading-none tracking-wide mb-5"
+                        style={{ fontSize: "clamp(1.8rem, 8.5vw, 6rem)" }}
+                    >
+                        <span className="text-white bg-red-600 px-1.5 sm:px-2 mr-1.5 sm:mr-2.5">
+                            VIEW
                         </span>
                         CATALOGUE
                     </h2>
