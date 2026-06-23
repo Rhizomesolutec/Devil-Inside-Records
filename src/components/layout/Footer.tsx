@@ -101,6 +101,7 @@ export function Footer() {
                             </div>
                             <div>
                                 <p className="font-barlow text-[9px] tracking-[0.35em] uppercase text-gray-700 mb-0.5">GENERAL</p>
+<<<<<<< HEAD
                                 <a href="mailto:info@devilinsiderecords.in" className="font-serif tracking-wide text-gray-400 text-sm hover:text-[#780606] transition-colors block lowercase">info@devilinsiderecords.in</a>
                             </div>
                             <div>
@@ -110,6 +111,17 @@ export function Footer() {
                             <div>
                                 <p className="font-barlow text-[9px] tracking-[0.35em] uppercase text-gray-700 mb-0.5">CONTENT RELATED</p>
                                 <a href="mailto:siva@devilinsiderecords.in" className="font-serif tracking-wide text-gray-400 text-sm hover:text-[#780606] transition-colors block lowercase">siva@devilinsiderecords.in</a>
+=======
+                                <a href="mailto:info@devilinsiderecords.in" className="font-grotesk text-gray-400 text-sm hover:text-[#780606] transition-colors block">info@devilinsiderecords.in</a>
+                            </div>
+                            <div>
+                                <p className="font-barlow text-[9px] tracking-[0.35em] uppercase text-gray-700 mb-0.5">SONG DEMOS</p>
+                                <a href="mailto:demos@devilinsiderecords.in" className="font-grotesk text-gray-400 text-sm hover:text-[#780606] transition-colors block">demos@devilinsiderecords.in</a>
+                            </div>
+                            <div>
+                                <p className="font-barlow text-[9px] tracking-[0.35em] uppercase text-gray-700 mb-0.5">CONTENT RELATED</p>
+                                <a href="mailto:siva@devilinsiderecords.in" className="font-grotesk text-gray-400 text-sm hover:text-[#780606] transition-colors block">siva@devilinsiderecords.in</a>
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
                             </div>
                         </div>
                     </motion.div>

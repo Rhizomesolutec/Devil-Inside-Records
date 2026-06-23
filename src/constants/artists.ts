@@ -59,6 +59,7 @@ export const ARTISTS: Artist[] = [
         name: "JOKER390P",
         genre: "TRAP / DRILL",
         description: "Dark melodies and heavy bass. JOKER390P brings the heat every single time.",
+<<<<<<< HEAD
         image: "/artists/joker390p-1.jpg",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
         modalImage: "/artists/joker390p-2.jpg",
@@ -66,6 +67,15 @@ export const ARTISTS: Artist[] = [
             instagram: "https://www.instagram.com/fazinrasheed?igsh=MXhydjZ0bHc1NzJ5ag==",
             spotify: "https://open.spotify.com/artist/1IVjFQKbSitl1XikHLdxlW?si=bDXNhPT2SC6Difo374v_Xg",
             youtube: "https://www.youtube.com/@joker390p"
+=======
+        image: "/artist-image.png",
+        fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
+        modalImage: "/artist-image.png",
+        socials: {
+            instagram: "#",
+            spotify: "#",
+            youtube: "#"
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
         }
     },
     {
@@ -73,6 +83,7 @@ export const ARTISTS: Artist[] = [
         name: "Lil PAYYAN",
         genre: "NEW WAVE RAP",
         description: "Young, hungry, and ready to take over. Lil PAYYAN is the next big thing.",
+<<<<<<< HEAD
         image: "/artists/lil-payyan-1.jpg",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
         modalImage: "/artists/lil-payyan-2.jpg",
@@ -80,6 +91,15 @@ export const ARTISTS: Artist[] = [
             instagram: "https://www.instagram.com/lil_payyan?igsh=MW9kajd5YmFwMTRjaw==",
             spotify: "https://open.spotify.com/artist/0HiSpiBBENQAo0BJX5u4ic?si=PzXTYmKrSlqJkuSQ-BvYbA",
             youtube: "https://www.youtube.com/@lilpayyan3976"
+=======
+        image: "/artist1.png",
+        fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
+        modalImage: "/artist1.png",
+        socials: {
+            instagram: "#",
+            spotify: "#",
+            youtube: "#"
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
         }
     },
     {
@@ -87,6 +107,7 @@ export const ARTISTS: Artist[] = [
         name: "AZWIN",
         genre: "ALTERNATIVE HIP HOP",
         description: "Lyricism that cuts deep. AZWIN tells the stories that others are afraid to touch.",
+<<<<<<< HEAD
         image: "/artists/azwin-1.jpg",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
         modalImage: "/artists/azwin-2.jpg",
@@ -94,6 +115,15 @@ export const ARTISTS: Artist[] = [
             instagram: "https://www.instagram.com/azwinmusic?igsh=MzF3NG0xMWRpZWN5",
             spotify: "https://open.spotify.com/artist/79AwAZkhxUkl7fsIrYcdE8?si=gR_ZCCPiTXOLVzb5hkOGQg",
             youtube: "https://open.spotify.com/artist/7qKOPvmYkqaCrl8pddYJnk?si=XrpeIl22ThyhqSeQegZhPQ"
+=======
+        image: "/artist-image.png",
+        fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
+        modalImage: "/artist-image.png",
+        socials: {
+            instagram: "#",
+            spotify: "#",
+            youtube: "#"
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
         }
     },
     {
@@ -101,6 +131,7 @@ export const ARTISTS: Artist[] = [
         name: "Nazeeb Billu",
         genre: "STREET RAP",
         description: "Authentic, raw, and unapologetic. Nazeeb Billu is as real as it gets.",
+<<<<<<< HEAD
         image: "/artists/nazeem-billu-1.jpg",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
         modalImage: "/artists/nazeem-billu-2.jpg",
@@ -108,6 +139,15 @@ export const ARTISTS: Artist[] = [
             instagram: "https://www.instagram.com/nazeebbillu_?igsh=MWVuNjA0Z2Z5d3F2bw==",
             spotify: "https://open.spotify.com/artist/7qKOPvmYkqaCrl8pddYJnk?si=XrpeIl22ThyhqSeQegZhPQ",
             youtube: "https://www.youtube.com/@Nazeebbillu"
+=======
+        image: "/artist1.png",
+        fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
+        modalImage: "/artist1.png",
+        socials: {
+            instagram: "#",
+            spotify: "#",
+            youtube: "#"
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
         }
     },
     {
@@ -197,6 +237,7 @@ export const ARTISTS: Artist[] = [
         id: "mc-mushti",
         name: "MC Mushti",
         genre: "HARDCORE HIP HOP",
+<<<<<<< HEAD
         description: "MC Mushti is a dynamic hip-hop artist, rapper, singer, poet, composer, and lyricist from Kerala, blending raw storytelling with powerful beats and authentic lyricism.",
         image: "/artists/mc-mushti.jpg",
         fullDescription: "MC Mushti is a dynamic hip-hop artist, rapper, singer, poet, composer, and lyricist from Kerala, blending raw storytelling with powerful beats and authentic lyricism. Known for his energetic flow and versatile musical style, he fuses Malayalam hip-hop with global rap influences, creating music that reflects real-life experiences, culture, and street-inspired narratives. Through his unique voice and compelling performances, MC Mushti continues to push the boundaries of independent hip-hop while connecting with audiences across Kerala and beyond.",
@@ -205,6 +246,16 @@ export const ARTISTS: Artist[] = [
             instagram: "https://www.instagram.com/mcmushti/",
             spotify: "https://open.spotify.com/artist/4IeboPJbQPfxDC04f2FmGm?si=yuW6zZ1sRZmFxTXnNBTlNA",
             youtube: "https://www.youtube.com/@mcmushti"
+=======
+        description: "Pure energy and raw power. MC Mushti doesn't just rap, he commands.",
+        image: "/artist-image.png",
+        fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
+        modalImage: "/artist-image.png",
+        socials: {
+            instagram: "#",
+            spotify: "#",
+            youtube: "#"
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
         }
     },
     {

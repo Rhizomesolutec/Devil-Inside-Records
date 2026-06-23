@@ -52,7 +52,11 @@ function ContactInfoItem({ title, detail, note }: { title: string, detail: strin
   return (
     <div>
       <h3 className="font-bebas text-xl tracking-wider text-white mb-1">{title}</h3>
+<<<<<<< HEAD
       <a href={`mailto:${detail}`} className="font-serif tracking-wide text-gray-400 hover:text-[#780606] transition-colors text-[14px] lowercase">
+=======
+      <a href={`mailto:${detail}`} className="font-grotesk text-gray-400 hover:text-[#780606] transition-colors text-[14px]">
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
         {detail}
       </a>
       {note && (

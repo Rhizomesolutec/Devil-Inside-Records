@@ -105,9 +105,15 @@ function ContactDetail({ icon, label, value, href }: { icon: React.ReactNode; la
             <div>
                 <p className="font-barlow text-[9px] tracking-[0.4em] uppercase text-gray-600 mb-1">{label}</p>
                 {href ? (
+<<<<<<< HEAD
                     <a href={href} className="font-serif tracking-wide text-white hover:text-[#780606] transition-colors text-sm lowercase">{value}</a>
                 ) : (
                     <p className="font-serif tracking-wide text-white text-sm lowercase">{value}</p>
+=======
+                    <a href={href} className="font-grotesk text-white hover:text-[#780606] transition-colors text-sm">{value}</a>
+                ) : (
+                    <p className="font-grotesk text-white text-sm">{value}</p>
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
                 )}
             </div>
         </div>

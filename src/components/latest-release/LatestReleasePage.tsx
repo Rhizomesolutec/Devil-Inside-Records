@@ -53,6 +53,7 @@ function PlayButton({ playing, color, onToggle }: { playing: boolean; color: str
     );
 }
 
+<<<<<<< HEAD
 /* ── Lock Button for Upcoming releases ── */
 function LockButton({ color }: { color: string }) {
     return (
@@ -68,6 +69,8 @@ function LockButton({ color }: { color: string }) {
     );
 }
 
+=======
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
 /* ── Individual Release Row ── */
 function ReleaseRow({ release, index, isActive, onActivate, showTypeUI }: {
     release: Release;
@@ -107,20 +110,28 @@ function ReleaseRow({ release, index, isActive, onActivate, showTypeUI }: {
         }
         if (!isActive) {
             onActivate();
+<<<<<<< HEAD
+=======
+            // Start playing immediately when activated
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
             setPlaying(true);
         } else {
             setPlaying((p) => !p);
         }
     };
 
+<<<<<<< HEAD
     const isUpcoming = !!release.upcoming;
 
+=======
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
     return (
         <div
             onClick={onActivate}
             className="group relative cursor-pointer border-b border-white/5 transition-all duration-500 overflow-hidden"
             style={{
                 background: isActive
+<<<<<<< HEAD
                     ? isUpcoming
                         ? `linear-gradient(90deg, ${release.accent}12 0%, transparent 60%)`
                         : `linear-gradient(90deg, ${release.accent}08 0%, transparent 60%)`
@@ -131,6 +142,13 @@ function ReleaseRow({ release, index, isActive, onActivate, showTypeUI }: {
             }}
         >
             {!isUpcoming && release.audio && <audio ref={audioRef} src={release.audio} onEnded={() => setPlaying(false)} />}
+=======
+                    ? `linear-gradient(90deg, ${release.accent}08 0%, transparent 60%)`
+                    : "transparent",
+            }}
+        >
+            {release.audio && <audio ref={audioRef} src={release.audio} onEnded={() => setPlaying(false)} />}
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
 
             {/* Active left bar */}
             <div
@@ -145,7 +163,11 @@ function ReleaseRow({ release, index, isActive, onActivate, showTypeUI }: {
             <div className="flex items-center gap-3 md:gap-6 px-4 md:px-10 py-4 md:py-5">
                 {/* Track number / waveform */}
                 <div className="w-8 shrink-0 flex items-center justify-center">
+<<<<<<< HEAD
                     {isActive && !isUpcoming ? (
+=======
+                    {isActive ? (
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
                         <Waveform active={playing} color={release.accent} />
                     ) : (
                         <span className="font-cinzel text-gray-700 text-sm font-black group-hover:opacity-0 transition-opacity">
@@ -155,6 +177,7 @@ function ReleaseRow({ release, index, isActive, onActivate, showTypeUI }: {
                 </div>
 
                 {/* Cover Thumb */}
+<<<<<<< HEAD
                 <div
                     className="relative w-12 h-12 shrink-0 overflow-hidden"
                     style={isUpcoming ? {
@@ -162,6 +185,9 @@ function ReleaseRow({ release, index, isActive, onActivate, showTypeUI }: {
                         transition: "box-shadow 0.5s ease"
                     } : {}}
                 >
+=======
+                <div className="relative w-12 h-12 shrink-0 overflow-hidden">
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
                     <Image
                         src={release.cover}
                         alt={release.title}
@@ -176,6 +202,7 @@ function ReleaseRow({ release, index, isActive, onActivate, showTypeUI }: {
 
                 {/* Title / Artist */}
                 <div className="flex-1 min-w-0">
+<<<<<<< HEAD
                     <div className="flex items-center gap-2 flex-wrap">
                         <h2
                             className="font-cinzel text-base md:text-lg font-black uppercase leading-none tracking-tighter truncate transition-colors duration-300"
@@ -196,6 +223,14 @@ function ReleaseRow({ release, index, isActive, onActivate, showTypeUI }: {
                             </span>
                         )}
                     </div>
+=======
+                    <h2
+                        className="font-cinzel text-base md:text-lg font-black uppercase leading-none tracking-tighter truncate transition-colors duration-300"
+                        style={{ color: isActive ? release.accent : "white" }}
+                    >
+                        {release.title}
+                    </h2>
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
                     <p className="font-barlow text-gray-500 text-[10px] tracking-[0.3em] uppercase mt-1">
                         {release.artist}
                     </p>
@@ -219,12 +254,17 @@ function ReleaseRow({ release, index, isActive, onActivate, showTypeUI }: {
                     </span>
                 </div>
 
+<<<<<<< HEAD
                 {/* Play button / Lock button */}
                 {isUpcoming ? (
                     <LockButton color={release.accent} />
                 ) : (
                     <PlayButton playing={playing && isActive} color={release.accent} onToggle={toggle} />
                 )}
+=======
+                {/* Play button */}
+                <PlayButton playing={playing && isActive} color={release.accent} onToggle={toggle} />
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
             </div>
 
             {/* ── Expanded Panel (when active) ── */}
@@ -234,21 +274,30 @@ function ReleaseRow({ release, index, isActive, onActivate, showTypeUI }: {
             >
                 <div className="flex flex-col md:flex-row gap-0 border-t border-white/5">
                     {/* Large cover */}
+<<<<<<< HEAD
                     <div
                         className="relative w-full md:w-72 h-56 md:h-auto shrink-0 overflow-hidden"
                         style={isUpcoming ? { animation: "vaakkathFloat 4s ease-in-out infinite" } : {}}
                     >
+=======
+                    <div className="relative w-full md:w-72 h-56 md:h-auto shrink-0">
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
                         <Image
                             src={release.cover}
                             alt={release.title}
                             fill
+<<<<<<< HEAD
                             className={`object-cover transition-transform duration-700 ${isUpcoming ? "hover:scale-105" : ""}`}
+=======
+                            className="object-cover"
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
                         />
                         {/* Accent glow overlay */}
                         <div
                             className="absolute inset-0 mix-blend-multiply opacity-30"
                             style={{ background: `linear-gradient(135deg, ${release.accent}, transparent)` }}
                         />
+<<<<<<< HEAD
                         {isUpcoming && (
                             <div
                                 className="absolute inset-0 pointer-events-none"
@@ -283,10 +332,30 @@ function ReleaseRow({ release, index, isActive, onActivate, showTypeUI }: {
                             </h3>
                             <p className="font-barlow text-[10px] tracking-[0.5em] uppercase mb-6" style={{ color: release.accent }}>
                                 {release.artist} · {typeof release.tracks === "number" ? `${release.tracks} TRACKS` : release.tracks} · {release.date}
+=======
+                    </div>
+
+                    {/* Info panel */}
+                    <div className="flex-1 px-6 md:px-8 py-6 md:py-8 flex flex-col justify-between bg-white/2">
+                        <div>
+                            {/* Big tag */}
+                            <div
+                                className="inline-block font-barlow text-[9px] tracking-[0.5em] uppercase px-4 py-1.5 mb-5"
+                                style={{ background: `${release.accent}20`, color: release.accent, border: `1px solid ${release.accent}40` }}
+                            >
+                                {release.tag}
+                            </div>
+                            <h3 className="font-cinzel text-2xl sm:text-3xl md:text-5xl font-black uppercase leading-none tracking-tighter text-white mb-2">
+                                {release.title}
+                            </h3>
+                            <p className="font-barlow text-[10px] tracking-[0.5em] uppercase mb-6" style={{ color: release.accent }}>
+                                {release.artist} · {release.tracks} TRACKS · {release.date}
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
                             </p>
                             <p className="font-grotesk text-gray-400 text-sm leading-relaxed max-w-lg">
                                 {release.description}
                             </p>
+<<<<<<< HEAD
 
                             {isUpcoming && (
                                 <div className="mt-4 flex items-center gap-2">
@@ -299,10 +368,13 @@ function ReleaseRow({ release, index, isActive, onActivate, showTypeUI }: {
                                     </p>
                                 </div>
                             )}
+=======
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
                         </div>
 
                         {/* CTA row */}
                         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-8">
+<<<<<<< HEAD
                             {isUpcoming ? (
                                 <div className="relative group/btn w-full sm:w-auto">
                                     <button
@@ -337,6 +409,18 @@ function ReleaseRow({ release, index, isActive, onActivate, showTypeUI }: {
                                     LISTEN NOW
                                 </button>
                             )}
+=======
+                            <button
+                                onClick={() => window.open(release.link, "_blank")}
+                                className="font-barlow flex items-center justify-center gap-3 px-8 py-4 sm:py-3 text-sm tracking-[0.3em] uppercase font-bold transition-all hover:brightness-90 active:scale-95 text-black w-full sm:w-auto"
+                                style={{ background: release.accent }}
+                            >
+                                <svg className="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                                LISTEN NOW
+                            </button>
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
                         </div>
                     </div>
                 </div>
@@ -353,9 +437,14 @@ export default function LatestReleasePage() {
     const uniqueTypes = Array.from(new Set(RELEASES.map((r) => r.type).filter(Boolean)));
     const showTypeUI = uniqueTypes.length > 1;
     const FILTERS = ["ALL", ...uniqueTypes];
+<<<<<<< HEAD
 
     const parseDate = (d: string) => {
         if (d === "COMING SOON" || d === "TBA") return Number.MAX_SAFE_INTEGER;
+=======
+    
+    const parseDate = (d: string) => {
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
         const cleaned = d.replace(/,/g, "");
         const parts = cleaned.split(" ");
         const dateStr = parts.length === 3 ? `${parts[0]} ${parts[1]} ${parts[2]}` : `${parts[0]} 1 ${parts[1]}`;
@@ -364,6 +453,7 @@ export default function LatestReleasePage() {
     const sortedReleases = [...RELEASES].sort((a, b) => parseDate(b.date) - parseDate(a.date));
     const filtered = filter === "ALL" ? sortedReleases : sortedReleases.filter((r) => r.type === filter);
 
+<<<<<<< HEAD
     const vaakkath = RELEASES.find(r => r.id === "vaakkath");
 
     return (
@@ -404,6 +494,11 @@ export default function LatestReleasePage() {
                 .fade-in-up-delay-4 { animation-delay: 0.5s; opacity: 0; }
             `}</style>
 
+=======
+    return (
+        <div className="min-h-screen bg-black text-white">
+
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
             {/* ── Cinematic Header ── */}
             <section className="relative h-[45vh] md:h-[55vh] flex items-end overflow-hidden">
                 {/* Background: blurred mix of all covers */}
@@ -434,6 +529,7 @@ export default function LatestReleasePage() {
                 </div>
             </section>
 
+<<<<<<< HEAD
             {/* ── VAAKKATH Featured Section ── */}
             {vaakkath && (
                 <section className="relative overflow-hidden border-t border-b" style={{
@@ -574,6 +670,8 @@ export default function LatestReleasePage() {
                 </section>
             )}
 
+=======
+>>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
             {/* ── Filter Bar ── */}
             {showTypeUI && (
                 <div className="border-b border-white/5 px-6 md:px-16 lg:px-24 sticky top-0 z-40 bg-black/80 backdrop-blur-md">
