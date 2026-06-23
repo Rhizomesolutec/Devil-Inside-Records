@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { RELEASES } from "@/constants/releases";
 import InfiniteMenu from "../InfiniteMenu";
 
@@ -17,32 +17,15 @@ const menuItems = RELEASES.filter(r => !r.upcoming).map((release) => ({
 }));
 
 
-/* ── Intersection Observer hook for fade-in ── */
-function useInView(threshold = 0.2) {
-    const ref = useRef<HTMLDivElement>(null);
-    const [inView, setInView] = useState(false);
-    useEffect(() => {
-        const el = ref.current;
-        if (!el) return;
-        const observer = new IntersectionObserver(
-            ([entry]) => { if (entry.isIntersecting) setInView(true); },
-            { threshold }
-        );
-        observer.observe(el);
-        return () => observer.disconnect();
-    }, [threshold]);
-    return { ref, inView };
-}
 
 export function LatestReleaseSection() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isMoving, setIsMoving] = useState(false);
-    const { ref: vaakkathRef, inView: vaakkathInView } = useInView(0.15);
 
     const activeReleases = RELEASES.filter(r => !r.upcoming);
     const active = activeReleases[activeIndex % activeReleases.length];
 
-    const vaakkath = RELEASES.find(r => r.id === "vaakkath");
+    
 
 
 
@@ -121,128 +104,7 @@ export function LatestReleaseSection() {
                 </div>
 
 
-                {/* ── VAAKKATH Upcoming Card ── */}
-                {vaakkath && (
-                    <div
-                        ref={vaakkathRef}
-                        className="mt-16 relative overflow-hidden transition-all duration-1000"
-                        style={{
-                            opacity: vaakkathInView ? 1 : 0,
-                            transform: vaakkathInView ? "translateY(0)" : "translateY(40px)",
-                            border: `1px solid ${vaakkath.accent}25`,
-                            background: `linear-gradient(135deg, ${vaakkath.accent}08 0%, #000 50%, ${vaakkath.accent}05 100%)`,
-                            boxShadow: vaakkathInView ? `0 0 60px ${vaakkath.accent}15, inset 0 0 60px ${vaakkath.accent}05` : "none",
-                        }}
-                    >
-                        {/* Ambient glow */}
-                        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                            <div
-                                className="absolute -top-10 -right-10 w-64 h-64 rounded-full blur-[80px] opacity-20"
-                                style={{ background: vaakkath.accent }}
-                            />
-                            <div
-                                className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full blur-[60px] opacity-10"
-                                style={{ background: vaakkath.accent }}
-                            />
-                        </div>
-
-                        <div className="relative z-10 flex flex-col md:flex-row items-center md:items-stretch gap-0">
-                            {/* LEFT: Cover image */}
-                            <div className="relative w-full md:w-48 lg:w-56 shrink-0 overflow-hidden" style={{ minHeight: "200px" }}>
-                                <Image
-                                    src={vaakkath.cover}
-                                    alt={vaakkath.title}
-                                    fill
-                                    className="object-cover transition-transform duration-700 hover:scale-105"
-                                    sizes="(max-width: 768px) 100vw, 224px"
-                                />
-                                <div
-                                    className="absolute inset-0 pointer-events-none"
-                                    style={{ background: `linear-gradient(90deg, transparent 60%, ${vaakkath.accent}15 100%)` }}
-                                />
-                            </div>
-
-                            {/* RIGHT: Info */}
-                            <div className="flex-1 px-6 md:px-8 lg:px-10 py-8 flex flex-col justify-center gap-4">
-                                {/* Badge */}
-                                <div>
-                                    <span
-                                        id="vaakkath-coming-soon-badge"
-                                        className="inline-flex items-center gap-2 font-barlow text-[9px] tracking-[0.4em] uppercase px-4 py-1.5"
-                                        style={{
-                                            color: vaakkath.accent,
-                                            border: `1px solid ${vaakkath.accent}50`,
-                                            background: `${vaakkath.accent}12`,
-                                            animation: "comingSoonPulse 2s ease-in-out infinite",
-                                        }}
-                                    >
-                                        <span
-                                            className="w-1.5 h-1.5 rounded-full animate-pulse"
-                                            style={{ background: vaakkath.accent }}
-                                        />
-                                        COMING SOON
-                                    </span>
-                                </div>
-
-                                {/* Title & Artist */}
-                                <div>
-                                    <h3
-                                        className="font-cinzel font-black uppercase leading-none tracking-tighter"
-                                        style={{
-                                            fontSize: "clamp(1.8rem, 4vw, 3rem)",
-                                            color: vaakkath.accent,
-                                            textShadow: `0 0 30px ${vaakkath.accent}40`,
-                                        }}
-                                    >
-                                        {vaakkath.title}
-                                    </h3>
-                                    <p className="font-barlow text-gray-400 text-[10px] tracking-[0.4em] uppercase mt-2">
-                                        {vaakkath.artist}
-                                    </p>
-                                </div>
-
-                                {/* Genre tags */}
-                                <div className="flex flex-wrap gap-2">
-                                    {["Dark Cinematic", "Alternative", "Experimental"].map(g => (
-                                        <span
-                                            key={g}
-                                            className="font-barlow text-[8px] tracking-[0.3em] uppercase px-3 py-1"
-                                            style={{
-                                                color: `${vaakkath.accent}90`,
-                                                border: `1px solid ${vaakkath.accent}25`,
-                                            }}
-                                        >
-                                            {g}
-                                        </span>
-                                    ))}
-                                </div>
-
-                                {/* Description */}
-                                <p className="font-grotesk text-gray-500 text-xs leading-relaxed max-w-lg hidden md:block">
-                                    {vaakkath.description}
-                                </p>
-
-                                {/* CTA */}
-                                <div className="flex items-center gap-4">
-                                    <Link
-                                        href="/latest-release"
-                                        className="font-barlow text-[10px] tracking-[0.3em] uppercase px-6 py-3 transition-all duration-300 hover:brightness-110"
-                                        style={{
-                                            color: "black",
-                                            background: vaakkath.accent,
-                                            fontWeight: 700,
-                                        }}
-                                    >
-                                        VIEW DETAILS
-                                    </Link>
-                                    <span className="font-barlow text-gray-600 text-[9px] tracking-widest uppercase">
-                                        Release date TBA
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
+                
 
 
                 {/* View All */}

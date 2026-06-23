@@ -604,7 +604,7 @@ export default function LatestReleasePage() {
                         <p className="font-barlow text-xs tracking-widest uppercase">Try a different filter</p>
                     </div>
                 ) : (
-                    filtered.map((release, i) => (
+                    filtered.filter((r) => r.id !== "vaakkath").map((release, i) => (
                         <ReleaseRow
                             key={release.id}
                             release={release}

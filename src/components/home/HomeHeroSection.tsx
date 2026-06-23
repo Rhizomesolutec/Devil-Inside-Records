@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer, fadeIn } from "@/lib/animations";
+import { RELEASES } from "@/constants/releases";
 
 export function HomeHeroSection() {
   return (
@@ -109,17 +110,51 @@ export function HomeHeroSection() {
                 Latest Drop
               </span>
             </div>
-            {/* Spotify Embed */}
-            <iframe
-              style={{ borderRadius: "10px" }}
-              src="https://open.spotify.com/embed/track/4IjK4QLfJThr9s1nhLcmwM?utm_source=generator&theme=0"
-              width="100%"
-              height="152"
-              frameBorder="0"
-              allowFullScreen
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-            />
+            <div className="mt-4 flex flex-col gap-4 w-full max-w-full">
+              {(() => {
+                const vaakkath = RELEASES.find((r) => r.id === "vaakkath");
+                return vaakkath ? (
+                  <article className="group overflow-hidden rounded-lg border border-white/10 bg-black/60 w-full" style={{ height: 152 }}>
+                    <div className="flex h-full">
+                      <div className="relative w-1/3 h-full overflow-hidden">
+                        <Image
+                          src={vaakkath.cover}
+                          alt={vaakkath.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 160px"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                        <div className="absolute top-2 left-2 inline-flex items-center rounded-full border border-yellow-400/30 bg-black/60 px-2 py-0.5 text-[10px] font-barlow font-bold uppercase tracking-[0.25em] text-yellow-300">
+                          {vaakkath.tag}
+                        </div>
+                      </div>
+
+                      <div className="flex-1 px-3 py-2 flex flex-col justify-center">
+                        <p className="font-barlow text-gray-400 text-[10px] uppercase tracking-[0.25em]">{vaakkath.artist}</p>
+                        <h4 className="font-cinzel text-white text-base uppercase leading-tight mt-1">{vaakkath.title}</h4>
+                        
+                        <button disabled className="mt-3 inline-flex w-40 items-center justify-center rounded border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] uppercase tracking-[0.25em] text-gray-400 opacity-70 cursor-not-allowed">
+                          Coming Soon
+                        </button>
+                      </div>
+                    </div>
+                  </article>
+                ) : null;
+              })()}
+
+              {/* Spotify Embed (old HOLA embed preserved) */}
+              <iframe
+                style={{ borderRadius: "10px" }}
+                src="https://open.spotify.com/embed/track/4IjK4QLfJThr9s1nhLcmwM?utm_source=generator&theme=0"
+                width="100%"
+                height="152"
+                frameBorder="0"
+                allowFullScreen
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              />
+            </div>
           </motion.div>
         </div>
 
