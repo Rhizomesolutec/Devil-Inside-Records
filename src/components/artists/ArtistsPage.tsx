@@ -247,9 +247,9 @@ function ArtistRow({ artist, index, onHover, onClick }: { artist: Artist; index:
                 <div className="hidden md:flex flex-col items-end justify-center relative min-w-[200px] h-10">
                     <motion.span
                         className="font-barlow text-[9px] tracking-[0.4em] uppercase text-right absolute whitespace-nowrap"
-                        animate={{ 
+                        animate={{
                             color: isHovered ? "#780606" : "#374151",
-                            y: isHovered ? -10 : 0 
+                            y: isHovered ? -10 : 0
                         }}
                         transition={{ duration: 0.3 }}
                     >
@@ -258,8 +258,8 @@ function ArtistRow({ artist, index, onHover, onClick }: { artist: Artist; index:
                     <motion.div
                         className="flex items-center gap-2 absolute"
                         initial={{ opacity: 0, y: 15 }}
-                        animate={{ 
-                            opacity: isHovered ? 1 : 0, 
+                        animate={{
+                            opacity: isHovered ? 1 : 0,
                             y: isHovered ? 8 : 15,
                             pointerEvents: isHovered ? "auto" : "none"
                         }}
@@ -269,17 +269,14 @@ function ArtistRow({ artist, index, onHover, onClick }: { artist: Artist; index:
                             <a
                                 href={artist.socials.instagram}
                                 target="_blank"
-<<<<<<< HEAD
+
                                 rel="noopener noreferrer"
                                 aria-label={`${artist.name} Instagram`}
-=======
-                                rel="noreferrer"
->>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
-                                onClick={(e) => e.stopPropagation()}
-                                className="text-gray-500 hover:text-white transition-colors p-1"
+
+                                               
                             >
                                 <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
                                 </svg>
                             </a>
                         )}
@@ -287,17 +284,14 @@ function ArtistRow({ artist, index, onHover, onClick }: { artist: Artist; index:
                             <a
                                 href={artist.socials.spotify}
                                 target="_blank"
-<<<<<<< HEAD
+
                                 rel="noopener noreferrer"
                                 aria-label={`${artist.name} Spotify`}
-=======
-                                rel="noreferrer"
->>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
-                                onClick={(e) => e.stopPropagation()}
-                                className="text-gray-500 hover:text-white transition-colors p-1"
+
+                                
                             >
                                 <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.45 17.34c-.21.345-.667.457-1.011.247-2.775-1.694-6.262-2.077-10.375-1.139-.395.09-.785-.157-.875-.552-.09-.395.157-.785.552-.875 4.502-1.029 8.358-.598 11.462 1.303.344.21.456.666.247 1.016zm1.448-3.238c-.266.43-832.573-.243-2.613-.35-4.148-1.574-8.875-1.722-12.285-.948-.48.11-8.528-.19-.638-.67-.11-.48.19-.853.67-.963 3.906-.889 9.117-.714 13.716 1.03.43.266.573.832.307 1.263zm.092-3.376c-3.418-2.03-9.055-2.217-12.315-1.228-.564.17-1.156-.148-1.326-.712-.17-.564.148-1.156.712-1.326 3.774-1.144 10.013-.923 13.978 1.436.51.305.675.961.37 1.472-.306.51-.962.675-1.42.358z"/>
+                                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.45 17.34c-.21.345-.667.457-1.011.247-2.775-1.694-6.262-2.077-10.375-1.139-.395.09-.785-.157-.875-.552-.09-.395.157-.785.552-.875 4.502-1.029 8.358-.598 11.462 1.303.344.21.456.666.247 1.016zm1.448-3.238c-.266.43-832.573-.243-2.613-.35-4.148-1.574-8.875-1.722-12.285-.948-.48.11-8.528-.19-.638-.67-.11-.48.19-.853.67-.963 3.906-.889 9.117-.714 13.716 1.03.43.266.573.832.307 1.263zm.092-3.376c-3.418-2.03-9.055-2.217-12.315-1.228-.564.17-1.156-.148-1.326-.712-.17-.564.148-1.156.712-1.326 3.774-1.144 10.013-.923 13.978 1.436.51.305.675.961.37 1.472-.306.51-.962.675-1.42.358z" />
                                 </svg>
                             </a>
                         )}
@@ -305,17 +299,14 @@ function ArtistRow({ artist, index, onHover, onClick }: { artist: Artist; index:
                             <a
                                 href={artist.socials.youtube}
                                 target="_blank"
-<<<<<<< HEAD
+
                                 rel="noopener noreferrer"
                                 aria-label={`${artist.name} YouTube`}
-=======
-                                rel="noreferrer"
->>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
-                                onClick={(e) => e.stopPropagation()}
-                                className="text-gray-500 hover:text-white transition-colors p-1"
+
+                                
                             >
                                 <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 00-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                    <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 00-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                                 </svg>
                             </a>
                         )}
@@ -360,8 +351,8 @@ function ArtistModal({ artist, onClose }: { artist: Artist; onClose: () => void 
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="absolute inset-0 bg-black/80 backdrop-blur-md" 
-                onClick={onClose} 
+                className="absolute inset-0 bg-black/80 backdrop-blur-md"
+                onClick={onClose}
             />
             <motion.div
                 initial={{ opacity: 0, y: 40, scale: 0.95 }}
@@ -411,36 +402,40 @@ function ArtistModal({ artist, onClose }: { artist: Artist; onClose: () => void 
                         <span className="font-barlow text-[10px] tracking-[0.3em] text-gray-500 uppercase mb-4 block">Connect</span>
                         <div className="flex items-center gap-4">
                             {artist.socials?.instagram && (
-<<<<<<< HEAD
-                                <a href={artist.socials.instagram} target="_blank" rel="noopener noreferrer" aria-label={`${artist.name} Instagram`} className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-[#780606] hover:bg-[#780606]/10 hover:text-[#780606] transition-all">
-=======
-                                <a href={artist.socials.instagram} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-[#780606] hover:bg-[#780606]/10 hover:text-[#780606] transition-all">
->>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+
+                                <a
+                                    href={artist.socials.instagram}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`${artist.name} Instagram`}
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-[#780606] hover:bg-[#780606]/10 hover:text-[#780606] transition-all">
+
+                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" /></svg>
                                 </a>
                             )}
-                            {artist.socials?.spotify && (
-<<<<<<< HEAD
-                                <a href={artist.socials.spotify} target="_blank" rel="noopener noreferrer" aria-label={`${artist.name} Spotify`} className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-[#1DB954] hover:bg-[#1DB954]/10 hover:text-[#1DB954] transition-all">
-=======
-                                <a href={artist.socials.spotify} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-[#1DB954] hover:bg-[#1DB954]/10 hover:text-[#1DB954] transition-all">
->>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.45 17.34c-.21.345-.667.457-1.011.247-2.775-1.694-6.262-2.077-10.375-1.139-.395.09-.785-.157-.875-.552-.09-.395.157-.785.552-.875 4.502-1.029 8.358-.598 11.462 1.303.344.21.456.666.247 1.016zm1.448-3.238c-.266.43-832.573-.243-2.613-.35-4.148-1.574-8.875-1.722-12.285-.948-.48.11-8.528-.19-.638-.67-.11-.48.19-.853.67-.963 3.906-.889 9.117-.714 13.716 1.03.43.266.573.832.307 1.263zm.092-3.376c-3.418-2.03-9.055-2.217-12.315-1.228-.564.17-1.156-.148-1.326-.712-.17-.564.148-1.156.712-1.326 3.774-1.144 10.013-.923 13.978 1.436.51.305.675.961.37 1.472-.306.51-.962.675-1.42.358z"/></svg>
-                                </a>
+                                    {artist.socials?.spotify && (
+                                        <a
+                                            href={artist.socials.spotify}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={`${artist.name} Spotify`}
+                                            onClick={(e) => e.stopPropagation()}
+                                            className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-[#1DB954] hover:bg-[#1DB954]/10 hover:text-[#1DB954] transition-all">
+
+                                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.45 17.34c-.21.345-.667.457-1.011.247-2.775-1.694-6.262-2.077-10.375-1.139-.395.09-.785-.157-.875-.552-.09-.395.157-.785.552-.875 4.502-1.029 8.358-.598 11.462 1.303.344.21.456.666.247 1.016zm1.448-3.238c-.266.43-832.573-.243-2.613-.35-4.148-1.574-8.875-1.722-12.285-.948-.48.11-8.528-.19-.638-.67-.11-.48.19-.853.67-.963 3.906-.889 9.117-.714 13.716 1.03.43.266.573.832.307 1.263zm.092-3.376c-3.418-2.03-9.055-2.217-12.315-1.228-.564.17-1.156-.148-1.326-.712-.17-.564.148-1.156.712-1.326 3.774-1.144 10.013-.923 13.978 1.436.51.305.675.961.37 1.472-.306.51-.962.675-1.42.358z" /></svg>
+                                        </a>
                             )}
-                            {artist.socials?.youtube && (
-<<<<<<< HEAD
-                                <a href={artist.socials.youtube} target="_blank" rel="noopener noreferrer" aria-label={`${artist.name} YouTube`} className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-[#FF0000] hover:bg-[#FF0000]/10 hover:text-[#FF0000] transition-all">
-=======
-                                <a href={artist.socials.youtube} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-[#FF0000] hover:bg-[#FF0000]/10 hover:text-[#FF0000] transition-all">
->>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 00-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                                </a>
+                                            {artist.socials?.youtube && (
+
+                                                <a href={artist.socials.youtube} target="_blank" rel="noopener noreferrer" aria-label={`${artist.name} YouTube`} className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-[#FF0000] hover:bg-[#FF0000]/10 hover:text-[#FF0000] transition-all">
+                                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 00-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.016 3.016 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
+                                                </a>
                             )}
-                        </div>
+                                                </div>
                     </div>
                 </div>
             </motion.div>
-        </motion.div>
-    );
+                    </motion.div>
+                    );
 }

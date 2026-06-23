@@ -1,27 +1,22 @@
 "use client";
 
 import Link from "next/link";
-<<<<<<< HEAD
+
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { RELEASES } from "@/constants/releases";
 import InfiniteMenu from "../InfiniteMenu";
 
 const menuItems = RELEASES.filter(r => !r.upcoming).map((release) => ({
-=======
-import { useState } from "react";
-import { RELEASES } from "@/constants/releases";
-import InfiniteMenu from "../InfiniteMenu";
+  
 
-const menuItems = RELEASES.map((release) => ({
->>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
     image: release.cover,
     link: release.link ?? "#",
     title: release.title,
     description: release.artist,
 }));
 
-<<<<<<< HEAD
+
 /* ── Intersection Observer hook for fade-in ── */
 function useInView(threshold = 0.2) {
     const ref = useRef<HTMLDivElement>(null);
@@ -48,13 +43,8 @@ export function LatestReleaseSection() {
     const active = activeReleases[activeIndex % activeReleases.length];
 
     const vaakkath = RELEASES.find(r => r.id === "vaakkath");
-=======
-export function LatestReleaseSection() {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [isMoving, setIsMoving] = useState(false);
 
-    const active = RELEASES[activeIndex % RELEASES.length];
->>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
+
 
     return (
         <section className="relative bg-black py-20 px-6 md:px-16 lg:px-24 overflow-hidden min-h-screen">
@@ -67,11 +57,11 @@ export function LatestReleaseSection() {
                         LATEST DROPS
                         <span className="inline-block w-6 h-px bg-red-600" />
                     </p>
-<<<<<<< HEAD
+
                     <h2
-=======
-                    <h2 
->>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
+
+                    
+
                         className="font-bebas [-webkit-text-stroke:1px_white] md:[-webkit-text-stroke:2px_white] text-transparent uppercase leading-none tracking-wide mb-5"
                         style={{ fontSize: "clamp(1.8rem, 8.5vw, 6rem)" }}
                     >
@@ -130,7 +120,7 @@ export function LatestReleaseSection() {
                     </div>
                 </div>
 
-<<<<<<< HEAD
+
                 {/* ── VAAKKATH Upcoming Card ── */}
                 {vaakkath && (
                     <div
@@ -254,8 +244,7 @@ export function LatestReleaseSection() {
                     </div>
                 )}
 
-=======
->>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
+
                 {/* View All */}
                 <div className="flex justify-center mt-12">
                     <Link
@@ -267,7 +256,7 @@ export function LatestReleaseSection() {
                     </Link>
                 </div>
             </div>
-<<<<<<< HEAD
+
 
             <style>{`
                 @keyframes comingSoonPulse {
@@ -275,8 +264,7 @@ export function LatestReleaseSection() {
                     50% { opacity: 0.75; box-shadow: 0 0 20px #F5C51870; }
                 }
             `}</style>
-=======
->>>>>>> c0fae7d4f9bfd3157e102f4e495b5ba8172f7fb8
+
         </section>
     );
 }
