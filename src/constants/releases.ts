@@ -1,4 +1,5 @@
-import NoorNoorCover from "@/image/Noor Noor.jpeg";
+import type { StaticImageData } from "next/image";
+import NoorNoorCover from "@/image/noor-noor.jpeg";
 
 export interface Release {
     id: string;
@@ -8,7 +9,7 @@ export interface Release {
     tracks: number | string;
     date: string;
     duration: string;
-    cover: string;
+    cover: string | StaticImageData;
     accent: string;
     tag: string;
     description: string;
