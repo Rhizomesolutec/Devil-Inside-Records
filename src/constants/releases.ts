@@ -1,3 +1,5 @@
+import NoorNoorCover from "@/image/Noor Noor.jpeg";
+
 export interface Release {
     id: string;
     title: string;
@@ -99,5 +101,19 @@ export const RELEASES: Release[] = [
         tag: "OUT NOW",
         description: "A dynamic collaboration blending raw storytelling with powerful beats.",
         link: "https://open.spotify.com/track/4R3wna0tMjccTpSY68aQ5g?si=0468730bb90e43f5"
+    },
+    {
+        id: "noor-noor",
+        title: "NOOR NOOR",
+        artist: "Nazeeb Billu, JK Factor",
+        type: "SINGLE",
+        tracks: 1,
+        date: "JUNE 19, 2026",
+        duration: "03:35",
+        cover: NoorNoorCover.src,
+        accent: "#D4AF37",
+        tag: "OUT NOW",
+        description: "A cinematic single from Nazeeb Billu and JK Factor with moody, high-energy production.",
+        link: "https://open.spotify.com/album/1qSiU5OsR8VQonZLBixHSn"
     }
 ];

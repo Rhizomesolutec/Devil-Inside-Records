@@ -7,14 +7,15 @@ import { useState } from "react";
 import { RELEASES } from "@/constants/releases";
 import InfiniteMenu from "../InfiniteMenu";
 
-const menuItems = RELEASES.filter(r => !r.upcoming).map((release) => ({
-  
-
-    image: release.cover,
-    link: release.link ?? "#",
-    title: release.title,
-    description: release.artist,
-}));
+const menuItems = RELEASES.filter(r => !r.upcoming).map((release) => {
+    const imageSrc = typeof release.cover === "string" ? release.cover : release.cover.src;
+    return {
+        image: encodeURI(imageSrc),
+        link: release.link ?? "#",
+        title: release.title,
+        description: release.artist,
+    };
+});
 
 
 

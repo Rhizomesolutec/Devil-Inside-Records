@@ -838,9 +838,15 @@ class InfiniteGridMenu {
         item =>
           new Promise<HTMLImageElement>(resolve => {
             const img = new Image();
-            img.crossOrigin = 'anonymous';
+            if (item.image.toString().startsWith('http')) {
+              img.crossOrigin = 'anonymous';
+            }
             img.onload = () => resolve(img);
-            img.src = item.image;
+            img.onerror = () => {
+              console.error(`InfiniteMenu failed to load image: ${item.image}`);
+              resolve(img);
+            };
+            img.src = item.image.toString();
           })
       )
     ).then(images => {
