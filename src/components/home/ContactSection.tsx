@@ -123,12 +123,16 @@ function ContactDetail({
                 {href ? (
                     <a
                         href={href}
-                        className="font-grotesk text-white hover:text-[#780606] transition-colors text-sm"
+                        className="font-serif tracking-wide text-white text-sm hover:text-[#780606] transition-colors block lowercase tracking-normal"
+                        style={{ textTransform: "none" }}
                     >
                         {value}
                     </a>
                 ) : (
-                    <p className="font-grotesk text-white text-sm">
+                    <p
+                        className="font-serif tracking-wide text-white text-sm block normal-case tracking-normal"
+                        style={{ textTransform: "none" }}
+                    >
                         {value}
                     </p>
                 )}
