@@ -1,3 +1,8 @@
+import type { StaticImageData } from "next/image";
+import mcMusthiOne from "@/image/MC MUSTHI one.jpeg";
+import mcMusthiTwo from "@/image/MC MUSTHI two.jpeg";
+import saImage from "@/image/SA.jpeg";
+
 export const ARTIST_NAMES = [
     "M.H.R", "SA", "JOKER390P", "Lil PAYYAN", "AZWIN", 
     "Nazeeb Billu", "Wraith V", "Efy Music", "Fazil AS", "AMANI KL10",
@@ -16,8 +21,8 @@ export interface Artist {
     genre: string;
     description: string;
     fullDescription: string;
-    image: string;
-    modalImage: string;
+    image: string | StaticImageData;
+    modalImage: string | StaticImageData;
     socials: {
         instagram?: string;
         spotify?: string;
@@ -45,9 +50,9 @@ export const ARTISTS: Artist[] = [
         name: "SA",
         genre: "EXPERIMENTAL / RAP",
         description: "Pushing boundaries and redefining the sonic landscape of the underground.",
-        image: "/artist1.png",
+        image: saImage,
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artist1.png",
+        modalImage: saImage,
         socials: {
             instagram: "#",
             spotify: "#",
@@ -198,9 +203,9 @@ export const ARTISTS: Artist[] = [
         name: "MC Mushti",
         genre: "HARDCORE HIP HOP",
         description: "MC Mushti is a dynamic hip-hop artist, rapper, singer, poet, composer, and lyricist from Kerala, blending raw storytelling with powerful beats and authentic lyricism.",
-        image: "/artists/mc-mushti.jpg",
+        image: mcMusthiOne,
         fullDescription: "MC Mushti is a dynamic hip-hop artist, rapper, singer, poet, composer, and lyricist from Kerala, blending raw storytelling with powerful beats and authentic lyricism. Known for his energetic flow and versatile musical style, he fuses Malayalam hip-hop with global rap influences, creating music that reflects real-life experiences, culture, and street-inspired narratives. Through his unique voice and compelling performances, MC Mushti continues to push the boundaries of independent hip-hop while connecting with audiences across Kerala and beyond.",
-        modalImage: "/artists/mc-mushti.jpg",
+        modalImage: mcMusthiTwo,
         socials: {
             instagram: "https://www.instagram.com/mcmushti/",
             spotify: "https://open.spotify.com/artist/4IeboPJbQPfxDC04f2FmGm?si=yuW6zZ1sRZmFxTXnNBTlNA",
