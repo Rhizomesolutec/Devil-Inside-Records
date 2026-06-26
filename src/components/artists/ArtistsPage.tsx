@@ -319,7 +319,7 @@ function ArtistRow({ artist, index, onHover, onClick }: { artist: Artist; index:
                     animate={{ opacity: isHovered ? 1 : 0 }}
                     transition={{ duration: 0.3 }}
                 >
-                    <Image src={artist.image} alt={artist.name} fill className="object-cover grayscale" />
+                    <Image src={artist.image} alt={artist.name} fill loading="lazy" className="object-cover grayscale" />
                 </motion.div>
 
                 {/* Arrow */}
@@ -375,6 +375,7 @@ function ArtistModal({ artist, onClose }: { artist: Artist; onClose: () => void 
                         src={artist.modalImage || artist.image}
                         alt={artist.name}
                         fill
+                        loading="lazy"
                         className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-[#111] via-[#111]/40 to-transparent md:bg-linear-to-r md:from-transparent md:via-[#111]/20 md:to-[#111]" />

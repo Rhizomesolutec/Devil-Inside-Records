@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -169,6 +169,8 @@ function ReleaseRow({
                         alt={release.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
+                        sizes="(max-width: 768px) 90vw, 150px"
                     />
                     <div
                         className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity"
@@ -240,6 +242,8 @@ function ReleaseRow({
                             alt={release.title}
                             fill
                             className="object-cover transition-transform duration-700"
+                            loading="lazy"
+                            sizes="(max-width: 768px) 100vw, 300px"
                         />
                         <div
                             className="absolute inset-0 mix-blend-multiply opacity-30"
@@ -397,7 +401,14 @@ export default function LatestReleasePage() {
                             className="absolute inset-0 transition-opacity duration-1000"
                             style={{ opacity: r.id === active ? 1 : 0 }}
                         >
-                            <Image src={r.cover} alt={r.title} fill className="object-cover object-top scale-110 blur-sm" />
+                            <Image 
+                                src={r.cover} 
+                                alt={r.title} 
+                                fill 
+                                className="object-cover object-top scale-110 blur-sm" 
+                                loading="lazy"
+                                sizes="100vw"
+                            />
                         </div>
                     ))}
                     <div className="absolute inset-0 bg-black/70" />

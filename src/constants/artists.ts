@@ -1,7 +1,7 @@
 import type { StaticImageData } from "next/image";
-import mcMusthiOne from "@/image/MC MUSTHI one.jpeg";
-import mcMusthiTwo from "@/image/MC MUSTHI two.jpeg";
-import saImage from "@/image/SA.jpeg";
+import mcMusthiOne from "@/image/MC MUSTHI one.webp";
+import mcMusthiTwo from "@/image/MC MUSTHI two.webp";
+import saImage from "@/image/SA.webp";
 
 export const ARTIST_NAMES = [
     "M.H.R", "SA", "JOKER390P", "Lil PAYYAN", "AZWIN", 
@@ -36,9 +36,9 @@ export const ARTISTS: Artist[] = [
         name: "M.H.R",
         genre: "EDM / HIP HOP",
         description: "M.H.R is an emerging artist, EDM and Hip-Hop music producer, lyricist, and vocalist known for blending energetic electronic sounds with modern hip-hop influences.",
-        image: "/artists/mhr1.jpeg",
+        image: "/artists/mhr1.webp",
         fullDescription: "M.H.R is an emerging artist, EDM and Hip-Hop music producer, lyricist, and vocalist known for blending energetic electronic sounds with modern hip-hop influences. With a unique creative style and versatile musical approach, M.H.R creates tracks that combine powerful beats, expressive lyrics, and dynamic vocal performances.",
-        modalImage: "/artists/mhr2.jpeg",
+        modalImage: "/artists/mhr2.webp",
         socials: {
             instagram: "https://www.instagram.com/mhrofficial__/",
             spotify: "https://open.spotify.com/artist/5A5bbXuMkVh28lxVO4y25g?si=k3MxS5KrT86WCln-rbOPKg",
@@ -64,9 +64,9 @@ export const ARTISTS: Artist[] = [
         name: "JOKER390P",
         genre: "TRAP / DRILL",
         description: "Dark melodies and heavy bass. JOKER390P brings the heat every single time.",
-        image: "/artists/joker390p-1.jpg",
+        image: "/artists/joker390p-1.webp",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artists/joker390p-2.jpg",
+        modalImage: "/artists/joker390p-2.webp",
         socials: {
             instagram: "https://www.instagram.com/fazinrasheed?igsh=MXhydjZ0bHc1NzJ5ag==",
             spotify: "https://open.spotify.com/artist/1IVjFQKbSitl1XikHLdxlW?si=bDXNhPT2SC6Difo374v_Xg",
@@ -78,9 +78,9 @@ export const ARTISTS: Artist[] = [
         name: "Lil PAYYAN",
         genre: "NEW WAVE RAP",
         description: "Young, hungry, and ready to take over. Lil PAYYAN is the next big thing.",
-        image: "/artists/lil-payyan-1.jpg",
+        image: "/artists/lil-payyan-1.webp",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artists/lil-payyan-2.jpg",
+        modalImage: "/artists/lil-payyan-2.webp",
         socials: {
             instagram: "https://www.instagram.com/lil_payyan?igsh=MW9kajd5YmFwMTRjaw==",
             spotify: "https://open.spotify.com/artist/0HiSpiBBENQAo0BJX5u4ic?si=PzXTYmKrSlqJkuSQ-BvYbA",
@@ -92,9 +92,9 @@ export const ARTISTS: Artist[] = [
         name: "AZWIN",
         genre: "ALTERNATIVE HIP HOP",
         description: "Lyricism that cuts deep. AZWIN tells the stories that others are afraid to touch.",
-        image: "/artists/azwin-1.jpg",
+        image: "/artists/azwin-1.webp",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artists/azwin-2.jpg",
+        modalImage: "/artists/azwin-2.webp",
         socials: {
             instagram: "https://www.instagram.com/azwinmusic?igsh=MzF3NG0xMWRpZWN5",
             spotify: "https://open.spotify.com/artist/79AwAZkhxUkl7fsIrYcdE8?si=gR_ZCCPiTXOLVzb5hkOGQg",
@@ -106,9 +106,9 @@ export const ARTISTS: Artist[] = [
         name: "Nazeeb Billu",
         genre: "STREET RAP",
         description: "Authentic, raw, and unapologetic. Nazeeb Billu is as real as it gets.",
-        image: "/artists/nazeem-billu-1.jpg",
+        image: "/artists/nazeem-billu-1.webp",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artists/nazeem-billu-2.jpg",
+        modalImage: "/artists/nazeem-billu-2.webp",
         socials: {
             instagram: "https://www.instagram.com/nazeebbillu_?igsh=MWVuNjA0Z2Z5d3F2bw==",
             spotify: "https://open.spotify.com/artist/7qKOPvmYkqaCrl8pddYJnk?si=XrpeIl22ThyhqSeQegZhPQ",
@@ -120,9 +120,9 @@ export const ARTISTS: Artist[] = [
         name: "Wraith V",
         genre: "DARK RAP",
         description: "A phantom in the booth. Wraith V haunts every beat with surgical precision.",
-        image: "/artist-image.png",
+        image: "/artist-image.webp",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artist-image.png",
+        modalImage: "/artist-image.webp",
         socials: {
             instagram: "#",
             spotify: "#",
@@ -134,9 +134,9 @@ export const ARTISTS: Artist[] = [
         name: "Efy Music",
         genre: "UNDERGROUND HIP-HOP",
         description: "Efy Music is an underground Hip-Hop artist known for delivering raw lyrics, authentic storytelling, and uncompromising energy.",
-        image: "/artists/effy1.jpeg",
+        image: "/artists/effy1.webp",
         fullDescription: "Efy Music is an underground Hip-Hop artist known for delivering raw lyrics, authentic storytelling, and uncompromising energy. Drawing inspiration from real-life experiences and street culture, Efy Music creates hard-hitting tracks that blend gritty flows with powerful messages, representing the true spirit of independent Hip-Hop.",
-        modalImage: "/artists/effy2.jpeg",
+        modalImage: "/artists/effy2.webp",
         socials: {
             instagram: "https://www.instagram.com/_efy___/?hl=en",
             spotify: "https://open.spotify.com/artist/1DDwkZwiamO6HSJdB6DtYY?si=BvaViMDyRZSdz0mhpeZWlQ",
@@ -148,9 +148,9 @@ export const ARTISTS: Artist[] = [
         name: "Fazil AS",
         genre: "Experimental / Hip Hop",
         description: "a genre-bending artist blending hip hop, experimental, and Cultural sounds.",
-        image: "/artists/fazil as.png",
+        image: "/artists/fazil as.webp",
         fullDescription: "a genre-bending artist blending hip hop, experimental, and Cultural sounds.",
-        modalImage: "/artists/fazil1.jpeg",
+        modalImage: "/artists/fazil1.webp",
         socials: {
             instagram: "https://www.instagram.com/fazil_as_music?igsh=ZG1xMnVxMzEyaWc4",
             spotify: "https://open.spotify.com/artist/6CwkEW6hoZyH96fUkUg6I6?si=Apq-NATpTq6cbG6OQVDhzQ",
@@ -162,9 +162,9 @@ export const ARTISTS: Artist[] = [
         name: "AMANI KL10",
         genre: "MUSIC PRODUCER / DJ / ARTIST",
         description: "AMANI KL10 is a music producer, DJ, and artist from Malappuram, Kerala, whose sound blends emotion, culture, and experimentation.",
-        image: "/artists/AMANI KL10-1.jpeg",
+        image: "/artists/AMANI KL10-1.webp",
         fullDescription: "AMANI KL10 is a music producer, DJ, and artist from Malappuram, Kerala, whose sound blends emotion, culture, and experimentation. Inspired by artists like Martin Garrix, Amani began exploring music through EDM and DJing apps during school, gradually shaping his own independent creative path. Rooted deeply in Kerala’s evolving music scene, he has collaborated with artists including SA, JOKER390P, emzii, Sage End, and MC Mushti, steadily building a sound and identity that feel personal, grounded, and distinctly his own.",
-        modalImage: "/artists/AMANI KL10-2.jpeg",
+        modalImage: "/artists/AMANI KL10-2.webp",
         socials: {
             instagram: "https://www.instagram.com/amanikl10?igsh=aG12YXl1djM3Y3A4",
             spotify: "https://open.spotify.com/artist/0f9QWfK1JSGrmCo2MEXuMr?si=zlcmSyLjRgy0HUa40M6GcQ",
@@ -176,9 +176,9 @@ export const ARTISTS: Artist[] = [
         name: "Sage End",
         genre: "CONSCIOUS RAP",
         description: "Wisdom through rhythm. Sage End is the philosopher of the underground.",
-        image: "/artist-image.png",
+        image: "/artist-image.webp",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artist-image.png",
+        modalImage: "/artist-image.webp",
         socials: {
             instagram: "#",
             spotify: "#",
@@ -190,9 +190,9 @@ export const ARTISTS: Artist[] = [
         name: "DH STORIES",
         genre: "HIP HOP / EDM",
         description: "Kerala-based hip hop & EDM artist. DH STORIES creates energetic, story-driven music inspired by culture, politics, and real-life experiences.",
-        image: "/artists/DH.jpeg",
+        image: "/artists/DH.webp",
         fullDescription: "Kerala-based hip hop & EDM artist. DH STORIES creates energetic, story-driven music inspired by culture, politics, and real-life experiences.",
-        modalImage: "/artists/DH1.jpeg",
+        modalImage: "/artists/DH1.webp",
         socials: {
             instagram: "https://www.instagram.com/thedhstories?igsh=cWl0MGdmaWl0MTNo",
             spotify: "https://open.spotify.com/artist/5SG8gtaSlus7rlP6BYqSCa?si=JS20ZoniR0mF_KiE9TdI5g",
@@ -217,9 +217,9 @@ export const ARTISTS: Artist[] = [
         name: "Emziii",
         genre: "NEW SCHOOL",
         description: "Fresh perspective and unique style. Emziii is breaking the mold.",
-        image: "/artist1.png",
+        image: "/artist1.webp",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artist1.png",
+        modalImage: "/artist1.webp",
         socials: {
             instagram: "#",
             spotify: "#",
@@ -245,9 +245,9 @@ export const ARTISTS: Artist[] = [
         name: "Abu x-wrong",
         genre: "MELODIC RAP",
         description: "Abu X-Wrong is a Kerala-based hip-hop artist blending melodic rap with cultural hip-hop elements.",
-        image: "/artists/Abu.JPEG",
+        image: "/artists/Abu.JPEG.webp",
         fullDescription: "Abu X-Wrong is a Kerala-based hip-hop artist blending melodic rap with cultural hip-hop elements. Since 2018, he has been an influential voice in the scene, gaining widespread recognition in 2019 when his track became one of the first Malayalam rap songs to reach millions of views, contributing significantly to the growth of Malayalam rap culture.",
-        modalImage: "/artists/Abu1.JPEG",
+        modalImage: "/artists/Abu1.JPEG.webp",
         socials: {
             instagram: "https://www.instagram.com/abu_x_wrong?igsh=MW83MnpiYmE5bzU0dw==",
             spotify: "https://open.spotify.com/artist/5pzpptEtegqrjysHniMto5?si=vIZd8Vo4RCytYDKKXQIj6A",
@@ -259,9 +259,9 @@ export const ARTISTS: Artist[] = [
         name: "Haniya Nafisa",
         genre: "INDEPENDENT / MULTI-GENRE",
         description: "Haniya Nafisa is a Kerala-based independent artist known for exploring various music genres with a fresh and modern style.",
-        image: "/artists/Haniya.jpg",
+        image: "/artists/Haniya.webp",
         fullDescription: "Haniya Nafisa is a Kerala-based independent artist known for exploring various music genres with a fresh and modern style.",
-        modalImage: "/artists/Haniya1.JPEG",
+        modalImage: "/artists/Haniya1.JPEG.webp",
         socials: {
             instagram: "https://www.instagram.com/haniyanafisaa?igsh=azhtbmE1aHNoeDgx",
             spotify: "https://open.spotify.com/artist/2qE6XvN9lbEFGFfQOREsr0?si=K9B54F3wRWSqvcLoblw6ag",

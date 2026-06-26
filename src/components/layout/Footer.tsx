@@ -50,7 +50,7 @@ export function Footer() {
                     {/* Brand Column */}
                     <motion.div variants={staggerItem} className="lg:col-span-2">
                         <div className="mb-6">
-                            <Image src="/white-logo.png" alt="Devil Inside Records" width={100} height={40} className="object-contain" />
+                            <Image src="/white-logo.webp" alt="Devil Inside Records" width={100} height={40} className="object-contain" />
                         </div>
                         <p className="font-grotesk text-gray-500 text-sm leading-relaxed max-w-sm mb-8">
                             An independent underground label. Built for the ones who refused to wait for permission.

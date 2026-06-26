@@ -1,5 +1,5 @@
 import type { StaticImageData } from "next/image";
-import NoorNoorCover from "@/image/noor-noor.jpeg";
+import NoorNoorCover from "@/image/noor-noor.webp";
 
 export interface Release {
     id: string;
@@ -16,6 +16,7 @@ export interface Release {
     link?: string;
     audio?: string;
     upcoming?: boolean;
+    loading?: "lazy" | "eager";
 }
 
 export const RELEASES: Release[] = [
@@ -27,11 +28,12 @@ export const RELEASES: Release[] = [
         tracks: "TBA",
         date: "COMING SOON",
         duration: "TBA",
-        cover: "/release/vaakkath_cover.jpg",
+        cover: "/release/vaakkath_cover.webp",
         accent: "#F5C518",
         tag: "COMING SOON",
         description: "VAAKKATH is an upcoming musical project by Haniya Nafisa featuring a dark cinematic atmosphere, emotional storytelling, and immersive sound design. The release explores mystery, emotion, and artistic expression through a unique sonic experience.",
         upcoming: true,
+        loading: "lazy"
     },
     {
         id: "hola",
@@ -41,11 +43,12 @@ export const RELEASES: Release[] = [
         tracks: 1,
         date: "MAY 28, 2026",
         duration: "03:55",
-        cover: "/release/hola_latest_release.jpeg",
+        cover: "/release/hola_latest_release.webp",
         accent: "#FFB300",
         tag: "OUT NOW",
         description: "A vibrant Malayalam hip-hop collaboration blending street energy, catchy hooks, and contemporary production.",
-        link: "https://open.spotify.com/track/4IjK4QLfJThr9s1nhLcmwM"
+        link: "https://open.spotify.com/track/4IjK4QLfJThr9s1nhLcmwM",
+        loading: "lazy"
     },
     {
         id: "zill",
@@ -55,11 +58,12 @@ export const RELEASES: Release[] = [
         tracks: 1,
         date: "FEB 11, 2026",
         duration: "04:07",
-        cover: "/release/zill_latest_release.jpeg",
+        cover: "/release/zill_latest_release.webp",
         accent: "#FF4D4D",
         tag: "OUT NOW",
         description: "Melodies collide with Malabari swagger as M.H.R, Shafi Kollam, and JOKER390P craft a cross-genre anthem.",
-        link: "https://open.spotify.com/track/12wlJpuAbgMv0OaYmY3r5x"
+        link: "https://open.spotify.com/track/12wlJpuAbgMv0OaYmY3r5x",
+        loading: "lazy"
     },
     {
         id: "evdunna-varunne",
@@ -69,11 +73,12 @@ export const RELEASES: Release[] = [
         tracks: 1,
         date: "MAY 2026",
         duration: "03:25",
-        cover: "/release/evdunna_latest_release.jpeg",
+        cover: "/release/evdunna_latest_release.webp",
         accent: "#FF6A00",
         tag: "OUT NOW",
         description: "Straight from the streets with zero filters.",
-        link: "https://open.spotify.com/track/7qsiKqtZQNpQ5sPwINtZva"
+        link: "https://open.spotify.com/track/7qsiKqtZQNpQ5sPwINtZva",
+        loading: "lazy"
     },
     {
         id: "venomous-pill",
@@ -83,11 +88,12 @@ export const RELEASES: Release[] = [
         tracks: 1,
         date: "JUL 2026",
         duration: "02:43",
-        cover: "/release/pills_latest_release.png",
+        cover: "/release/pills_latest_release.webp",
         accent: "#8A2BE2",
         tag: "OUT NOW",
         description: "Dark thoughts wrapped in razor-sharp verses.",
-        link: "https://open.spotify.com/track/2zpb2Sh2IdzRu7y6FmJdAf"
+        link: "https://open.spotify.com/track/2zpb2Sh2IdzRu7y6FmJdAf",
+        loading: "lazy"
     },
     {
         id: "baby-call-me-gangster",
@@ -97,11 +103,12 @@ export const RELEASES: Release[] = [
         tracks: 1,
         date: "JAN 09, 2026",
         duration: "03:00",
-        cover: "/release/baby_call_me_gangster.jpg",
+        cover: "/release/baby_call_me_gangster.webp",
         accent: "#780606",
         tag: "OUT NOW",
         description: "A dynamic collaboration blending raw storytelling with powerful beats.",
-        link: "https://open.spotify.com/track/4R3wna0tMjccTpSY68aQ5g?si=0468730bb90e43f5"
+        link: "https://open.spotify.com/track/4R3wna0tMjccTpSY68aQ5g?si=0468730bb90e43f5",
+        loading: "lazy"
     },
     {
         id: "noor-noor",

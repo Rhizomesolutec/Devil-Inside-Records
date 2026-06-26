@@ -52,8 +52,7 @@ function ContactInfoItem({ title, detail, note }: { title: string, detail: strin
     <div>
       <h3 className="font-bebas text-xl tracking-wider text-white mb-1">{title}</h3>
 
-      <a href={`mailto:${detail}`} className="font-grotesk text-gray-400 hover:text-[#780606] transition-colors text-[14px]">
-
+      <a href={`mailto:${detail}`} className="font-serif tracking-wide text-gray-400 text-sm hover:text-[#780606] transition-colors block lowercase">
         {detail}
       </a>
       {note && (

@@ -40,7 +40,7 @@ export function Header() {
                     {/* Desktop: Logo on the left */}
                     <Link href="/" className="hidden lg:flex items-center shrink-0">
                         <Image
-                            src="/white-logo.png"
+                            src="/white-logo.webp"
                             alt="Devil Inside Logo"
                             width={48}
                             height={48}
@@ -55,7 +55,7 @@ export function Header() {
                 <div className="lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                     <Link href="/">
                         <Image
-                            src="/white-logo.png"
+                            src="/white-logo.webp"
                             alt="Devil Inside Logo"
                             width={56}
                             height={56}

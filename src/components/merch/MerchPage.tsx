@@ -11,7 +11,7 @@ export default function MerchPage() {
             <div className="relative min-h-[60vh] flex items-end overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/merch-image.png"
+                        src="/merch-image.webp"
                         alt="Devil Inside Merch"
                         fill
                         className="object-cover object-center scale-105"

@@ -23,7 +23,7 @@ export default function AboutPage() {
                 transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
             >
                 <Image
-                    src="/about-bg-img.png"
+                    src="/about-bg-img.webp"
                     alt="Devil Inside Angel"
                     fill
                     className="object-cover object-center md:object-right opacity-80"
