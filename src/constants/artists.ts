@@ -54,9 +54,9 @@ export const ARTISTS: Artist[] = [
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
         modalImage: saImage,
         socials: {
-            instagram: "#",
-            spotify: "#",
-            youtube: "#"
+            instagram: "https://www.instagram.com/_________sa_?igsh=MWJrYzlhbW56d3JyYw==",
+            spotify: "https://open.spotify.com/artist/3eaS0SB97IZ1TVFv4XiTdm?si=2dO23Ku2QRSHURe_XjMj2g",
+            youtube: "https://www.youtube.com/@esSAyofficial"
         }
     },
     {
