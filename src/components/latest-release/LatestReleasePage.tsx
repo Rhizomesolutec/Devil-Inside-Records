@@ -173,7 +173,7 @@ function ReleaseRow({
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                         loading="lazy"
-                        sizes="(max-width: 768px) 90vw, 150px"
+                        sizes="48px"
                     />
                     <div
                         className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity"
@@ -348,6 +348,14 @@ const parseDate = (d: string) => {
 
 export default function LatestReleasePage() {
     const [active, setActive] = useState<string>(RELEASES[0]?.id ?? "");
+    const [prevActive, setPrevActive] = useState<string | null>(null);
+    const [currentActive, setCurrentActive] = useState<string>(active);
+
+    if (active !== currentActive) {
+        setPrevActive(currentActive);
+        setCurrentActive(active);
+    }
+
     const [filter, setFilter] = useState<string>("ALL");
 
     const uniqueTypes = Array.from(new Set(RELEASES.map((r) => r.type).filter(Boolean)));
@@ -396,22 +404,26 @@ export default function LatestReleasePage() {
 
             <section className="relative h-[45vh] md:h-[55vh] flex items-end overflow-hidden">
                 <div className="absolute inset-0">
-                    {RELEASES.map((r) => (
-                        <div
-                            key={r.id}
-                            className="absolute inset-0 transition-opacity duration-1000"
-                            style={{ opacity: r.id === active ? 1 : 0 }}
-                        >
-                            <Image 
-                                src={r.cover} 
-                                alt={r.title} 
-                                fill 
-                                className="object-cover object-top scale-110 blur-sm" 
-                                loading="lazy"
-                                sizes="100vw"
-                            />
-                        </div>
-                    ))}
+                    {RELEASES.map((r) => {
+                        const isVisible = r.id === active || r.id === prevActive;
+                        if (!isVisible) return null;
+                        return (
+                            <div
+                                key={r.id}
+                                className="absolute inset-0 transition-opacity duration-1000"
+                                style={{ opacity: r.id === active ? 1 : 0 }}
+                            >
+                                <Image 
+                                    src={r.cover} 
+                                    alt={r.title} 
+                                    fill 
+                                    className="object-cover object-top scale-110 blur-sm" 
+                                    loading="lazy"
+                                    sizes="100vw"
+                                />
+                            </div>
+                        );
+                    })}
                     <div className="absolute inset-0 bg-black/70" />
                     <div className="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black" />
                 </div>

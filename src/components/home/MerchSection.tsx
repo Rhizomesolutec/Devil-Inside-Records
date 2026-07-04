@@ -10,11 +10,11 @@ export function MerchSection() {
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/merch-image.png"
+                    src="/merch-image.webp"
                     alt="Devil Inside Merch"
                     fill
                     className="object-cover object-center lg:object-right opacity-90"
-                    priority
+                    loading="lazy"
                 />
                 {/* Overlays for cinematic blending */}
                 <div className="absolute inset-0 bg-linear-to-r from-black via-black/30 to-transparent" />

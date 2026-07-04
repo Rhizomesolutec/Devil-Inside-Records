@@ -148,7 +148,7 @@ export function Header() {
                     {/* Overlay Header */}
                     <div className="flex items-center justify-between py-6 border-b border-white/10">
                         <Image
-                            src="/menu-header-img.png"
+                            src="/menu-header-img.webp"
                             alt="Devil Inside Menu Logo"
                             width={180}
                             height={50}

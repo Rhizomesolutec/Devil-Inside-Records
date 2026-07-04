@@ -231,9 +231,9 @@ export const ARTISTS: Artist[] = [
         name: "Lil Roony",
         genre: "VIBE RAP",
         description: "Catchy hooks and effortless cool. Lil Roony is always on another level.",
-        image: "/artist-image.png",
+        image: "/artist-image.webp",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artist-image.png",
+        modalImage: "/artist-image.webp",
         socials: {
             instagram: "#",
             spotify: "#",

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { RELEASES } from "@/constants/releases";
 import InfiniteMenu from "../InfiniteMenu";
 
@@ -20,6 +20,24 @@ const menuItems = RELEASES.filter(r => !r.upcoming).map((release) => {
 export function LatestReleaseSection() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isMoving, setIsMoving] = useState(false);
+    const [hasIntersected, setHasIntersected] = useState(false);
+    const sectionRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setHasIntersected(true);
+                    observer.disconnect();
+                }
+            },
+            { rootMargin: "200px" }
+        );
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+        return () => observer.disconnect();
+    }, []);
 
     const activeReleases = RELEASES.filter(r => !r.upcoming);
     const active = activeReleases[activeIndex % activeReleases.length];
@@ -64,13 +82,15 @@ export function LatestReleaseSection() {
                 </div>
 
                 {/* Sphere + Info Panel */}
-                <div className="relative w-full h-[450px] md:h-[600px] mt-4 md:mt-0">
-                    <InfiniteMenu
-                        items={menuItems}
-                        scale={2}
-                        onActiveItemChange={setActiveIndex}
-                        onMovementChange={setIsMoving}
-                    />
+                <div ref={sectionRef} className="relative w-full h-[450px] md:h-[600px] mt-4 md:mt-0">
+                    {hasIntersected && (
+                        <InfiniteMenu
+                            items={menuItems}
+                            scale={2}
+                            onActiveItemChange={setActiveIndex}
+                            onMovementChange={setIsMoving}
+                        />
+                    )}
 
                     {/* Active Release Info — panel */}
                     <div

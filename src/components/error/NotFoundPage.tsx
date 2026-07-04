@@ -7,7 +7,7 @@ export default function NotFoundPage() {
       {/* Background element */}
       <div className="absolute inset-0 pointer-events-none z-0 opacity-20">
         <Image
-          src="/about-bg-img.png"
+          src="/about-bg-img.webp"
           alt="Devil Inside Angel Background"
           fill
           className="object-cover object-center grayscale"

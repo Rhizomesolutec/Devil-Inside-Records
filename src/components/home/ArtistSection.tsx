@@ -47,10 +47,11 @@ export function ArtistSection() {
             {/* ── Background ── */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/home-artist-bg-img.png"
+                    src="/home-artist-bg-img.webp"
                     alt=""
                     fill
                     className="object-cover opacity-20"
+                    loading="lazy"
                     aria-hidden
                 />
                 <div className="absolute inset-0 bg-radial-[circle_at_center] from-transparent to-black" />
