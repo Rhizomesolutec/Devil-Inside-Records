@@ -134,9 +134,9 @@ export const ARTISTS: Artist[] = [
         name: "Efy Music",
         genre: "UNDERGROUND HIP-HOP",
         description: "Efy Music is an underground Hip-Hop artist known for delivering raw lyrics, authentic storytelling, and uncompromising energy.",
-        image: "/artists/effy1.webp",
+        image: "/artists/efy1.webp",
         fullDescription: "Efy Music is an underground Hip-Hop artist known for delivering raw lyrics, authentic storytelling, and uncompromising energy. Drawing inspiration from real-life experiences and street culture, Efy Music creates hard-hitting tracks that blend gritty flows with powerful messages, representing the true spirit of independent Hip-Hop.",
-        modalImage: "/artists/effy2.webp",
+        modalImage: "/artists/efy2.webp",
         socials: {
             instagram: "https://www.instagram.com/_efy___/?hl=en",
             spotify: "https://open.spotify.com/artist/1DDwkZwiamO6HSJdB6DtYY?si=BvaViMDyRZSdz0mhpeZWlQ",
