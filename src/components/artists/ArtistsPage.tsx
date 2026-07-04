@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ARTISTS, Artist } from "@/constants/artists";
 import { fadeUp, staggerContainer, staggerItem, slideLeft } from "@/lib/animations";
@@ -17,13 +17,16 @@ export default function ArtistsPage() {
     };
 
     // Prevent scrolling when modal is open
-    if (typeof window !== "undefined") {
+    useEffect(() => {
         if (selectedArtist) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "auto";
         }
-    }
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [selectedArtist]);
 
     return (
         <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -150,7 +153,7 @@ export default function ArtistsPage() {
                             GOT WHAT IT TAKES?
                         </p>
                         <p className="font-grotesk text-gray-500 text-sm mt-2">
-                            We're always hunting for the next real thing.
+                            {"We're always hunting for the next real thing."}
                         </p>
                     </motion.div>
                     <motion.a

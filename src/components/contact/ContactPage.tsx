@@ -62,13 +62,3 @@ function ContactInfoItem({ title, detail, note }: { title: string, detail: strin
   );
 }
 
-function SocialSquare({ label }: { label: string }) {
-  return (
-    <a 
-      href="#" 
-      className="w-12 h-12 flex items-center justify-center border border-white/20 font-barlow text-sm font-bold tracking-widest text-white hover:bg-white hover:text-black hover:border-white transition-all"
-    >
-      {label}
-    </a>
-  );
-}

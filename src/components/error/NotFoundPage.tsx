@@ -25,7 +25,7 @@ export default function NotFoundPage() {
         </h2>
         
         <p className="font-grotesk text-gray-400 text-[14px] md:text-base leading-relaxed mb-10 max-w-md mx-auto">
-          The track you're looking for doesn't exist, has been removed, or is currently restricted. Return to the surface or keep digging.
+          {"The track you're looking for doesn't exist, has been removed, or is currently restricted. Return to the surface or keep digging."}
         </p>
 
         <Link

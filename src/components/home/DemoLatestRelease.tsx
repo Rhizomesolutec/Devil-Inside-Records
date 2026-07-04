@@ -15,9 +15,15 @@ export function DemoLatestReleaseSection() {
   const uniqueTypes = Array.from(new Set(RELEASES.map((r) => r.type).filter(Boolean)));
   const showTypeUI = uniqueTypes.length > 1;
 
-  // Pause audio when active item changes
-  useEffect(() => {
+  // Adjust playing state during rendering when active index changes
+  const [prevActiveIndex, setPrevActiveIndex] = useState(activeIndex);
+  if (activeIndex !== prevActiveIndex) {
+    setPrevActiveIndex(activeIndex);
     setPlaying(false);
+  }
+
+  // Pause/reset audio when active item changes
+  useEffect(() => {
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;

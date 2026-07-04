@@ -3,15 +3,9 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ABOUT_STATS } from "@/constants/about";
-import { fadeUp, staggerContainer, staggerItem, scaleIn } from "@/lib/animations";
+import { fadeUp, staggerContainer, scaleIn } from "@/lib/animations";
 
 export default function AboutPage() {
-    const featureIcons = {
-        vision: <GlobeIcon />,
-        rules: <XIcon />,
-        artists: <MicIcon />,
-        different: <BoltIcon />,
-    };
 
     return (
         <main className="min-h-screen bg-black text-white relative pt-24 pb-20 overflow-hidden">
@@ -67,10 +61,10 @@ export default function AboutPage() {
                             + WE EXIST FOR THE UNDERGROUND.
                         </motion.p>
                         <motion.p variants={fadeUp}>
-                            Devil Inside is more than a name. It's a home for the misfits, the dreamers, and the real ones.
+                            {"Devil Inside is more than a name. It's a home for the misfits, the dreamers, and the real ones."}
                         </motion.p>
                         <motion.p variants={fadeUp}>
-                            We host the next generation of rap artists who don't follow the industry - they destroy it and build their own lane.
+                            {"We host the next generation of rap artists who don't follow the industry - they destroy it and build their own lane."}
                         </motion.p>
                         <motion.p variants={fadeUp}>
                             Raw sound. Real stories. No limits.
@@ -100,15 +94,7 @@ export default function AboutPage() {
     );
 }
 
-function Feature({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
-    return (
-        <div className="space-y-4">
-            <div className="text-[#780606] w-8 h-8">{icon}</div>
-            <h3 className="font-barlow text-white font-bold tracking-widest text-base uppercase">{title}</h3>
-            <p className="font-grotesk text-gray-500 text-[11px] leading-relaxed">{desc}</p>
-        </div>
-    );
-}
+
 
 function Stat({ number, label, sublabel }: { number: string, label: string, sublabel: string }) {
     return (
@@ -120,37 +106,7 @@ function Stat({ number, label, sublabel }: { number: string, label: string, subl
     );
 }
 
-function GlobeIcon() {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" />
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-        </svg>
-    );
-}
-function XIcon() {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-        </svg>
-    );
-}
-function MicIcon() {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-            <line x1="12" y1="19" x2="12" y2="23" /><line x1="8" y1="23" x2="16" y2="23" />
-        </svg>
-    );
-}
-function BoltIcon() {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-        </svg>
-    );
-}
+
 function CrownIcon() {
     return (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

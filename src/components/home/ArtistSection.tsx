@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ARTIST_NAMES, VIBES } from "@/constants/artists";
-import { fadeUp, staggerContainer, fadeIn } from "@/lib/animations";
+import { fadeUp, staggerContainer } from "@/lib/animations";
 
 function Marquee({ items, speed = "20s", mobileSpeed, direction = "left", size = "text-xs" }: { 
     items: string[], 

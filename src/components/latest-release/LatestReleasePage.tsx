@@ -17,7 +17,7 @@ function Waveform({ active, color }: { active: boolean; color: string }) {
                         backgroundColor: active ? color : "#374151",
                         animationDelay: `${i * 80}ms`,
                         animation: active ? `pulse 0.8s ease-in-out ${i * 80}ms infinite alternate` : "none",
-                        transform: active ? `scaleY(${0.4 + Math.random() * 0.6})` : "scaleY(0.2)",
+                        transform: active ? `scaleY(${0.4 + ((i * 7 + 3) % 10) * 0.06})` : "scaleY(0.2)",
                     }}
                 />
             ))}
@@ -80,11 +80,14 @@ function ReleaseRow({
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const isUpcoming = !!release.upcoming || release.date === "COMING SOON" || release.date === "TBA";
 
-    useEffect(() => {
+    // Adjust playing state during rendering if row becomes inactive
+    const [prevIsActive, setPrevIsActive] = useState(isActive);
+    if (isActive !== prevIsActive) {
+        setPrevIsActive(isActive);
         if (!isActive) {
             setPlaying(false);
         }
-    }, [isActive]);
+    }
 
     useEffect(() => {
         if (!audioRef.current) return;
@@ -354,8 +357,6 @@ export default function LatestReleasePage() {
     const sortedReleases = [...RELEASES].sort((a, b) => parseDate(b.date) - parseDate(a.date));
     const filtered = filter === "ALL" ? sortedReleases : sortedReleases.filter((r) => r.type === filter);
 
-    const vaakkath = RELEASES.find((r) => r.id === "vaakkath");
-
     return (
         <div className="min-h-screen bg-black text-white">
             <style>{`
@@ -428,143 +429,7 @@ export default function LatestReleasePage() {
                 </div>
             </section>
 
-            {vaakkath && (
-                <section
-                    className="relative overflow-hidden border-t border-b"
-                    style={{
-                        borderColor: `${vaakkath.accent}20`,
-                        background: `linear-gradient(135deg, ${vaakkath.accent}06 0%, #000 50%, ${vaakkath.accent}04 100%)`,
-                    }}
-                >
-                    <div className="absolute inset-0 pointer-events-none">
-                        <div
-                            className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 rounded-full opacity-20 blur-[100px]"
-                            style={{ background: vaakkath.accent }}
-                        />
-                        <div
-                            className="absolute top-1/2 right-1/4 -translate-y-1/2 w-64 h-64 rounded-full opacity-10 blur-[80px]"
-                            style={{ background: vaakkath.accent }}
-                        />
-                    </div>
 
-                    <div className="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-16 lg:px-24 py-16 md:py-24">
-                        <p
-                            className="font-barlow text-[10px] tracking-[0.5em] uppercase mb-10 flex items-center gap-3 fade-in-up fade-in-up-delay-1"
-                            style={{ color: `${vaakkath.accent}80` }}
-                        >
-                            <span className="w-6 h-px" style={{ background: vaakkath.accent }} />
-                            UPCOMING RELEASE
-                            <span className="w-6 h-px" style={{ background: vaakkath.accent }} />
-                        </p>
-
-                        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center lg:items-start">
-                            <div className="flex-shrink-0 w-full max-w-[300px] md:max-w-[380px] lg:max-w-[420px] fade-in-up fade-in-up-delay-1">
-                                <div
-                                    className="relative aspect-square overflow-hidden vaakkath-float vaakkath-cover-glow"
-                                    style={{ borderRadius: "2px" }}
-                                >
-                                    <Image
-                                        src={vaakkath.cover}
-                                        alt={vaakkath.title}
-                                        fill
-                                        className="object-cover transition-transform duration-700 hover:scale-105"
-                                        sizes="(max-width: 768px) 90vw, 420px"
-                                        priority
-                                    />
-                                    <div
-                                        className="absolute inset-0 pointer-events-none"
-                                        style={{ background: `linear-gradient(180deg, transparent 50%, ${vaakkath.accent}20 100%)` }}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="flex-1 flex flex-col gap-6 max-w-xl">
-                                <div className="fade-in-up fade-in-up-delay-2">
-                                    <span
-                                        className="inline-flex items-center gap-2 font-barlow text-[10px] tracking-[0.5em] uppercase px-5 py-2 coming-soon-badge"
-                                        style={{
-                                            color: vaakkath.accent,
-                                            border: `1px solid ${vaakkath.accent}50`,
-                                            background: `${vaakkath.accent}15`,
-                                        }}
-                                    >
-                                        <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: vaakkath.accent }} />
-                                        COMING SOON
-                                    </span>
-                                </div>
-
-                                <div className="fade-in-up fade-in-up-delay-2">
-                                    <h2
-                                        className="font-cinzel text-5xl md:text-6xl lg:text-7xl font-black uppercase leading-none tracking-tighter"
-                                        style={{
-                                            color: vaakkath.accent,
-                                            textShadow: `0 0 60px ${vaakkath.accent}50`,
-                                        }}
-                                    >
-                                        {vaakkath.title}
-                                    </h2>
-                                </div>
-
-                                <div className="fade-in-up fade-in-up-delay-3">
-                                    <p className="font-barlow text-white text-sm tracking-[0.4em] uppercase">
-                                        {vaakkath.artist}
-                                    </p>
-                                </div>
-
-                                <div className="w-16 h-px fade-in-up fade-in-up-delay-3" style={{ background: `${vaakkath.accent}60` }} />
-
-                                <div className="grid grid-cols-2 gap-4 fade-in-up fade-in-up-delay-3">
-                                    {[
-                                        { label: "RELEASE DATE", value: "Coming Soon" },
-                                        { label: "GENRE", value: "Dark Cinematic / Alternative" },
-                                        { label: "TRACKS", value: vaakkath.duration },
-                                        { label: "LABEL", value: "Devil Inside Records" },
-                                    ].map((item) => (
-                                        <div key={item.label}>
-                                            <p className="font-barlow text-[8px] tracking-[0.5em] uppercase mb-1" style={{ color: `${vaakkath.accent}60` }}>
-                                                {item.label}
-                                            </p>
-                                            <p className="font-cinzel text-white text-sm font-bold tracking-wide uppercase">
-                                                {item.value}
-                                            </p>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <p className="font-grotesk text-gray-400 text-sm leading-relaxed fade-in-up fade-in-up-delay-3">
-                                    {vaakkath.description}
-                                </p>
-
-                                <div className="fade-in-up fade-in-up-delay-4">
-                                    <div className="relative group/cta inline-block">
-                                        <button
-                                            disabled
-                                            className="font-barlow flex items-center gap-3 px-10 py-4 text-sm tracking-[0.3em] uppercase font-bold cursor-not-allowed transition-all duration-300"
-                                            style={{
-                                                color: vaakkath.accent,
-                                                border: `1px solid ${vaakkath.accent}40`,
-                                                background: `${vaakkath.accent}10`,
-                                                opacity: 0.8,
-                                            }}
-                                        >
-                                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
-                                            </svg>
-                                            COMING SOON
-                                        </button>
-                                        <p
-                                            className="mt-2 font-barlow text-[9px] tracking-[0.3em] uppercase opacity-0 group-hover/cta:opacity-100 transition-opacity duration-300"
-                                            style={{ color: `${vaakkath.accent}70` }}
-                                        >
-                                            Release date will be announced soon.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            )}
 
             {showTypeUI && (
                 <div className="border-b border-white/5 px-6 md:px-16 lg:px-24 sticky top-0 z-40 bg-black/80 backdrop-blur-md">
@@ -615,7 +480,7 @@ export default function LatestReleasePage() {
                         <p className="font-barlow text-xs tracking-widest uppercase">Try a different filter</p>
                     </div>
                 ) : (
-                    filtered.filter((r) => r.id !== "vaakkath").map((release, i) => (
+                    filtered.map((release, i) => (
                         <ReleaseRow
                             key={release.id}
                             release={release}
