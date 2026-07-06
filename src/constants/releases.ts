@@ -154,5 +154,20 @@ export const RELEASES: Release[] = [
         description: "A hard-hitting hip-hop track by JOKER390P and M.H.R, showcasing smooth flows, sharp bars, and a hypnotic beat.",
         link: "https://open.spotify.com/album/4gxwF36HPEOlQO4D10f4gp?si=tt1ngtsDQ1eftpYcps_AFQ",
         loading: "lazy"
+    },
+    {
+        id: "concrete-killers",
+        title: "CONCRETE KILLERS",
+        artist: "MC Mushti, JORJ.",
+        type: "SINGLE",
+        tracks: 1,
+        date: "JUNE 26, 2026",
+        duration: "03:07",
+        cover: "/release/CONCRETE KILLERS.jpeg",
+        accent: "#ED0818",
+        tag: "OUT NOW",
+        description: "A hard-hitting hip-hop single by MC Mushti and JORJ., delivering intense flow and concrete street energy.",
+        link: "https://open.spotify.com/track/0oQv7dJ8TrCn1Ea9I5gNuy?si=7d2d044f658849f4",
+        loading: "lazy"
     }
 ];

@@ -120,13 +120,13 @@ export const ARTISTS: Artist[] = [
         name: "Wraith V",
         genre: "DARK RAP",
         description: "A phantom in the booth. Wraith V haunts every beat with surgical precision.",
-        image: "/artist-image.webp",
+        image: "/artists/Wraith V.JPEG",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artist-image.webp",
+        modalImage: "/artists/Wraith V.JPEG",
         socials: {
-            instagram: "#",
-            spotify: "#",
-            youtube: "#"
+            instagram: "https://www.instagram.com/wraithv.ofc?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+            spotify: "https://open.spotify.com/artist/4BOMjhDXc0Aet35ZlLZNgZ?si=UFTq_jtrT22iOwKoD9GcLA",
+            youtube: "https://www.youtube.com/@WraithV"
         }
     },
     {
@@ -176,13 +176,13 @@ export const ARTISTS: Artist[] = [
         name: "Sage End",
         genre: "CONSCIOUS RAP",
         description: "Wisdom through rhythm. Sage End is the philosopher of the underground.",
-        image: "/artist-image.webp",
+        image: "/artists/Sega End.jpeg",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artist-image.webp",
+        modalImage: "/artists/Sega End.jpeg",
         socials: {
-            instagram: "#",
-            spotify: "#",
-            youtube: "#"
+            instagram: "https://www.instagram.com/thesageend/?utm_source=ig_web_button_share_sheet",
+            spotify: "https://open.spotify.com/artist/1LcEVfkI3SVWHfrnOUxPyE?si=PlooiP_RQu-UUjtSlONXAg",
+            youtube: "https://www.youtube.com/@thesageend"
         }
     },
     {
@@ -231,12 +231,12 @@ export const ARTISTS: Artist[] = [
         name: "Lil Roony",
         genre: "VIBE RAP",
         description: "Catchy hooks and effortless cool. Lil Roony is always on another level.",
-        image: "/artist-image.webp",
+        image: "/artists/Lil Roony.jpeg",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artist-image.webp",
+        modalImage: "/artists/Lil Roony.jpeg",
         socials: {
-            instagram: "#",
-            spotify: "#",
+            instagram: "https://www.instagram.com/lilroony?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+            spotify: "https://open.spotify.com/artist/7MD92P1XCS8QKLty9eheWb?si=Ywm6AaWfQNqJBPuZzz2jmg",
             youtube: "#"
         }
     },
