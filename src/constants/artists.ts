@@ -120,9 +120,9 @@ export const ARTISTS: Artist[] = [
         name: "Wraith V",
         genre: "DARK RAP",
         description: "A phantom in the booth. Wraith V haunts every beat with surgical precision.",
-        image: "/artists/Wraith V.JPEG",
+        image: "/artists/Wraith V.webp",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artists/Wraith V.JPEG",
+        modalImage: "/artists/Wraith V.webp",
         socials: {
             instagram: "https://www.instagram.com/wraithv.ofc?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
             spotify: "https://open.spotify.com/artist/4BOMjhDXc0Aet35ZlLZNgZ?si=UFTq_jtrT22iOwKoD9GcLA",
@@ -176,9 +176,9 @@ export const ARTISTS: Artist[] = [
         name: "Sage End",
         genre: "CONSCIOUS RAP",
         description: "Wisdom through rhythm. Sage End is the philosopher of the underground.",
-        image: "/artists/Sega End.jpeg",
+        image: "/artists/Sega End.webp",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",
-        modalImage: "/artists/Sega End.jpeg",
+        modalImage: "/artists/Sega End.webp",
         socials: {
             instagram: "https://www.instagram.com/thesageend/?utm_source=ig_web_button_share_sheet",
             spotify: "https://open.spotify.com/artist/1LcEVfkI3SVWHfrnOUxPyE?si=PlooiP_RQu-UUjtSlONXAg",

@@ -163,7 +163,7 @@ export const RELEASES: Release[] = [
         tracks: 1,
         date: "JUNE 26, 2026",
         duration: "03:07",
-        cover: "/release/CONCRETE KILLERS.jpeg",
+        cover: "/release/CONCRETE KILLERS.webp",
         accent: "#ED0818",
         tag: "OUT NOW",
         description: "A hard-hitting hip-hop single by MC Mushti and JORJ., delivering intense flow and concrete street energy.",
