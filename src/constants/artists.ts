@@ -7,7 +7,7 @@ export const ARTIST_NAMES = [
     "M.H.R", "SA", "JOKER390P", "Lil PAYYAN", "AZWIN", 
     "Nazeeb Billu", "Wraith V", "Efy Music", "Fazil AS", "AMANI KL10",
     "Sage End", "DH STORIES", "MC Mushti", "Emziii", "Lil Roony",
-    "Abu x-wrong", "Haniya Nafisa"
+    "Abu x-wrong", "Haniya Nafisa", "PARAVA 98"
 ];
 
 export const VIBES = [
@@ -266,6 +266,20 @@ export const ARTISTS: Artist[] = [
             instagram: "https://www.instagram.com/haniyanafisaa?igsh=azhtbmE1aHNoeDgx",
             spotify: "https://open.spotify.com/artist/2qE6XvN9lbEFGFfQOREsr0?si=K9B54F3wRWSqvcLoblw6ag",
             youtube: "https://youtube.com/@haniyanafisa?si=EacWcuYCu22tpu4p"
+        }
+    },
+    {
+        id: "parava-98",
+        name: "PARAVA 98",
+        genre: "HIP HOP / RAP",
+        description: "Pushing the boundaries of independent rap with raw storytelling, signature flow, and authentic underground style.",
+        image: "/artists/Parava 98.webp",
+        fullDescription: "Pushing the boundaries of independent rap with raw storytelling, signature flow, and authentic underground style. PARAVA 98 continues to connect with audiences through powerful performances and street-inspired narratives.",
+        modalImage: "/artists/Parava 98.webp",
+        socials: {
+            instagram: "https://www.instagram.com/parava.98?utm_source=qr",
+            spotify: "https://open.spotify.com/artist/1tm6Pu0OuBh3EL762k7AKc?si=nD5SzipsSy-C5qg_6isO5Q",
+            youtube: "https://youtube.com/@parava-ov8tz?si=I50v_Mf14iHMfn2Q"
         }
     },
 ];

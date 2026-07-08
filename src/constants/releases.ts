@@ -169,5 +169,35 @@ export const RELEASES: Release[] = [
         description: "A hard-hitting hip-hop single by MC Mushti and JORJ., delivering intense flow and concrete street energy.",
         link: "https://open.spotify.com/track/0oQv7dJ8TrCn1Ea9I5gNuy?si=7d2d044f658849f4",
         loading: "lazy"
+    },
+    {
+        id: "hubb",
+        title: "HUBB",
+        artist: "Lil Roony, VXAL",
+        type: "SINGLE",
+        tracks: 1,
+        date: "JUL 06, 2026",
+        duration: "02:18",
+        cover: "/release/HUBB.webp",
+        accent: "#A04878",
+        tag: "OUT NOW",
+        description: "A hard-hitting collaboration blending raw energy, sharp flows, and intense production.",
+        link: "https://open.spotify.com/track/7amVQ8KypdMvh2aslWxKNK?si=d1ef882151a141d4",
+        loading: "lazy"
+    },
+    {
+        id: "paapachillu",
+        title: "PAAPACHILLU",
+        artist: "Pedappiller, PARAVA 98",
+        type: "SINGLE",
+        tracks: 1,
+        date: "MAY 26, 2026",
+        duration: "02:30",
+        cover: "/release/Paapachillu.webp",
+        accent: "#E32D26",
+        tag: "OUT NOW",
+        description: "A gritty and energetic street anthem showcasing raw flows and signature production.",
+        link: "https://open.spotify.com/track/1i1i7jtPB7cXa7Pnx4aMXE?si=4eb1747eeba14994",
+        loading: "lazy"
     }
 ];
