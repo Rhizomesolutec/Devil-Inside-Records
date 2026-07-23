@@ -157,10 +157,10 @@ export function HomeHeroSection() {
                 </div>
               </div>
 
-              {/* Spotify Embed for Chaathan Party */}
+              {/* Spotify Embed for Moopathyar */}
               <iframe
                 style={{ borderRadius: "10px" }}
-                src="https://open.spotify.com/embed/track/6zYXTcQutEV9tTrMLZ3UH3?utm_source=generator&theme=0"
+                src="https://open.spotify.com/embed/track/283tgXkc0E5Yg8BSeqlyld?utm_source=generator&theme=0"
                 width="100%"
                 height="152"
                 frameBorder="0"
