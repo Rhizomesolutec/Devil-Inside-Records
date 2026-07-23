@@ -230,7 +230,7 @@ export const RELEASES: Release[] = [
         cover: "/release/SAB6.webp",
         accent: "#C81808",
         tag: "COMING SOON",
-        description: "An upcoming groundbreaking studio album by SBAR6. Anticipated soundscapes blending alternative structures and dark cinematic themes. Coming soon.",
+        description: "An upcoming groundbreaking studio album by SAB6. Anticipated soundscapes blending alternative structures and dark cinematic themes. Coming soon.",
         upcoming: true,
         loading: "lazy"
     }
