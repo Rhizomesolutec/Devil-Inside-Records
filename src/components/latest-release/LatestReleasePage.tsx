@@ -393,6 +393,25 @@ const parseDate = (d: string) => {
     return Date.now();
 };
 
+const SAB6_TRACKS = [
+    { number: 1, title: "SAB6", artists: "Lil PAYYAN, AZWIN" },
+    { number: 2, title: "WALLAH!", artists: "Lil PAYYAN, AZWIN" },
+    { number: 3, title: "GUCCI THUNI", artists: "Lil PAYYAN, AZWIN" },
+    { number: 4, title: "YAMAAL", artists: "Lil PAYYAN, AZWIN" },
+    { number: 5, title: "CHORA!", artists: "Lil PAYYAN, AZWIN" },
+    { number: 6, title: "OTTA VAAPPA!", artists: "Lil PAYYAN, AZWIN" },
+    { number: 7, title: "PAADATH PANI!", artists: "Lil PAYYAN, AZWIN" },
+    { number: 8, title: "HAHAHA!", artists: "Lil PAYYAN, AZWIN" },
+    { number: 9, title: "MOOTHON", artists: "Lil PAYYAN, AZWIN" },
+    { number: 10, title: "HARAM FLEX!", artists: "Lil PAYYAN, AZWIN" },
+    { number: 11, title: "QAWM", artists: "Lil PAYYAN, AZWIN" },
+    { number: 12, title: "KARAL", artists: "Lil PAYYAN, AZWIN" },
+    { number: 13, title: "AAYO?", artists: "Lil PAYYAN, ToxicTeenu" },
+    { number: 14, title: "PAARE PAARE", artists: "Lil PAYYAN, AZWIN" },
+    { number: 15, title: "NAYINTE MAKLAL", artists: "Lil PAYYAN, ToxicTeenu" },
+    { number: 16, title: "NANNAYITTIRIKK", artists: "Lil PAYYAN, AZWIN" }
+];
+
 export default function LatestReleasePage() {
     const [active, setActive] = useState<string>(RELEASES[0]?.id ?? "");
     const [prevActive, setPrevActive] = useState<string | null>(null);
@@ -404,6 +423,7 @@ export default function LatestReleasePage() {
     }
 
     const [filter, setFilter] = useState<string>("ALL");
+    const [showTracklist, setShowTracklist] = useState<boolean>(false);
 
     const uniqueTypes = Array.from(new Set(RELEASES.map((r) => r.type).filter(Boolean)));
     const showTypeUI = uniqueTypes.length > 1;
@@ -526,30 +546,49 @@ export default function LatestReleasePage() {
                                             <h3 className="font-cinzel text-white text-3xl md:text-4xl font-black uppercase tracking-tight mb-2">
                                                 {release.title}
                                             </h3>
-                                            <p className="font-grotesk text-gray-400 text-sm leading-relaxed max-w-xl mb-6">
+                                            <p className="font-grotesk text-gray-400 text-sm leading-relaxed max-w-xl mb-3">
                                                 {release.description}
                                             </p>
-                                        </div>
-
-                                        {/* Highlighted Collaborations / Features */}
-                                        <div>
-                                            <p className="font-barlow text-[9px] tracking-[0.3em] text-gray-500 uppercase mb-3 font-semibold">
-                                                TRACK HIGHLIGHTS
-                                            </p>
-                                            <div className="flex flex-col sm:flex-row gap-3">
-                                                <div className="flex-1 flex items-center gap-3 px-4 py-3 bg-red-950/20 border border-red-600/20 rounded-md">
-                                                    <div className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
-                                                    <span className="font-barlow text-sm tracking-wider text-red-400 uppercase font-semibold">
-                                                        Lil PAYYAN, AZWIN
-                                                    </span>
-                                                </div>
-                                                <div className="flex-1 flex items-center gap-3 px-4 py-3 bg-red-950/20 border border-red-600/20 rounded-md">
-                                                    <div className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
-                                                    <span className="font-barlow text-sm tracking-wider text-red-400 uppercase font-semibold">
-                                                        Lil PAYYAN, ToxicTeenu
-                                                    </span>
-                                                </div>
+                                            <div className="font-barlow text-[11px] tracking-[0.25em] text-red-500/80 uppercase font-bold mb-6 flex items-center gap-2">
+                                                <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+                                                {release.artist}
                                             </div>
+                                        </div>                                        {/* Collapsible Tracks List */}
+                                        <div className="mt-4">
+                                            <button
+                                                onClick={() => setShowTracklist(!showTracklist)}
+                                                className="font-barlow flex items-center justify-center gap-2.5 px-6 py-2.5 text-[10px] tracking-[0.2em] uppercase font-bold transition-all duration-300 hover:bg-red-600 hover:text-black border border-red-600/40 text-red-500 bg-transparent rounded-sm"
+                                            >
+                                                <svg 
+                                                    className={`w-3.5 h-3.5 transition-transform duration-300 ${showTracklist ? "rotate-180" : ""}`} 
+                                                    fill="none" 
+                                                    stroke="currentColor" 
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                                {showTracklist ? "HIDE TRACKLIST" : "COMING TRACKS"}
+                                            </button>
+
+                                            {showTracklist && (
+                                                <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[260px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-red-600/40 scrollbar-track-transparent">
+                                                    {SAB6_TRACKS.map((track) => (
+                                                        <div key={track.number} className="flex items-center justify-between p-2.5 bg-zinc-900/60 border border-white/5 hover:border-red-600/10 transition-colors duration-300">
+                                                            <div className="flex items-center gap-2 truncate mr-2">
+                                                                <span className="font-mono text-[9px] text-gray-500">
+                                                                    {String(track.number).padStart(2, "0")}
+                                                                </span>
+                                                                <span className="font-cinzel text-xs text-white uppercase truncate font-bold">
+                                                                    {track.title}
+                                                                </span>
+                                                            </div>
+                                                            <span className="font-barlow text-[7px] md:text-[8px] font-bold tracking-wider px-2.5 py-0.5 border uppercase shrink-0 text-red-400 bg-red-950/20 border-red-600/30">
+                                                                {track.artists}
+                                                            </span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
