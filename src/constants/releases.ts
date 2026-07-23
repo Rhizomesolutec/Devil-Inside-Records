@@ -17,6 +17,8 @@ export interface Release {
     audio?: string;
     upcoming?: boolean;
     loading?: "lazy" | "eager";
+    youtubeLink?: string;
+    appleMusicLink?: string;
 }
 
 export const RELEASES: Release[] = [
@@ -198,6 +200,38 @@ export const RELEASES: Release[] = [
         tag: "OUT NOW",
         description: "A gritty and energetic street anthem showcasing raw flows and signature production.",
         link: "https://open.spotify.com/track/1i1i7jtPB7cXa7Pnx4aMXE?si=4eb1747eeba14994",
+        loading: "lazy"
+    },
+    {
+        id: "moopathyar",
+        title: "MOOPATHYAR",
+        artist: "M.H.R, Nazeeb Billu",
+        type: "SINGLE",
+        tracks: 1,
+        date: "JUL 21, 2026",
+        duration: "04:02",
+        cover: "/release/Moopathyar.jpeg",
+        accent: "#C81808",
+        tag: "OUT NOW",
+        description: "A powerful hip-hop single by M.H.R and Nazeeb Billu, showcasing smooth flows and signature street-level production.",
+        link: "https://open.spotify.com/album/79AONuETglgT8VUBC2Guy0?si=wQWbZlMeSLSXdmdke5cvOQ",
+        youtubeLink: "https://youtu.be/eCCoGebYRgA?si=_YEC45AtA0hU-vuT",
+        appleMusicLink: "https://music.apple.com/in/album/moopathyar/6793023647?i=6793023653",
+        loading: "lazy"
+    },
+    {
+        id: "sab6",
+        title: "SAB6",
+        artist: "Lil PAYYAN",
+        type: "ALBUM",
+        tracks: "TBA",
+        date: "COMING SOON",
+        duration: "TBA",
+        cover: "/release/SAB6.webp",
+        accent: "#C81808",
+        tag: "COMING SOON",
+        description: "An upcoming groundbreaking studio album by SBAR6. Anticipated soundscapes blending alternative structures and dark cinematic themes. Coming soon.",
+        upcoming: true,
         loading: "lazy"
     }
 ];

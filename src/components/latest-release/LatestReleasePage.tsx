@@ -321,6 +321,53 @@ function ReleaseRow({
                                 </svg>
                                 {isUpcoming ? "COMING SOON" : "LISTEN NOW"}
                             </button>
+
+                            {!isUpcoming && (release.link || release.youtubeLink || release.appleMusicLink) && (
+                                <div className="flex items-center gap-4 px-2 py-2 sm:py-0 justify-center sm:justify-start">
+                                    {release.link && (
+                                        <a
+                                            href={release.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-gray-400 hover:scale-110 transition-transform"
+                                            style={{ color: release.accent }}
+                                            title="Spotify"
+                                        >
+                                            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.45 17.34c-.21.345-.667.457-1.011.247-2.775-1.694-6.262-2.077-10.375-1.139-.395.09-.785-.157-.875-.552-.09-.395.157-.785.552-.875 4.502-1.029 8.358-.598 11.462 1.303.344.21.456.666.247 1.016zm1.448-3.238c-.266.43-.573.661-1 .395L15 13.5a16.2 16.2 0 0 0-5.475-1.797 16.2 16.2 0 0 0-5.758.219.855.855 0 0 1-1.018-.65.85.85 0 0 1 .65-1.018 17.9 17.9 0 0 1 6.362-.241 17.9 17.9 0 0 1 6.049 1.985c.415.224.57.743.344 1.158zm.092-3.376c-3.418-2.03-9.055-2.217-12.315-1.228-.564.17-1.156-.148-1.326-.712-.17-.564.148-1.156.712-1.326 3.774-1.144 10.013-.923 13.978 1.436.51.305.675.961.37 1.472-.306.51-.962.675-1.42.358z" />
+                                            </svg>
+                                        </a>
+                                    )}
+                                    {release.youtubeLink && (
+                                        <a
+                                            href={release.youtubeLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-gray-400 hover:scale-110 transition-transform"
+                                            style={{ color: release.accent }}
+                                            title="YouTube"
+                                        >
+                                            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                                            </svg>
+                                        </a>
+                                    )}
+                                    {release.appleMusicLink && (
+                                        <a
+                                            href={release.appleMusicLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-gray-400 hover:scale-110 transition-transform"
+                                            style={{ color: release.accent }}
+                                            title="Apple Music"
+                                        >
+                                            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-.96.04-2.13.64-2.82 1.45-.6.7-1.13 1.84-.99 2.94.12.01 2.16-.52 2.82-1.33z" />
+                                            </svg>
+                                        </a>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -362,7 +409,7 @@ export default function LatestReleasePage() {
     const showTypeUI = uniqueTypes.length > 1;
     const FILTERS = ["ALL", ...uniqueTypes];
 
-    const sortedReleases = [...RELEASES].sort((a, b) => parseDate(b.date) - parseDate(a.date));
+    const sortedReleases = [...RELEASES].filter((r) => !r.upcoming).sort((a, b) => parseDate(b.date) - parseDate(a.date));
     const filtered = filter === "ALL" ? sortedReleases : sortedReleases.filter((r) => r.type === filter);
 
     return (
@@ -440,6 +487,77 @@ export default function LatestReleasePage() {
                     </h1>
                 </div>
             </section>
+
+            {/* Upcoming Releases Section */}
+            {RELEASES.some((r) => r.upcoming) && (
+                <div className="border-b border-white/5 py-12 px-6 md:px-16 lg:px-24 bg-zinc-950/40">
+                    <div className="max-w-screen-2xl mx-auto">
+                        <p className="font-barlow text-[10px] tracking-[0.4em] text-red-600 uppercase mb-6 font-bold flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+                            COMING SOON
+                        </p>
+                        <div className="flex flex-col gap-6">
+                            {RELEASES.filter((r) => r.upcoming).map((release) => (
+                                <div key={release.id} className="flex flex-col md:flex-row items-stretch gap-8 p-6 md:p-8 bg-zinc-900/20 border border-white/5 hover:border-red-600/20 transition-all duration-500">
+                                    {/* Left Side: Cover Image */}
+                                    <div className="relative w-full md:w-64 h-64 md:h-64 shrink-0 overflow-hidden border border-white/10 shadow-2xl">
+                                        <Image
+                                            src={release.cover}
+                                            alt={release.title}
+                                            fill
+                                            className="object-cover"
+                                            sizes="(max-width: 768px) 100vw, 256px"
+                                        />
+                                    </div>
+                                    {/* Right Side: Details */}
+                                    <div className="flex-1 flex flex-col justify-between py-2">
+                                        <div>
+                                            <div className="flex items-center justify-between gap-4 flex-wrap mb-3">
+                                                <span className="font-barlow text-[10px] font-bold tracking-[0.35em] text-red-500 uppercase px-3 py-1 bg-red-500/10 border border-red-600/20">
+                                                    {release.type}
+                                                </span>
+                                                <div className="flex items-center gap-2 px-3 py-1 border border-red-600/30 bg-red-600/10 rounded-full coming-soon-badge">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+                                                    <span className="font-barlow text-[9px] tracking-[0.2em] text-red-500 uppercase font-bold">
+                                                        COMING SOON
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <h3 className="font-cinzel text-white text-3xl md:text-4xl font-black uppercase tracking-tight mb-2">
+                                                {release.title}
+                                            </h3>
+                                            <p className="font-grotesk text-gray-400 text-sm leading-relaxed max-w-xl mb-6">
+                                                {release.description}
+                                            </p>
+                                        </div>
+
+                                        {/* Highlighted Collaborations / Features */}
+                                        <div>
+                                            <p className="font-barlow text-[9px] tracking-[0.3em] text-gray-500 uppercase mb-3 font-semibold">
+                                                TRACK HIGHLIGHTS
+                                            </p>
+                                            <div className="flex flex-col sm:flex-row gap-3">
+                                                <div className="flex-1 flex items-center gap-3 px-4 py-3 bg-red-950/20 border border-red-600/20 rounded-md">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+                                                    <span className="font-barlow text-sm tracking-wider text-red-400 uppercase font-semibold">
+                                                        Lil PAYYAN, AZWIN
+                                                    </span>
+                                                </div>
+                                                <div className="flex-1 flex items-center gap-3 px-4 py-3 bg-red-950/20 border border-red-600/20 rounded-md">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" />
+                                                    <span className="font-barlow text-sm tracking-wider text-red-400 uppercase font-semibold">
+                                                        Lil PAYYAN, ToxicTeenu
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
 
 
 
