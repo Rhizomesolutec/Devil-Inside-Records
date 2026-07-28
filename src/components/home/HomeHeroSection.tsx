@@ -111,51 +111,17 @@ export function HomeHeroSection() {
               </span>
             </div>
             <div className="mt-4 flex flex-col gap-4 w-full max-w-full">
-              {/* SAB6 Coming Soon Card */}
-              <div 
-                className="relative overflow-hidden flex items-center gap-4 p-4"
-                style={{ 
-                  borderRadius: "10px", 
-                  height: "152px", 
-                  background: "#222120ff"
-                }}
-              >
-                {/* Cover art */}
-                <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-md border border-red-600/20">
-                  <Image
-                    src="/release/SAB6.webp"
-                    alt="SAB6 Cover"
-                    fill
-                    sizes="112px"
-                    className="object-cover"
-                  />
-                </div>
-                {/* Text info */}
-                <div className="flex flex-col justify-center flex-1 min-w-0">
-                  {/* <span className="font-barlow text-[9px] font-bold tracking-[0.35em] text-white-600 uppercase mb-1">
-                    ALBUM
-                  </span> */}
-                  <h3 className="font-cinzel text-red-600 text-2xl font-black uppercase tracking-tight leading-tight mb-0.5 truncate">
-                    SAB6
-                  </h3>
-                  <p className="font-barlow text-white-600/80 text-xs tracking-widest uppercase mb-2 truncate">
-                    Lil PAYYAN, AZWIN
-                  </p>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                    <span className="font-barlow text-[10px] tracking-[0.25em] text-white-600 uppercase font-semibold">
-                      COMING SOON
-                    </span>
-                  </div>
-                </div>
-
-                {/* Spotify play button representation */}
-                <div className="shrink-0 mr-2 flex items-center justify-center w-12 h-12 rounded-full border border-red-600/30 text-red-600 bg-red-600/10 shadow-xs">
-                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.45 17.34c-.21.345-.667.457-1.011.247-2.775-1.694-6.262-2.077-10.375-1.139-.395.09-.785-.157-.875-.552-.09-.395.157-.785.552-.875 4.502-1.029 8.358-.598 11.462 1.303.344.21.456.666.247 1.016zm1.448-3.238c-.266.43-.573.661-1 .395L15 13.5a16.2 16.2 0 0 0-5.475-1.797 16.2 16.2 0 0 0-5.758.219.855.855 0 0 1-1.018-.65.85.85 0 0 1 .65-1.018 17.9 17.9 0 0 1 6.362-.241 17.9 17.9 0 0 1 6.049 1.985c.415.224.57.743.344 1.158zm.092-3.376c-3.418-2.03-9.055-2.217-12.315-1.228-.564.17-1.156-.148-1.326-.712-.17-.564.148-1.156.712-1.326 3.774-1.144 10.013-.923 13.978 1.436.51.305.675.961.37 1.472-.306.51-.962.675-1.42.358z"/>
-                  </svg>
-                </div>
-              </div>
+              {/* Spotify Embed for SAB6 */}
+              <iframe
+                style={{ borderRadius: "10px" }}
+                src="https://open.spotify.com/embed/album/0GFPL3y58oGawRdvwhujuZ?utm_source=generator&theme=0"
+                width="100%"
+                height="152"
+                frameBorder="0"
+                allowFullScreen
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              />
 
               {/* Spotify Embed for Moopathyar */}
               <iframe

@@ -1069,9 +1069,32 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0, onActive
   const canvasRef = useRef<HTMLCanvasElement | null>(null) as MutableRefObject<HTMLCanvasElement | null>;
   const [activeItem, setActiveItem] = useState<MenuItem | null>(null);
   const [isMoving, setIsMoving] = useState<boolean>(false);
+  const [webglSupported, setWebglSupported] = useState<boolean>(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    // Graceful WebGL 2 capability check
+    const hasWebGL2 = (() => {
+      try {
+        const c = document.createElement('canvas');
+        return !!(window.WebGL2RenderingContext && c.getContext('webgl2'));
+      } catch (e) {
+        return false;
+      }
+    })();
+
+    if (!hasWebGL2) {
+      setWebglSupported(false);
+      // Auto-activate the first item in fallback grid mode
+      if (items.length) {
+        setActiveItem(items[0]);
+        onActiveItemChange?.(0);
+      }
+      return;
+    }
+
     let sketch: InfiniteGridMenu | null = null;
 
     const handleActiveItem = (index: number) => {
@@ -1080,16 +1103,14 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0, onActive
       setActiveItem(items[itemIndex]);
     };
 
-    if (canvas) {
-   sketch = new InfiniteGridMenu(
-  canvas,
-  items.length ? items : defaultItems,
-  (index) => { handleActiveItem(index); onActiveItemChange?.(index); },
-  (moving) => { setIsMoving(moving); onMovementChange?.(moving); },
-  sk => sk.run(),
-  scale
-);
-    }
+    sketch = new InfiniteGridMenu(
+      canvas,
+      items.length ? items : defaultItems,
+      (index) => { handleActiveItem(index); onActiveItemChange?.(index); },
+      (moving) => { setIsMoving(moving); onMovementChange?.(moving); },
+      sk => sk.run(),
+      scale
+    );
 
     const handleResize = () => {
       if (sketch) {
@@ -1113,6 +1134,51 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0, onActive
       console.log('Internal route:', activeItem.link);
     }
   };
+
+  if (!webglSupported) {
+    return (
+      <div className="w-full h-full overflow-y-auto px-4 py-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 no-scrollbar max-h-[500px]">
+        {items.map((item, index) => (
+          <div
+            key={index}
+            onClick={() => {
+              if (item.link && item.link !== "#") {
+                window.open(item.link, "_blank");
+              }
+            }}
+            className="group flex flex-col items-center text-center gap-3 cursor-pointer transition-transform duration-300 hover:scale-105"
+            onMouseEnter={() => {
+              setActiveItem(item);
+              onActiveItemChange?.(index);
+            }}
+          >
+            <div className="relative w-full aspect-square overflow-hidden rounded-lg border border-white/10 group-hover:border-red-600/40 transition-all duration-300">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-red-600 text-black flex items-center justify-center shadow-lg">
+                  <svg className="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-cinzel text-xs md:text-sm font-bold text-white uppercase truncate max-w-[130px] mb-0.5">
+                {item.title}
+              </h4>
+              <p className="font-barlow text-[9px] text-gray-500 tracking-wider uppercase truncate max-w-[130px]">
+                {item.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full h-full">
