@@ -7,7 +7,7 @@ export const ARTIST_NAMES = [
     "M.H.R", "SA", "JOKER390P", "Lil PAYYAN", "AZWIN", 
     "Nazeeb Billu", "Wraith V", "Efy Music", "Fazil AS", "AMANI KL10",
     "Sage End", "DH STORIES", "MC Mushti", "Emziii", "Lil Roony",
-    "Abu x-wrong", "Haniya Nafisa", "PARAVA 98"
+    "Abu x-wrong", "Haniya Nafisa", "PARAVA 98", "Zeusheelan"
 ];
 
 export const VIBES = [
@@ -282,4 +282,18 @@ export const ARTISTS: Artist[] = [
             youtube: "https://youtube.com/@parava-ov8tz?si=I50v_Mf14iHMfn2Q"
         }
     },
+    {
+        id: "zeusheelan",
+        name: "Zeusheelan",
+        genre: "HIP HOP / RAP",
+        description: "Zeusheelan is a boundary-pushing artist bringing powerful flows and signature underground vibe.",
+        image: "/artist1.webp",
+        fullDescription: "Zeusheelan is a boundary-pushing artist bringing powerful flows, distinctive style, and raw underground energy to the independent music scene. Known for authentic street stories and hard-hitting rhythms.",
+        modalImage: "/artist1.webp",
+        socials: {
+            instagram: "#",
+            spotify: "https://open.spotify.com/artist/1qfr8yoyXA3bnan7cexvSN?si=uleq0taLTIGIn8oN2oZEAw",
+            youtube: "#"
+        }
+    }
 ];
