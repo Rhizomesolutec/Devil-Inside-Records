@@ -287,9 +287,9 @@ export const ARTISTS: Artist[] = [
         name: "Zeusheelan",
         genre: "HIP HOP / RAP",
         description: "Zeusheelan is a boundary-pushing artist bringing powerful flows and signature underground vibe.",
-        image: "/artist1.webp",
+        image: "/artists/Zeusheelan.webp",
         fullDescription: "Zeusheelan is a boundary-pushing artist bringing powerful flows, distinctive style, and raw underground energy to the independent music scene. Known for authentic street stories and hard-hitting rhythms.",
-        modalImage: "/artist1.webp",
+        modalImage: "/artists/Zeusheelan.webp",
         socials: {
             instagram: "#",
             spotify: "https://open.spotify.com/artist/1qfr8yoyXA3bnan7cexvSN?si=uleq0taLTIGIn8oN2oZEAw",
