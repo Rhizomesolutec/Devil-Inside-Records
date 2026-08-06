@@ -220,6 +220,21 @@ export const RELEASES: Release[] = [
         loading: "lazy"
     },
     {
+        id: "rahuni",
+        title: "RAHUNI",
+        artist: "Nazeeb Billu, Fathima Jahaan",
+        type: "SINGLE",
+        tracks: 1,
+        date: "07-Aug-2026",
+        duration: "TBA",
+        cover: "/release/Rahuni.webp",
+        accent: "#F5C518",
+        tag: "COMING SOON",
+        description: "An upcoming single from Nazeeb Billu and Fathima Jahaan built around mood, momentum, and atmospheric energy.",
+        upcoming: true,
+        loading: "lazy"
+    },
+    {
         id: "sab6",
         title: "SAB6",
         artist: "Lil PAYYAN",

@@ -682,42 +682,6 @@ export default function LatestReleasePage() {
                                                 <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
                                                 {release.artist}
                                             </div>
-                                        </div>                                        {/* Collapsible Tracks List */}
-                                        <div className="mt-4">
-                                            <button
-                                                onClick={() => setShowTracklist(!showTracklist)}
-                                                className="font-barlow flex items-center justify-center gap-2.5 px-6 py-2.5 text-[10px] tracking-[0.2em] uppercase font-bold transition-all duration-300 hover:bg-red-600 hover:text-black border border-red-600/40 text-red-500 bg-transparent rounded-sm"
-                                            >
-                                                <svg 
-                                                    className={`w-3.5 h-3.5 transition-transform duration-300 ${showTracklist ? "rotate-180" : ""}`} 
-                                                    fill="none" 
-                                                    stroke="currentColor" 
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                                                </svg>
-                                                {showTracklist ? "HIDE TRACKLIST" : "COMING TRACKS"}
-                                            </button>
-
-                                            {showTracklist && (
-                                                <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[260px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-red-600/40 scrollbar-track-transparent">
-                                                    {SAB6_TRACKS.map((track) => (
-                                                        <div key={track.number} className="flex items-center justify-between p-2.5 bg-zinc-900/60 border border-white/5 hover:border-red-600/10 transition-colors duration-300">
-                                                            <div className="flex items-center gap-2 truncate mr-2">
-                                                                <span className="font-mono text-[9px] text-gray-500">
-                                                                    {String(track.number).padStart(2, "0")}
-                                                                </span>
-                                                                <span className="font-cinzel text-xs text-white uppercase truncate font-bold">
-                                                                    {track.title}
-                                                                </span>
-                                                            </div>
-                                                            <span className="font-barlow text-[7px] md:text-[8px] font-bold tracking-wider px-2.5 py-0.5 border uppercase shrink-0 text-red-400 bg-red-950/20 border-red-600/30">
-                                                                {track.artists}
-                                                            </span>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            )}
                                         </div>
                                     </div>
                                 </div>
