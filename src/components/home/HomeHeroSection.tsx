@@ -9,7 +9,7 @@ import { fadeUp, staggerContainer, fadeIn } from "@/lib/animations";
 
 export function HomeHeroSection() {
   const rahuni = RELEASES.find((release) => release.id === "rahuni");
-  const sab6 = RELEASES.find((release) => release.id === "sab6");
+  const dooram = RELEASES.find((release) => release.id === "dooram");
 
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
@@ -116,53 +116,30 @@ export function HomeHeroSection() {
             </div>
             <div className="mt-4 flex flex-col gap-4 w-full max-w-full">
               {rahuni && (
-                <div className="rounded-[10px] border border-white/10 bg-black/35 backdrop-blur-sm overflow-hidden">
-                  <div className="flex items-stretch pl-2 pt-2 pb-2">
-                    <div className="relative w-24 sm:w-28 shrink-0 overflow-hidden rounded-[8px]">
-                      <Image
-                        src={rahuni.cover}
-                        alt={rahuni.title}
-                        fill
-                        className="object-cover object-center"
-                        loading="lazy"
-                        sizes="112px"
-                      />
-                    </div>
-                    <div className="flex-1 flex flex-col justify-between gap-2 p-3 sm:p-4 bg-black/70">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="font-barlow text-[8px] sm:text-[9px] tracking-[0.3em] uppercase px-2 py-1 border border-red-600/30 bg-red-600/10 text-red-500">
-                          COMING SOON
-                        </span>
-                        <span className="font-barlow text-[8px] sm:text-[9px] tracking-[0.3em] uppercase text-white/40">
-                          {rahuni.type}
-                        </span>
-                      </div>
-                      <div>
-                        <h3 className="font-cinzel text-sm sm:text-base font-black uppercase tracking-tight text-white leading-none">
-                          {rahuni.title}
-                        </h3>
-                        <p className="font-barlow text-[10px] sm:text-[11px] tracking-[0.25em] uppercase text-white/70 mt-1">
-                          {rahuni.artist}
-                        </p>
-                        <p className="font-barlow text-[10px] sm:text-[11px] tracking-[0.25em] uppercase text-white/45 mt-1">
-                          {rahuni.date}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {sab6 && (
                 <iframe
                   style={{ borderRadius: "10px" }}
-                  src="https://open.spotify.com/embed/album/0GFPL3y58oGawRdvwhujuZ?utm_source=generator&theme=0"
+                  src="https://open.spotify.com/embed/album/6AbmjhcOTUzoXx9iMi9FUF?utm_source=generator&theme=0"
                   width="100%"
                   height="152"
                   frameBorder="0"
                   allowFullScreen
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
+                  title={`${rahuni.title} Spotify preview`}
+                />
+              )}
+
+              {dooram && (
+                <iframe
+                  style={{ borderRadius: "10px" }}
+                  src="https://open.spotify.com/embed/album/2TyAIonCuulJIK0dIiRHLA?utm_source=generator&theme=0"
+                  width="100%"
+                  height="152"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  title={`${dooram.title} Spotify preview`}
                 />
               )}
             </div>

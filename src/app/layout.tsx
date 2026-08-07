@@ -35,7 +35,7 @@ const bebasNeue = Bebas_Neue({
 
 export const metadata: Metadata = {
   title: "Devil Inside Records — A New Era Of Rap.",
-  description: "Devil Inside Records — A NEW ERA OF RAP.",
+  description: "Devil Inside Records is an independent music label showcasing underground artists, original releases, exclusive collaborations, and the next generation of independent music.",
 };
 
 export default function RootLayout({

@@ -7,7 +7,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Devil Inside Records — Home",
-  description: "The official home of Devil Inside Records. We don't follow the culture, we create it. Join the movement.",
+  description: "Devil Inside Records is an independent music label showcasing underground artists, original releases, exclusive collaborations, and the next generation of independent music.",
 };
 
 export default function Home() {

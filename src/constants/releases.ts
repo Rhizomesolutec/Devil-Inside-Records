@@ -221,7 +221,7 @@ export const RELEASES: Release[] = [
     },
     {
         id: "rahuni",
-        title: "RAHUNI",
+        title: "Rahuni",
         artist: "Nazeeb Billu, Fathima Jahaan",
         type: "SINGLE",
         tracks: 1,
@@ -229,9 +229,25 @@ export const RELEASES: Release[] = [
         duration: "TBA",
         cover: "/release/Rahuni.webp",
         accent: "#F5C518",
-        tag: "COMING SOON",
-        description: "An upcoming single from Nazeeb Billu and Fathima Jahaan built around mood, momentum, and atmospheric energy.",
-        upcoming: true,
+        tag: "OUT NOW",
+        description: "A single from Nazeeb Billu and Fathima Jahaan built around mood, momentum, and atmospheric energy.",
+        link: "https://open.spotify.com/album/6AbmjhcOTUzoXx9iMi9FUF?si=DMyYl18MSNCFlP7hxgMnHQ&utm_source=copy-link",
+        upcoming: false,
+        loading: "lazy"
+    },
+    {
+        id: "dooram",
+        title: "Dooram",
+        artist: "Christo George, Evugin, Laika Jamal, Ann Lilly Jose",
+        type: "SINGLE",
+        tracks: 1,
+        date: "07-Aug-2026",
+        duration: "TBA",
+        cover: "/release/Dooram.webp",
+        accent: "#C81808",
+        tag: "OUT NOW",
+        description: "A released single by Christo George, Evugin, Laika Jamal, and Ann Lilly Jose.",
+        link: "https://open.spotify.com/album/2TyAIonCuulJIK0dIiRHLA?si=HoDLkF1KROeihNDbqYHCig&utm_source=copy-link&sci=spotify%3Acard-config%3A1PJj7dCd16aljyyh10cQkV",
         loading: "lazy"
     },
     {
