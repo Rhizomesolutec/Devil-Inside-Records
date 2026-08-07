@@ -97,7 +97,7 @@ export function ArtistSection() {
                         </div>
                         <div className="w-px h-10 bg-white/10" />
                         <div className="text-center">
-                            <div className="font-cinzel text-3xl md:text-4xl font-black text-[#780606]">300M+</div>
+                            <div className="font-cinzel text-3xl md:text-4xl font-black text-[#780606]">500M+</div>
                             <div className="font-barlow text-gray-500 text-[9px] tracking-[0.3em] uppercase mt-1">STREAMS</div>
                         </div>
                     </div>

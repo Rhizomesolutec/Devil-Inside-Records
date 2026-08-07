@@ -164,7 +164,7 @@ export function HomeHeroSection() {
             <div className="w-[1px] bg-white/20 self-stretch" />
             <div className="flex flex-col gap-1 text-right">
               <span className="font-barlow text-white/30 text-[10px] tracking-[0.3em] uppercase">Releases</span>
-              <span className="font-cinzel text-red-600 text-3xl font-bold">50+</span>
+              <span className="font-cinzel text-red-600 text-3xl font-bold">500+</span>
               <span className="font-barlow text-white/40 text-[10px] tracking-[0.25em] uppercase mt-1">&amp; counting</span>
             </div>
           </div>
