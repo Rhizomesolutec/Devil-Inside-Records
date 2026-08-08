@@ -174,7 +174,7 @@ export const ARTISTS: Artist[] = [
     {
         id: "sage-end",
         name: "Sage End",
-        genre: "CONSCIOUS RAP",
+        genre: "Indie alternative pop",
         description: "Wisdom through rhythm. Sage End is the philosopher of the underground.",
         image: "/artists/Sega End.webp",
         fullDescription: "Dive deeper into the world of this artist. Known for their unique sound, relentless energy, and dedication to the craft, they have been making waves in the underground scene. Their journey is a testament to raw talent and unapologetic authenticity.",

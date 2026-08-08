@@ -90,19 +90,25 @@ export default function ArtistsPage() {
                             }}
                         >
                             <div className="relative w-52 h-68 overflow-hidden shadow-2xl">
-                                <Image
-                                    src={hovered.image}
-                                    alt={hovered.name}
-                                    fill
-                                    className="object-cover grayscale"
-                                />
-                                <div className="absolute inset-0 bg-[#780606]/20 mix-blend-multiply" />
-                                <div className="absolute bottom-0 left-0 right-0 p-4 bg-linear-to-t from-black via-black/60 to-transparent">
-                                    <p className="font-barlow text-[9px] tracking-[0.4em] uppercase text-[#780606]">
-                                        {hovered.genre}
-                                    </p>
-                                </div>
+                            {hovered.id === "sage-end" ? (
+                                <div className="absolute inset-0 bg-[#111]" />
+                            ) : (
+                                <>
+                                    <Image
+                                        src={hovered.image}
+                                        alt={hovered.name}
+                                        fill
+                                        className="object-cover grayscale"
+                                    />
+                                    <div className="absolute inset-0 bg-[#780606]/20 mix-blend-multiply" />
+                                </>
+                            )}
+                            <div className="absolute bottom-0 left-0 right-0 p-4 bg-linear-to-t from-black via-black/60 to-transparent">
+                                <p className="font-barlow text-[9px] tracking-[0.4em] uppercase text-[#780606]">
+                                    {hovered.genre}
+                                </p>
                             </div>
+                        </div>
                         </motion.div>
                     )}
                 </AnimatePresence>
@@ -322,7 +328,11 @@ function ArtistRow({ artist, index, onHover, onClick }: { artist: Artist; index:
                     animate={{ opacity: isHovered ? 1 : 0 }}
                     transition={{ duration: 0.3 }}
                 >
-                    <Image src={artist.image} alt={artist.name} fill loading="lazy" className="object-cover grayscale" />
+                    {artist.id === "sage-end" ? (
+                        <div className="w-full h-full bg-[#111]" />
+                    ) : (
+                        <Image src={artist.image} alt={artist.name} fill loading="lazy" className="object-cover grayscale" />
+                    )}
                 </motion.div>
 
                 {/* Arrow */}
@@ -374,14 +384,20 @@ function ArtistModal({ artist, onClose }: { artist: Artist; onClose: () => void 
 
                 {/* Image Section */}
                 <div className="relative w-full md:w-2/5 h-[45vh] min-h-[300px] md:h-auto md:min-h-full shrink-0">
-                    <Image
-                        src={artist.modalImage || artist.image}
-                        alt={artist.name}
-                        fill
-                        loading="lazy"
-                        className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
-                    />
-                    <div className="absolute inset-0 bg-linear-to-t from-[#111] via-[#111]/40 to-transparent md:bg-linear-to-r md:from-transparent md:via-[#111]/20 md:to-[#111]" />
+                    {artist.id === "sage-end" ? (
+                        <div className="absolute inset-0 bg-[#111]" />
+                    ) : (
+                        <>
+                            <Image
+                                src={artist.modalImage || artist.image}
+                                alt={artist.name}
+                                fill
+                                loading="lazy"
+                                className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
+                            />
+                            <div className="absolute inset-0 bg-linear-to-t from-[#111] via-[#111]/40 to-transparent md:bg-linear-to-r md:from-transparent md:via-[#111]/20 md:to-[#111]" />
+                        </>
+                    )}
                 </div>
 
                 {/* Content Section */}
