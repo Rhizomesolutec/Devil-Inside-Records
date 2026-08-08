@@ -408,6 +408,64 @@ function ReleaseRow({
                                 </div>
                             )}
 
+                            {release.id === "aadhikannu" && (
+                                <div className="mt-6">
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setShowTracklist(!showTracklist);
+                                        }}
+                                        className="font-barlow flex items-center justify-center gap-2.5 px-6 py-2.5 text-[10px] tracking-[0.2em] uppercase font-bold transition-all duration-300 hover:bg-[#B34E94] hover:text-black border border-[#B34E94]/40 text-[#B34E94] bg-transparent rounded-sm"
+                                    >
+                                        <svg
+                                            className={`w-3.5 h-3.5 transition-transform duration-300 ${showTracklist ? "rotate-180" : ""}`}
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                        {showTracklist ? "HIDE TRACKLIST" : "AADHIKANNU TRACKS"}
+                                    </button>
+
+                                    {showTracklist && (
+                                        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[260px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-[#B34E94]/40 scrollbar-track-transparent">
+                                            {AADHIKANNU_TRACKS.map((track) => (
+                                                <div key={track.number} className="flex items-center justify-between p-2.5 bg-zinc-900/60 border border-white/5 hover:border-[#B34E94]/10 transition-colors duration-300">
+                                                    <div className="flex items-center gap-2 truncate mr-2">
+                                                        <span className="font-mono text-[9px] text-gray-500">
+                                                            {String(track.number).padStart(2, "0")}
+                                                        </span>
+                                                        <span className="font-cinzel text-xs text-white uppercase truncate font-bold">
+                                                            {track.title}
+                                                        </span>
+                                                    </div>
+                                                    <div className="flex items-center gap-2 shrink-0">
+                                                        <span className="font-barlow text-[7px] md:text-[8px] font-bold tracking-wider px-2.5 py-0.5 border uppercase text-[#B34E94] bg-[#B34E94]/10 border-[#B34E94]/25">
+                                                            {track.artists}
+                                                        </span>
+                                                        {track.link && (
+                                                            <a
+                                                                href={track.link}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="w-7 h-7 rounded-full flex items-center justify-center border border-[#B34E94]/30 text-[#B34E94] hover:bg-[#B34E94] hover:text-black transition-all"
+                                                                title={`Play ${track.title} on Spotify`}
+                                                                onClick={(e) => e.stopPropagation()}
+                                                            >
+                                                                <svg className="w-3 h-3 fill-current ml-[0.5px]" viewBox="0 0 24 24">
+                                                                    <path d="M8 5v14l11-7z" />
+                                                                </svg>
+                                                            </a>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
                             {isUpcoming && (
                                 <div className="mt-4 flex items-center gap-2">
                                     <div
@@ -527,6 +585,15 @@ const SAB6_TRACKS = [
     { number: 14, title: "PAARE PAARE", artists: "Lil PAYYAN, AZWIN", link: "https://open.spotify.com/track/0fnqgtoC7Zrvqx84YHLSYd?si=Q6QSYgayQ96asQDamqXt4Q" },
     { number: 15, title: "NAYINTE MAKLAL", artists: "Lil PAYYAN, ToxicTeenu", link: "https://open.spotify.com/track/6BrntFkLE2BPE4l4gbYC0C?si=i5E6XS5NShi4F_5Du7TcdQ" },
     { number: 16, title: "NANNAYITTIRIKK", artists: "Lil PAYYAN, AZWIN", link: "https://open.spotify.com/track/2vLB1w1fOEEjTqBIgbpmvX?si=iGzGRf3nRYK22hFoyi3mGA" }
+];
+
+const AADHIKANNU_TRACKS = [
+    { number: 1, title: "ഞാൻ", artists: "Saga End, AZWIN", link: "https://open.spotify.com/track/0YP9XOFxhnbpFzO927e4pv?si=CsMh8JExTSCKbqS7PnVrwg&utm_source=copy-link&sci=spotify%3Acard-config%3A3wcTfvsdKx7LYG3T0Wz10i" },
+    { number: 2, title: "പാട്", artists: "Saga End, AZWIN", link: "https://open.spotify.com/track/4IwUGhbAFlTtZNRTfOma05?si=BPHB1ZDuSDWfLNQZlrAMJA&utm_source=copy-link&sci=spotify%3Acard-config%3A1QSMF7K8qndh6lf76baDwi" },
+    { number: 3, title: "ആട്ടം", artists: "Saga End, AMAN KL10", link: "https://open.spotify.com/track/76thpTNPCKEeqa1iP9F4RF?si=Gao7epJQSZa_KLlIkD4OHw&utm_source=copy-link&sci=spotify%3Acard-config%3A0O52y9IcLfUl7MdE6dH6qC" },
+    { number: 4, title: "ഒരു പൂവ്", artists: "Saga End, AMAN KL10", link: "https://open.spotify.com/track/1gWe5TGzGb89dQH87K9kSp?si=ZDNufGKPSUCO2z0WMI17hw&utm_source=copy-link&sci=spotify%3Acard-config%3A16B8TYTVc6VyOutqV7aW0M" },
+    { number: 5, title: "MOVE", artists: "Saga End, SA and AMAN KL10", link: "https://open.spotify.com/track/2oj1iHrtqKcy3UsS5pqNli?si=0EWNO-wmRGuYor6ZH9aJRw&utm_source=copy-link&sci=spotify%3Acard-config%3A2bQR7XZqH5dfnoKPR8tkX2" },
+    { number: 6, title: "മുന്നും പിന്നും", artists: "Saga End, AZWIN", link: "https://open.spotify.com/track/7AWzo1Mh2EIHFO5oJ2qdJ6?si=vKn2r5ZvTXG0Kf-lgCRQfw&utm_source=copy-link&sci=spotify%3Acard-config%3A2XxfNe81gd0xwATcLdy2T2" }
 ];
 
 const VAAKKATH_TRACKS = [

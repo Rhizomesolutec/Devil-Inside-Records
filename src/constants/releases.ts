@@ -251,6 +251,22 @@ export const RELEASES: Release[] = [
         loading: "lazy"
     },
     {
+        id: "aadhikannu",
+        title: "ആദിക്കന്ന്",
+        artist: "Saga End",
+        type: "ALBUM",
+        tracks: 6,
+        date: "AUG 09, 2026",
+        duration: "21:40",
+        cover: "/release/Aadhikannu.webp",
+        accent: "#B34E94",
+        tag: "OUT NOW",
+        description: "A 6-track Malayalam album by Saga End blending sharp lyricism, melodic production, and cinematic mood.",
+        link: "https://open.spotify.com/album/6bRtQRIJURqAqzDC7vc5go?si=oSdgcTm2R-ilF51yGlT88Q&utm_source=copy-link",
+        upcoming: false,
+        loading: "lazy"
+    },
+    {
         id: "sab6",
         title: "SAB6",
         artist: "Lil PAYYAN",

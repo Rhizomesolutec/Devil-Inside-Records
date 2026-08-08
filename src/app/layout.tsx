@@ -4,6 +4,7 @@ import {
   Space_Grotesk,
   Barlow_Condensed,
   Bebas_Neue,
+  Noto_Sans_Malayalam,
 } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
@@ -13,6 +14,10 @@ const cinzel = Cinzel({
   weight: ["400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-cinzel",
+});
+const notoSansMalayalam = Noto_Sans_Malayalam({
+  subsets: ["malayalam"],
+  variable: "--font-malayalam",
 });
 
 const spaceGrotesk = Space_Grotesk({
@@ -46,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cinzel.variable} ${spaceGrotesk.variable} ${barlowCondensed.variable} ${bebasNeue.variable} h-full antialiased`}
+      className={`${cinzel.variable} ${spaceGrotesk.variable} ${barlowCondensed.variable} ${bebasNeue.variable} ${notoSansMalayalam.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-black text-white">
         <Header />
