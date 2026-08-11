@@ -8,7 +8,7 @@ import { fadeUp, staggerContainer, fadeIn } from "@/lib/animations";
 
 
 export function HomeHeroSection() {
-  const rahuni = RELEASES.find((release) => release.id === "rahuni");
+  const ruhani = RELEASES.find((release) => release.id === "ruhani");
   const dooram = RELEASES.find((release) => release.id === "dooram");
 
   return (
@@ -117,7 +117,7 @@ export function HomeHeroSection() {
               </span>
             </div>
             <div className="mt-4 flex flex-col gap-4 w-full max-w-full">
-              {rahuni && (
+              {ruhani && (
                 <iframe
                   style={{ borderRadius: "10px" }}
                   src="https://open.spotify.com/embed/album/6AbmjhcOTUzoXx9iMi9FUF?utm_source=generator&theme=0"
@@ -127,7 +127,7 @@ export function HomeHeroSection() {
                   allowFullScreen
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
-                  title={`${rahuni.title} Spotify preview`}
+                  title={`${ruhani.title} Spotify preview`}
                 />
               )}
 
