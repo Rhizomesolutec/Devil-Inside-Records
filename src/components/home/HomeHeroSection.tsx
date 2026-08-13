@@ -15,23 +15,36 @@ export function HomeHeroSection() {
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       {/* Background Hero Image */}
       <motion.div
-        className="absolute inset-0 w-full h-full"
-        initial={{ opacity: 0, scale: 1.05 }}
-        animate={{ opacity: 1, scale: 1 }}
+        className="absolute inset-0 w-full h-full bg-black"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        <Image
-          src="/New hero image.webp"
-          alt="Devil Inside Hero"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-          style={{ objectPosition: "65% 20%" }}
-        />
-        {/* Gradient overlays for depth */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40" />
+        {/* Mobile: original portrait image */}
+        <div className="absolute inset-0 md:hidden">
+          <Image
+            src="/Latest hero image.webp"
+            alt="Devil Inside Hero"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+        {/* Desktop: landscape image */}
+        <div className="absolute inset-0 hidden md:block">
+          <Image
+            src="/Latest hero image landscape.webp"
+            alt="Devil Inside Hero"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+        {/* Light overlays so the background stays visible while text remains readable */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/25" />
       </motion.div>
 
       {/* Main Content */}
