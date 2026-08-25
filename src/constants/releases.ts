@@ -281,5 +281,23 @@ export const RELEASES: Release[] = [
         link: "https://open.spotify.com/album/0GFPL3y58oGawRdvwhujuZ?si=NjHhC84PS8qQ33pZ_ESkXw",
         upcoming: false,
         loading: "lazy"
+    },
+    {
+        id: "a-part",
+        title: "A PART",
+        artist: "SA, Sage End",
+        type: "SINGLE",
+        tracks: 1,
+        date: "AUGUST 21, 2026",
+        duration: "02:59",
+        cover: "/release/A Part.webp",
+        accent: "#C81808",
+        tag: "OUT NOW",
+        description: "A single by SA and Sage End.",
+        link: "https://open.spotify.com/track/6uDw4cWCea0ZpHVhFJfb51?si=19a64b6d78a64fe8",
+        appleMusicLink: "https://music.apple.com/in/album/sa-a-part/6803553953?i=6803553957",
+        upcoming: false,
+        loading: "lazy"
     }
 ];
+
