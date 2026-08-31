@@ -8,8 +8,8 @@ import { fadeUp, staggerContainer, fadeIn } from "@/lib/animations";
 
 
 export function HomeHeroSection() {
+  const orma = RELEASES.find((release) => release.id === "orma");
   const mostlyOwh = RELEASES.find((release) => release.id === "mostly-owh");
-  const aPart = RELEASES.find((release) => release.id === "a-part");
 
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
@@ -130,6 +130,20 @@ export function HomeHeroSection() {
               </span>
             </div>
             <div className="mt-4 flex flex-col gap-4 w-full max-w-full">
+              {orma && (
+                <iframe
+                  style={{ borderRadius: "10px" }}
+                  src="https://open.spotify.com/embed/album/1TCPhJgB0X3x9kqbZeMM5h?utm_source=generator&theme=0"
+                  width="100%"
+                  height="152"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  title={`${orma.title} Spotify preview`}
+                />
+              )}
+
               {mostlyOwh && (
                 <iframe
                   style={{ borderRadius: "10px" }}
@@ -141,20 +155,6 @@ export function HomeHeroSection() {
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
                   title={`${mostlyOwh.title} Spotify preview`}
-                />
-              )}
-
-              {aPart && (
-                <iframe
-                  style={{ borderRadius: "10px" }}
-                  src="https://open.spotify.com/embed/track/6uDw4cWCea0ZpHVhFJfb51?utm_source=generator&theme=0"
-                  width="100%"
-                  height="152"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  title={`${aPart.title} Spotify preview`}
                 />
               )}
             </div>

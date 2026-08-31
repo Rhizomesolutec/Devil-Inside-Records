@@ -50,7 +50,10 @@ body {
   font-family: var(--font-cinzel);
 }
 
-.font-barlow,
+.font-barlow {
+  font-family: var(--font-barlow), 'Barlow', sans-serif;
+}
+
 .tag,
 .label,
 .stat {

@@ -48,6 +48,14 @@ export function LatestReleaseSection() {
 
     return (
         <section className="relative bg-black py-20 px-6 md:px-16 lg:px-24 overflow-hidden min-h-screen">
+            <style>{`
+                .mostly-owh-title {
+                    text-transform: none !important;
+                    font-variant: normal !important;
+                    font-variant-caps: normal !important;
+                    font-family: var(--font-barlow), 'Barlow', sans-serif !important;
+                }
+            `}</style>
 
             <div className="relative z-10 max-w-screen-2xl mx-auto flex flex-col h-full">
                 {/* Section Header */}
@@ -107,7 +115,10 @@ export function LatestReleaseSection() {
                         <p className="font-barlow text-red-600 text-[10px] md:text-[9px] font-bold tracking-[0.3em] uppercase bg-black/40 md:bg-transparent px-2 md:px-0 py-1 md:py-0 rounded">
                             {active?.type}
                         </p>
-                        <h3 className="font-cinzel text-white font-black text-3xl md:text-2xl uppercase leading-tight drop-shadow-lg">
+                        <h3
+                            className={`${active?.id === "mostly-owh" ? "font-barlow font-extrabold mostly-owh-title" : "font-cinzel font-black uppercase"} text-white text-3xl md:text-2xl leading-tight drop-shadow-lg`}
+                            style={active?.id === "mostly-owh" ? { fontVariant: "normal", fontVariantCaps: "normal", textTransform: "none" } : {}}
+                        >
                             {active?.title}
                         </h3>
                         <p className="font-barlow text-gray-300 md:text-gray-400 text-sm md:text-xs tracking-widest uppercase drop-shadow-md">

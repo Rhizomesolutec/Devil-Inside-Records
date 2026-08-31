@@ -185,8 +185,11 @@ function ReleaseRow({
                 <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
                         <h2
-                            className="font-cinzel text-base md:text-lg font-black uppercase leading-none tracking-tighter truncate transition-colors duration-300"
-                            style={{ color: isActive ? release.accent : isUpcoming ? "rgba(245,197,24,0.85)" : "white" }}
+                            className={`${release.id === "mostly-owh" ? "font-barlow font-extrabold tracking-wide mostly-owh-title" : "font-cinzel font-black uppercase tracking-tighter"} text-base md:text-lg leading-none truncate transition-colors duration-300`}
+                            style={{
+                                color: isActive ? release.accent : isUpcoming ? "rgba(245,197,24,0.85)" : "white",
+                                ...(release.id === "mostly-owh" ? { fontVariant: "normal", fontVariantCaps: "normal", textTransform: "none" } : {})
+                            }}
                         >
                             {release.title}
                         </h2>
@@ -280,8 +283,11 @@ function ReleaseRow({
                                 {release.tag}
                             </div>
                             <h3
-                                className="font-cinzel text-2xl sm:text-3xl md:text-5xl font-black uppercase leading-none tracking-tighter text-white mb-2"
-                                style={isUpcoming ? { textShadow: `0 0 40px ${release.accent}40` } : {}}
+                                className={`${release.id === "mostly-owh" ? "font-barlow font-extrabold tracking-wide mostly-owh-title" : "font-cinzel font-black uppercase tracking-tighter"} text-2xl sm:text-3xl md:text-5xl leading-none text-white mb-2`}
+                                style={{
+                                    ...(isUpcoming ? { textShadow: `0 0 40px ${release.accent}40` } : {}),
+                                    ...(release.id === "mostly-owh" ? { fontVariant: "normal", fontVariantCaps: "normal", textTransform: "none" } : {})
+                                }}
                             >
                                 {release.title}
                             </h3>
@@ -473,7 +479,7 @@ function ReleaseRow({
                                             e.stopPropagation();
                                             setShowTracklist(!showTracklist);
                                         }}
-                                        className="font-barlow flex items-center justify-center gap-2.5 px-6 py-2.5 text-[10px] tracking-[0.2em] uppercase font-bold transition-all duration-300 hover:bg-red-600 hover:text-black border border-red-600/40 text-red-500 bg-transparent rounded-sm"
+                                        className="font-barlow flex items-center justify-center gap-2.5 px-6 py-2.5 text-[10px] tracking-[0.2em] font-bold transition-all duration-300 hover:bg-red-600 hover:text-black border border-red-600/40 text-red-500 bg-transparent rounded-sm"
                                     >
                                         <svg 
                                             className={`w-3.5 h-3.5 transition-transform duration-300 ${showTracklist ? "rotate-180" : ""}`} 
@@ -483,7 +489,7 @@ function ReleaseRow({
                                         >
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                                         </svg>
-                                        {showTracklist ? "HIDE TRACKLIST" : "MOSTLY OWH TRACKS"}
+                                        {showTracklist ? "HIDE TRACKLIST" : "mostly OWH TRACKS"}
                                     </button>
 
                                     {showTracklist && (
@@ -609,21 +615,65 @@ function ReleaseRow({
     );
 }
 
-const parseDate = (d: string) => {
-    const normalized = d.toUpperCase();
+const MONTH_MAP: Record<string, number> = {
+    JAN: 0, JANUARY: 0,
+    FEB: 1, FEBRUARY: 1,
+    MAR: 2, MARCH: 2,
+    APR: 3, APRIL: 3,
+    MAY: 4,
+    JUN: 5, JUNE: 5,
+    JUL: 6, JULY: 6,
+    AUG: 7, AUGUST: 7,
+    SEP: 8, SEPTEMBER: 8,
+    OCT: 9, OCTOBER: 9,
+    NOV: 10, NOVEMBER: 10,
+    DEC: 11, DECEMBER: 11,
+};
+
+const parseDate = (d: string): number => {
+    if (!d) return 0;
+    const normalized = d.trim().toUpperCase();
     if (normalized === "COMING SOON" || normalized === "TBA") return Number.MAX_SAFE_INTEGER;
-    const cleaned = normalized.replace(/,/g, "");
+
+    const dashMatch = normalized.match(/^(\d{1,2})-([A-Z]+)-(\d{4})$/);
+    if (dashMatch) {
+        const day = parseInt(dashMatch[1], 10);
+        const month = MONTH_MAP[dashMatch[2]] ?? 0;
+        const year = parseInt(dashMatch[3], 10);
+        return new Date(year, month, day).getTime();
+    }
+
+    const cleaned = normalized.replace(/[,/]/g, " ").replace(/\s+/g, " ").trim();
     const parts = cleaned.split(" ");
 
     if (parts.length === 3) {
-        return new Date(`${parts[0]} ${parts[1]} ${parts[2]}`).getTime();
+        let year = parseInt(parts[2], 10);
+        let month = -1;
+        let day = 1;
+
+        if (MONTH_MAP[parts[0]] !== undefined) {
+            month = MONTH_MAP[parts[0]];
+            day = parseInt(parts[1], 10);
+        } else if (MONTH_MAP[parts[1]] !== undefined) {
+            day = parseInt(parts[0], 10);
+            month = MONTH_MAP[parts[1]];
+        }
+
+        if (month !== -1 && !isNaN(day) && !isNaN(year)) {
+            return new Date(year, month, day).getTime();
+        }
     }
 
     if (parts.length === 2) {
-        return new Date(`${parts[0]} 1 ${parts[1]}`).getTime();
+        const month = MONTH_MAP[parts[0]];
+        const year = parseInt(parts[1], 10);
+        if (month !== undefined && !isNaN(year)) {
+            return new Date(year, month, 1).getTime();
+        }
     }
 
-    return Date.now();
+    const fallback = new Date(d).getTime();
+    return isNaN(fallback) ? 0 : fallback;
 };
 
 const SAB6_TRACKS = [
@@ -677,7 +727,8 @@ const VAAKKATH_TRACKS = [
 ];
 
 export default function LatestReleasePage() {
-    const [active, setActive] = useState<string>(RELEASES[0]?.id ?? "");
+    const sortedReleases = [...RELEASES].filter((r) => !r.upcoming).sort((a, b) => parseDate(b.date) - parseDate(a.date));
+    const [active, setActive] = useState<string>(sortedReleases[0]?.id ?? RELEASES[0]?.id ?? "");
     const [prevActive, setPrevActive] = useState<string | null>(null);
     const [currentActive, setCurrentActive] = useState<string>(active);
 
@@ -693,7 +744,6 @@ export default function LatestReleasePage() {
     const showTypeUI = uniqueTypes.length > 1;
     const FILTERS = ["ALL", ...uniqueTypes];
 
-    const sortedReleases = [...RELEASES].filter((r) => !r.upcoming).sort((a, b) => parseDate(b.date) - parseDate(a.date));
     const filtered = filter === "ALL" ? sortedReleases : sortedReleases.filter((r) => r.type === filter);
 
     return (
@@ -731,6 +781,12 @@ export default function LatestReleasePage() {
                 .fade-in-up-delay-2 { animation-delay: 0.2s; opacity: 0; }
                 .fade-in-up-delay-3 { animation-delay: 0.35s; opacity: 0; }
                 .fade-in-up-delay-4 { animation-delay: 0.5s; opacity: 0; }
+                .mostly-owh-title {
+                    text-transform: none !important;
+                    font-variant: normal !important;
+                    font-variant-caps: normal !important;
+                    font-family: var(--font-barlow), sans-serif !important;
+                }
             `}</style>
 
             <section className="relative h-[45vh] md:h-[55vh] flex items-end overflow-hidden">

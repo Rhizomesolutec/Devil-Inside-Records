@@ -225,7 +225,7 @@ export const RELEASES: Release[] = [
         artist: "Nazeeb Billu, Fathima Jahaan",
         type: "SINGLE",
         tracks: 1,
-        date: "07-Aug-2026",
+        date: "AUG 07, 2026",
         duration: "TBA",
         cover: "/release/Ruhani.webp",
         accent: "#F5C518",
@@ -241,7 +241,7 @@ export const RELEASES: Release[] = [
         artist: "Christo George, Evugin, Laika Jamal, Ann Lilly Jose",
         type: "SINGLE",
         tracks: 1,
-        date: "07-Aug-2026",
+        date: "AUG 07, 2026",
         duration: "TBA",
         cover: "/release/Dooram.webp",
         accent: "#C81808",
@@ -301,7 +301,7 @@ export const RELEASES: Release[] = [
     },
     {
         id: "mostly-owh",
-        title: "MOSTLY OWH",
+        title: "mostly OWH",
         artist: "SA",
         type: "EP",
         tracks: 7,
@@ -315,7 +315,25 @@ export const RELEASES: Release[] = [
         appleMusicLink: "https://music.apple.com/in/album/mostly-owh/6806211960",
         upcoming: false,
         loading: "lazy"
+    },
+    {
+        id: "orma",
+        title: "ORMA",
+        artist: "Lil PAYYAN, AZWIN",
+        type: "SINGLE",
+        tracks: 1,
+        date: "AUGUST 30, 2026",
+        duration: "TBA",
+        cover: "/release/ORMA.webp",
+        accent: "#C81808",
+        tag: "OUT NOW",
+        description: "A single by Lil PAYYAN and AZWIN.",
+        link: "https://open.spotify.com/album/1TCPhJgB0X3x9kqbZeMM5h?si=082978884df140c0",
+        appleMusicLink: "https://music.apple.com/in/album/orma-single/1689888570",
+        upcoming: false,
+        loading: "lazy"
     }
 ];
+
 
 
