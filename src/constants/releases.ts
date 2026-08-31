@@ -298,6 +298,24 @@ export const RELEASES: Release[] = [
         appleMusicLink: "https://music.apple.com/in/album/sa-a-part/6803553953?i=6803553957",
         upcoming: false,
         loading: "lazy"
+    },
+    {
+        id: "mostly-owh",
+        title: "MOSTLY OWH",
+        artist: "SA",
+        type: "EP",
+        tracks: 7,
+        date: "AUGUST 28, 2026",
+        duration: "16:00",
+        cover: "/release/Mostly owh.webp",
+        accent: "#C81808",
+        tag: "OUT NOW",
+        description: "A 7-track EP by SA showcasing signature beats, raw flows, and underground energy.",
+        link: "https://open.spotify.com/album/5Ft9cfmWcIeuEakJEpKtPg?si=cyEZOqh3SVe7cLrw0dO1Yg",
+        appleMusicLink: "https://music.apple.com/in/album/mostly-owh/6806211960",
+        upcoming: false,
+        loading: "lazy"
     }
 ];
+
 

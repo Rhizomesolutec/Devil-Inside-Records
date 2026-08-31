@@ -466,6 +466,64 @@ function ReleaseRow({
                                 </div>
                             )}
 
+                            {release.id === "mostly-owh" && (
+                                <div className="mt-6">
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setShowTracklist(!showTracklist);
+                                        }}
+                                        className="font-barlow flex items-center justify-center gap-2.5 px-6 py-2.5 text-[10px] tracking-[0.2em] uppercase font-bold transition-all duration-300 hover:bg-red-600 hover:text-black border border-red-600/40 text-red-500 bg-transparent rounded-sm"
+                                    >
+                                        <svg 
+                                            className={`w-3.5 h-3.5 transition-transform duration-300 ${showTracklist ? "rotate-180" : ""}`} 
+                                            fill="none" 
+                                            stroke="currentColor" 
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                        {showTracklist ? "HIDE TRACKLIST" : "MOSTLY OWH TRACKS"}
+                                    </button>
+
+                                    {showTracklist && (
+                                        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[260px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-red-600/40 scrollbar-track-transparent">
+                                            {MOSTLY_OWH_TRACKS.map((track) => (
+                                                <div key={track.number} className="flex items-center justify-between p-2.5 bg-zinc-900/60 border border-white/5 hover:border-red-600/10 transition-colors duration-300">
+                                                    <div className="flex items-center gap-2 truncate mr-2">
+                                                        <span className="font-mono text-[9px] text-gray-500">
+                                                            {String(track.number).padStart(2, "0")}
+                                                        </span>
+                                                        <span className="font-cinzel text-xs text-white uppercase truncate font-bold">
+                                                            {track.title}
+                                                        </span>
+                                                    </div>
+                                                    <div className="flex items-center gap-2 shrink-0">
+                                                        <span className="font-barlow text-[7px] md:text-[8px] font-bold tracking-wider px-2.5 py-0.5 border uppercase text-red-400 bg-red-950/20 border-red-600/30">
+                                                            {track.artists}
+                                                        </span>
+                                                        {track.link && (
+                                                            <a
+                                                                href={track.link}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="w-7 h-7 rounded-full flex items-center justify-center border border-red-600/30 text-red-500 hover:bg-red-600 hover:text-black transition-all"
+                                                                title={`Play ${track.title} on Spotify`}
+                                                                onClick={(e) => e.stopPropagation()}
+                                                            >
+                                                                <svg className="w-3 h-3 fill-current ml-[0.5px]" viewBox="0 0 24 24">
+                                                                    <path d="M8 5v14l11-7z" />
+                                                                </svg>
+                                                            </a>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
                             {isUpcoming && (
                                 <div className="mt-4 flex items-center gap-2">
                                     <div
@@ -594,6 +652,16 @@ const AADHIKANNU_TRACKS = [
     { number: 4, title: "ഒരു പൂവ്", artists: "Saga End, AMAN KL10", link: "https://open.spotify.com/track/1gWe5TGzGb89dQH87K9kSp?si=ZDNufGKPSUCO2z0WMI17hw&utm_source=copy-link&sci=spotify%3Acard-config%3A16B8TYTVc6VyOutqV7aW0M" },
     { number: 5, title: "MOVE", artists: "Saga End, SA and AMAN KL10", link: "https://open.spotify.com/track/2oj1iHrtqKcy3UsS5pqNli?si=0EWNO-wmRGuYor6ZH9aJRw&utm_source=copy-link&sci=spotify%3Acard-config%3A2bQR7XZqH5dfnoKPR8tkX2" },
     { number: 6, title: "മുന്നും പിന്നും", artists: "Saga End, AZWIN", link: "https://open.spotify.com/track/7AWzo1Mh2EIHFO5oJ2qdJ6?si=vKn2r5ZvTXG0Kf-lgCRQfw&utm_source=copy-link&sci=spotify%3Acard-config%3A2XxfNe81gd0xwATcLdy2T2" }
+];
+
+const MOSTLY_OWH_TRACKS = [
+    { number: 1, title: "HA HA HA", artists: "SA", link: "https://open.spotify.com/track/4Mpg2T02H6oNqocHPqyAcG?si=_cArHlDpQIebr5LtKzDFCQ&utm_source=copy-link" },
+    { number: 2, title: "MOOD", artists: "SA", link: "https://open.spotify.com/track/5GsrivljbpQ6CbfNQDRGRv?si=I0ZxdLRFQ42lzEWG_LjAuA&utm_source=copy-link" },
+    { number: 3, title: "I SEE", artists: "SA", link: "https://open.spotify.com/track/00bugTguRyol1GaRuEl6Sx?si=QotmKP2dTtupbakqc8fR7w&utm_source=copy-link" },
+    { number: 4, title: "CRUISE", artists: "SA", link: "https://open.spotify.com/track/3gKJg0sCJJsfRb4K015Ilb?si=RbSDXxCTRw-ldpe0kQbKAg&utm_source=copy-link" },
+    { number: 5, title: "WHISTLE", artists: "SA", link: "https://open.spotify.com/track/3Gn142S6HO7HyYXdLwzES9?si=fSEK7wtgQIep_yO9PDu4ag&utm_source=copy-link" },
+    { number: 6, title: "HEY HEY", artists: "SA", link: "https://open.spotify.com/track/1LMls8r5O08nYX4tnLUEEa?si=GrSyDQVDT3OZY2esI0N9Fw&utm_source=copy-link" },
+    { number: 7, title: "YEAH", artists: "SA", link: "https://open.spotify.com/track/3pAo3apSFDfo3VfCAHO3Es?si=cFL3mvRLRQ2zUhRSORYCzg&utm_source=copy-link" }
 ];
 
 const VAAKKATH_TRACKS = [
