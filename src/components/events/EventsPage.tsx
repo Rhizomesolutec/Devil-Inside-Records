@@ -53,7 +53,7 @@ export default function EventsPage() {
                 />
 
                 <motion.div
-                    className="relative z-10 max-w-xl md:max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+                    className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6"
                     variants={staggerContainer(0.12, 0.15)}
                     initial="hidden"
                     whileInView="visible"
@@ -72,6 +72,7 @@ export default function EventsPage() {
 
 function EventCard({ event }: { event: EventItem }) {
     const hasTickets = Boolean(event.ticketUrl);
+    const dateLines = event.dates ?? (event.date ? [event.date] : []);
 
     return (
         <article className="group relative flex flex-col h-full border border-white/5 hover:border-white/15 transition-all duration-300 bg-black">
@@ -81,7 +82,7 @@ function EventCard({ event }: { event: EventItem }) {
                         src={event.image}
                         alt={event.title}
                         fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
                         priority
                     />
@@ -113,13 +114,16 @@ function EventCard({ event }: { event: EventItem }) {
                 <h2 className="font-cinzel text-white text-xl sm:text-2xl font-black uppercase tracking-tight leading-tight mb-3">
                     {event.title}
                 </h2>
-                {(event.date || event.venue) && (
+                {(dateLines.length > 0 || event.venue) && (
                     <div className="space-y-1 mb-6">
-                        {event.date && (
-                            <p className="font-barlow text-[10px] tracking-[0.25em] uppercase text-gray-400">
-                                {event.date}
+                        {dateLines.map((line) => (
+                            <p
+                                key={line}
+                                className="font-barlow text-[10px] tracking-[0.25em] uppercase text-gray-400"
+                            >
+                                {line}
                             </p>
-                        )}
+                        ))}
                         {event.venue && (
                             <p className="font-grotesk text-gray-500 text-sm">{event.venue}</p>
                         )}
