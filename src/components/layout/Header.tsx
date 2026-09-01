@@ -78,6 +78,9 @@ export function Header() {
                     <Link href="/merch" className={getLinkClass("/merch")}>
                         Merch
                     </Link>
+                    <Link href="/events" className={getLinkClass("/events")}>
+                        Events
+                    </Link>
                     <a
                         href="https://boombap.in/"
                         target="_blank"
@@ -194,6 +197,13 @@ export function Header() {
                             onClick={() => setIsMenuOpen(false)}
                         >
                             Merch
+                        </Link>
+                        <Link
+                            href="/events"
+                            className={`text-[1.75rem] tracking-wide font-medium transition-colors flex items-center justify-between ${path === '/events' ? 'text-red-700' : 'text-gray-400 hover:text-white'}`}
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Events
                         </Link>
                         <a href="https://boombap.in/" target="_blank">
                             <span className={`text-[1.75rem] tracking-wide font-medium transition-colors text-gray-400 hover:text-white`}>
