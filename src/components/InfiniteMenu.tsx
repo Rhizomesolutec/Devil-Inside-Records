@@ -1,5 +1,6 @@
 import { FC, useRef, useState, useEffect, MutableRefObject } from 'react';
 import { mat4, quat, vec2, vec3 } from 'gl-matrix';
+import { ReleaseTitle } from '@/components/ReleaseTitle';
 
 const discVertShaderSource = `#version 300 es
 
@@ -1167,8 +1168,8 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0, onActive
               </div>
             </div>
             <div>
-              <h4 className="font-cinzel text-xs md:text-sm font-bold text-white uppercase truncate max-w-[130px] mb-0.5">
-                {item.title}
+              <h4 className={`font-cinzel text-xs md:text-sm font-bold text-white truncate max-w-[130px] mb-0.5 ${item.title === "mostly OWH" ? "" : "uppercase"}`}>
+                <ReleaseTitle title={item.title} />
               </h4>
               <p className="font-barlow text-[9px] text-gray-500 tracking-wider uppercase truncate max-w-[130px]">
                 {item.description}

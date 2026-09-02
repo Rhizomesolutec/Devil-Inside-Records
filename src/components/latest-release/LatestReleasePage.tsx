@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Release, RELEASES } from "@/constants/releases";
+import { ReleaseTitle } from "@/components/ReleaseTitle";
 
 function Waveform({ active, color }: { active: boolean; color: string }) {
     const bars = [3, 7, 5, 9, 6, 4, 8, 5, 3, 7];
@@ -185,13 +186,12 @@ function ReleaseRow({
                 <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
                         <h2
-                            className={`${release.id === "mostly-owh" ? "font-barlow font-extrabold tracking-wide mostly-owh-title" : "font-cinzel font-black uppercase tracking-tighter"} text-base md:text-lg leading-none truncate transition-colors duration-300`}
+                            className={`${release.id === "mostly-owh" ? "font-cinzel font-black tracking-tighter" : "font-cinzel font-black uppercase tracking-tighter"} text-base md:text-lg leading-none truncate transition-colors duration-300`}
                             style={{
                                 color: isActive ? release.accent : isUpcoming ? "rgba(245,197,24,0.85)" : "white",
-                                ...(release.id === "mostly-owh" ? { fontVariant: "normal", fontVariantCaps: "normal", textTransform: "none" } : {})
                             }}
                         >
-                            {release.title}
+                            <ReleaseTitle id={release.id} title={release.title} />
                         </h2>
                         {isUpcoming && (
                             <span
@@ -283,13 +283,12 @@ function ReleaseRow({
                                 {release.tag}
                             </div>
                             <h3
-                                className={`${release.id === "mostly-owh" ? "font-barlow font-extrabold tracking-wide mostly-owh-title" : "font-cinzel font-black uppercase tracking-tighter"} text-2xl sm:text-3xl md:text-5xl leading-none text-white mb-2`}
+                                className={`${release.id === "mostly-owh" ? "font-cinzel font-black tracking-tighter" : "font-cinzel font-black uppercase tracking-tighter"} text-2xl sm:text-3xl md:text-5xl leading-none text-white mb-2`}
                                 style={{
                                     ...(isUpcoming ? { textShadow: `0 0 40px ${release.accent}40` } : {}),
-                                    ...(release.id === "mostly-owh" ? { fontVariant: "normal", fontVariantCaps: "normal", textTransform: "none" } : {})
                                 }}
                             >
-                                {release.title}
+                                <ReleaseTitle id={release.id} title={release.title} />
                             </h3>
                             <p className="font-barlow text-[10px] tracking-[0.5em] uppercase mb-6" style={{ color: release.accent }}>
                                 {release.artist} · {typeof release.tracks === "number" ? `${release.tracks} TRACKS` : release.tracks} · {release.date}
@@ -489,7 +488,12 @@ function ReleaseRow({
                                         >
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                                         </svg>
-                                        {showTracklist ? "HIDE TRACKLIST" : "mostly OWH TRACKS"}
+                                        {showTracklist ? "HIDE TRACKLIST" : (
+                                            <>
+                                                <span className="font-serif lowercase tracking-wide font-medium [font-family:ui-serif,Georgia,Cambria,'Times_New_Roman',Times,serif] [font-variant:normal] [text-transform:lowercase]">mostly</span>
+                                                {" "}OWH TRACKS
+                                            </>
+                                        )}
                                     </button>
 
                                     {showTracklist && (
@@ -781,12 +785,6 @@ export default function LatestReleasePage() {
                 .fade-in-up-delay-2 { animation-delay: 0.2s; opacity: 0; }
                 .fade-in-up-delay-3 { animation-delay: 0.35s; opacity: 0; }
                 .fade-in-up-delay-4 { animation-delay: 0.5s; opacity: 0; }
-                .mostly-owh-title {
-                    text-transform: none !important;
-                    font-variant: normal !important;
-                    font-variant-caps: normal !important;
-                    font-family: var(--font-barlow), sans-serif !important;
-                }
             `}</style>
 
             <section className="relative h-[45vh] md:h-[55vh] flex items-end overflow-hidden">

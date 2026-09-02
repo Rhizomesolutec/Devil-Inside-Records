@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { RELEASES } from "@/constants/releases";
 import InfiniteMenu from "../InfiniteMenu";
+import { ReleaseTitle } from "@/components/ReleaseTitle";
 
 const menuItems = RELEASES.filter(r => !r.upcoming).map((release) => {
     const imageSrc = typeof release.cover === "string" ? release.cover : release.cover.src;
@@ -48,15 +49,6 @@ export function LatestReleaseSection() {
 
     return (
         <section className="relative bg-black py-20 px-6 md:px-16 lg:px-24 overflow-hidden min-h-screen">
-            <style>{`
-                .mostly-owh-title {
-                    text-transform: none !important;
-                    font-variant: normal !important;
-                    font-variant-caps: normal !important;
-                    font-family: var(--font-barlow), 'Barlow', sans-serif !important;
-                }
-            `}</style>
-
             <div className="relative z-10 max-w-screen-2xl mx-auto flex flex-col h-full">
                 {/* Section Header */}
                 <div className="flex flex-col items-center text-center mb-10">
@@ -116,10 +108,9 @@ export function LatestReleaseSection() {
                             {active?.type}
                         </p>
                         <h3
-                            className={`${active?.id === "mostly-owh" ? "font-barlow font-extrabold mostly-owh-title" : "font-cinzel font-black uppercase"} text-white text-3xl md:text-2xl leading-tight drop-shadow-lg`}
-                            style={active?.id === "mostly-owh" ? { fontVariant: "normal", fontVariantCaps: "normal", textTransform: "none" } : {}}
+                            className={`${active?.id === "mostly-owh" ? "font-cinzel font-black tracking-tighter" : "font-cinzel font-black uppercase"} text-white text-3xl md:text-2xl leading-tight drop-shadow-lg`}
                         >
-                            {active?.title}
+                            <ReleaseTitle id={active?.id} title={active?.title ?? ""} />
                         </h3>
                         <p className="font-barlow text-gray-300 md:text-gray-400 text-sm md:text-xs tracking-widest uppercase drop-shadow-md">
                             {active?.artist}
