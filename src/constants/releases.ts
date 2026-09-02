@@ -210,7 +210,7 @@ export const RELEASES: Release[] = [
         tracks: 1,
         date: "JUL 21, 2026",
         duration: "04:02",
-        cover: "/release/Moopathyar.jpeg",
+        cover: "/release/Moopathyar.webp",
         accent: "#C81808",
         tag: "OUT NOW",
         description: "A powerful hip-hop single by M.H.R and Nazeeb Billu, showcasing smooth flows and signature street-level production.",

@@ -854,7 +854,12 @@ class InfiniteGridMenu {
       images.forEach((img, i) => {
         const x = (i % this.atlasSize) * cellSize;
         const y = Math.floor(i / this.atlasSize) * cellSize;
-        ctx.drawImage(img, x, y, cellSize, cellSize);
+        if (img.naturalWidth > 0) {
+          ctx.drawImage(img, x, y, cellSize, cellSize);
+        } else {
+          ctx.fillStyle = '#111';
+          ctx.fillRect(x, y, cellSize, cellSize);
+        }
       });
 
       gl.bindTexture(gl.TEXTURE_2D, this.tex);
