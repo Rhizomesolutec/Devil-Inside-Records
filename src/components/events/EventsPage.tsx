@@ -5,6 +5,14 @@ import { motion } from "framer-motion";
 import { EVENTS, type EventItem } from "@/constants/events";
 import { fadeUp, staggerContainer, scaleIn } from "@/lib/animations";
 
+const FEATURED_IDS = ["mhr-friends-india-tour", "fake-tattoos"];
+
+const FEATURED_EVENTS = FEATURED_IDS
+    .map((id) => EVENTS.find((event) => event.id === id))
+    .filter((event): event is EventItem => Boolean(event));
+
+const MHR_SUB_EVENTS = EVENTS.filter((event) => !FEATURED_IDS.includes(event.id));
+
 export default function EventsPage() {
     return (
         <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -52,25 +60,52 @@ export default function EventsPage() {
                     style={{ background: "radial-gradient(ellipse at center, #780606 0%, transparent 70%)" }}
                 />
 
-                <motion.div
-                    className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6"
-                    variants={staggerContainer(0.12, 0.15)}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-60px" }}
-                >
-                    {EVENTS.map((event) => (
-                        <motion.div key={event.id} variants={scaleIn}>
-                            <EventCard event={event} />
+                <div className="relative z-10 max-w-6xl mx-auto">
+                    <motion.div
+                        className="grid grid-cols-2 gap-3 sm:gap-5 lg:gap-6"
+                        variants={staggerContainer(0.12, 0.15)}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-60px" }}
+                    >
+                        {FEATURED_EVENTS.map((event) => (
+                            <motion.div key={event.id} variants={scaleIn}>
+                                <EventCard event={event} />
+                            </motion.div>
+                        ))}
+                    </motion.div>
+
+                    {MHR_SUB_EVENTS.length > 0 && (
+                        <motion.div
+                            className="mt-12 md:mt-16"
+                            variants={staggerContainer(0.1, 0.1)}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-60px" }}
+                        >
+                            <motion.p
+                                variants={fadeUp}
+                                className="font-barlow text-[9px] md:text-[10px] tracking-[0.45em] uppercase text-[#780606] mb-6 flex items-center gap-3"
+                            >
+                                <span className="w-6 h-px bg-[#780606]" />
+                                MHR & FRIENDS
+                            </motion.p>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+                                {MHR_SUB_EVENTS.map((event) => (
+                                    <motion.div key={event.id} variants={scaleIn}>
+                                        <EventCard event={event} compact />
+                                    </motion.div>
+                                ))}
+                            </div>
                         </motion.div>
-                    ))}
-                </motion.div>
+                    )}
+                </div>
             </section>
         </div>
     );
 }
 
-function EventCard({ event }: { event: EventItem }) {
+function EventCard({ event, compact = false }: { event: EventItem; compact?: boolean }) {
     const hasTickets = Boolean(event.ticketUrl);
     const dateLines = event.dates ?? (event.date ? [event.date] : []);
 
@@ -82,9 +117,11 @@ function EventCard({ event }: { event: EventItem }) {
                         src={event.image}
                         alt={event.title}
                         fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes={compact
+                            ? "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                            : "(max-width: 640px) 50vw, 50vw"}
                         className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
-                        priority
+                        priority={!compact}
                     />
                 ) : (
                     <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center">
@@ -107,24 +144,24 @@ function EventCard({ event }: { event: EventItem }) {
                 <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
             </div>
 
-            <div className="flex flex-col flex-1 px-5 sm:px-6 py-6">
-                <p className="font-barlow text-[8px] sm:text-[9px] tracking-[0.4em] uppercase text-[#780606] mb-2">
+            <div className={`flex flex-col flex-1 ${compact ? "px-3 py-4" : "px-3 sm:px-6 py-4 sm:py-6"}`}>
+                <p className={`font-barlow tracking-[0.4em] uppercase text-[#780606] mb-2 ${compact ? "text-[7px]" : "text-[8px] sm:text-[9px]"}`}>
                     {event.tag}
                 </p>
-                <h2 className="font-cinzel text-white text-xl sm:text-2xl font-black uppercase tracking-tight leading-tight mb-3">
+                <h2 className={`font-cinzel text-white font-black uppercase tracking-tight leading-tight mb-3 ${compact ? "text-sm sm:text-base" : "text-sm sm:text-xl lg:text-2xl"}`}>
                     {event.title}
                 </h2>
                 {(dateLines.length > 0 || event.venue) && (
-                    <div className="space-y-1 mb-6">
+                    <div className={`space-y-1 ${compact ? "mb-4" : "mb-6"}`}>
                         {dateLines.map((line) => (
                             <p
                                 key={line}
-                                className="font-barlow text-[10px] tracking-[0.25em] uppercase text-gray-400"
+                                className={`font-barlow tracking-[0.25em] uppercase text-gray-400 ${compact ? "text-[8px]" : "text-[9px] sm:text-[10px]"}`}
                             >
                                 {line}
                             </p>
                         ))}
-                        {event.venue && (
+                        {event.venue && !compact && (
                             <p className="font-grotesk text-gray-500 text-sm">{event.venue}</p>
                         )}
                     </div>
@@ -136,12 +173,16 @@ function EventCard({ event }: { event: EventItem }) {
                             href={event.ticketUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center w-full sm:w-auto font-barlow bg-red-700 border border-red-700 text-white hover:bg-transparent hover:border-red-500 hover:text-red-400 text-[11px] sm:text-xs tracking-[0.3em] uppercase px-8 py-3.5 min-h-12 transition-all duration-300"
+                            className={`inline-flex items-center justify-center w-full font-barlow bg-red-700 border border-red-700 text-white hover:bg-transparent hover:border-red-500 hover:text-red-400 tracking-[0.3em] uppercase transition-all duration-300 ${
+                                compact
+                                    ? "text-[9px] px-3 py-2.5 min-h-10"
+                                    : "text-[10px] sm:text-xs px-4 sm:px-8 py-3 sm:py-3.5 min-h-11 sm:min-h-12"
+                            }`}
                         >
                             {event.ticketLabel}
                         </a>
                     ) : (
-                        <span className="inline-flex items-center justify-center w-full sm:w-auto font-barlow border border-white/15 text-white/40 text-[11px] sm:text-xs tracking-[0.3em] uppercase px-8 py-3.5 min-h-12 cursor-not-allowed">
+                        <span className="inline-flex items-center justify-center w-full font-barlow border border-white/15 text-white/40 text-[10px] tracking-[0.3em] uppercase px-4 py-3 min-h-11 cursor-not-allowed">
                             {event.ticketLabel}
                         </span>
                     )}
