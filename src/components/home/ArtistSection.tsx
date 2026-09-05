@@ -2,16 +2,18 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ARTIST_NAMES, VIBES } from "@/constants/artists";
 import { fadeUp, staggerContainer } from "@/lib/animations";
 
-function Marquee({ items, speed = "20s", mobileSpeed, direction = "left", size = "text-xs" }: { 
+function Marquee({ items, speed = "20s", mobileSpeed, direction = "left", size = "text-xs", emphasize = false }: { 
     items: string[], 
     speed?: string, 
     mobileSpeed?: string,
     direction?: "left" | "right",
-    size?: string 
+    size?: string,
+    emphasize?: boolean,
 }) {
     const doubled = [...items, ...items, ...items, ...items];
     const activeMobileSpeed = mobileSpeed || speed;
@@ -29,7 +31,7 @@ function Marquee({ items, speed = "20s", mobileSpeed, direction = "left", size =
                     <span
                         key={i}
                         className={`font-barlow tracking-[0.4em] uppercase shrink-0 ${size} ${
-                            ARTIST_NAMES.includes(item) ? "text-white font-black" : "text-gray-500"
+                            emphasize || ARTIST_NAMES.includes(item) ? "text-white font-black" : "text-gray-500"
                         }`}
                     >
                         {item}
@@ -42,6 +44,19 @@ function Marquee({ items, speed = "20s", mobileSpeed, direction = "left", size =
 }
 
 export function ArtistSection() {
+    const [names, setNames] = useState(ARTIST_NAMES);
+
+    useEffect(() => {
+        fetch("/api/artists")
+            .then((res) => res.json())
+            .then((data) => {
+                if (Array.isArray(data.items) && data.items.length) {
+                    setNames(data.items.map((artist: { name: string }) => artist.name).filter(Boolean));
+                }
+            })
+            .catch(() => {});
+    }, []);
+
     return (
         <section className="relative bg-black overflow-hidden py-32">
             {/* ── Background ── */}
@@ -83,9 +98,9 @@ export function ArtistSection() {
                 {/* ── The Wall of Names ── */}
                 <div className="flex flex-col gap-2 -rotate-3 scale-110 mb-20">
                     <Marquee items={VIBES} speed="35s" mobileSpeed="12s" direction="right" size="text-[10px]" />
-                    <Marquee items={ARTIST_NAMES} speed="25s" mobileSpeed="10s" direction="left" size="text-4xl md:text-6xl font-cinzel" />
+                    <Marquee items={names} speed="25s" mobileSpeed="10s" direction="left" size="text-4xl md:text-6xl font-cinzel" emphasize />
                     <Marquee items={VIBES} speed="40s" mobileSpeed="15s" direction="right" size="text-[10px]" />
-                    <Marquee items={ARTIST_NAMES.slice().reverse()} speed="25s" mobileSpeed="10s" direction="left" size="text-4xl md:text-6xl font-cinzel" />
+                    <Marquee items={names.slice().reverse()} speed="25s" mobileSpeed="10s" direction="left" size="text-4xl md:text-6xl font-cinzel" emphasize />
                 </div>
 
                 {/* ── CTA ── */}

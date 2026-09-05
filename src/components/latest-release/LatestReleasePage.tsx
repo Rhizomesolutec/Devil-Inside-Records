@@ -651,7 +651,7 @@ const parseDate = (d: string): number => {
     const parts = cleaned.split(" ");
 
     if (parts.length === 3) {
-        let year = parseInt(parts[2], 10);
+        const year = parseInt(parts[2], 10);
         let month = -1;
         let day = 1;
 
@@ -679,6 +679,14 @@ const parseDate = (d: string): number => {
     const fallback = new Date(d).getTime();
     return isNaN(fallback) ? 0 : fallback;
 };
+
+function releaseOrder(release: Release) {
+    if (release.createdAt) {
+        const created = Date.parse(String(release.createdAt));
+        if (!Number.isNaN(created)) return created;
+    }
+    return parseDate(release.date);
+}
 
 const SAB6_TRACKS = [
     { number: 1, title: "SAB6", artists: "Lil PAYYAN, AZWIN", link: "https://open.spotify.com/track/4PPaDwc9AXP2p3J3MqDLWh?si=FScbrqHIToyNctUJNnxSwA" },
@@ -731,7 +739,20 @@ const VAAKKATH_TRACKS = [
 ];
 
 export default function LatestReleasePage() {
-    const sortedReleases = [...RELEASES].filter((r) => !r.upcoming).sort((a, b) => parseDate(b.date) - parseDate(a.date));
+    const [releases, setReleases] = useState<Release[]>(RELEASES);
+
+    useEffect(() => {
+        fetch("/api/catalogues?upcoming=1")
+            .then((res) => res.json())
+            .then((data) => {
+                if (Array.isArray(data.items) && data.items.length) {
+                    setReleases(data.items);
+                }
+            })
+            .catch(() => {});
+    }, []);
+
+    const sortedReleases = [...releases].filter((r) => !r.upcoming).sort((a, b) => releaseOrder(b) - releaseOrder(a));
     const [active, setActive] = useState<string>(sortedReleases[0]?.id ?? RELEASES[0]?.id ?? "");
     const [prevActive, setPrevActive] = useState<string | null>(null);
     const [currentActive, setCurrentActive] = useState<string>(active);
@@ -742,9 +763,8 @@ export default function LatestReleasePage() {
     }
 
     const [filter, setFilter] = useState<string>("ALL");
-    const [showTracklist, setShowTracklist] = useState<boolean>(false);
 
-    const uniqueTypes = Array.from(new Set(RELEASES.map((r) => r.type).filter(Boolean)));
+    const uniqueTypes = Array.from(new Set(releases.map((r) => r.type).filter(Boolean)));
     const showTypeUI = uniqueTypes.length > 1;
     const FILTERS = ["ALL", ...uniqueTypes];
 
@@ -789,7 +809,7 @@ export default function LatestReleasePage() {
 
             <section className="relative h-[45vh] md:h-[55vh] flex items-end overflow-hidden">
                 <div className="absolute inset-0">
-                    {RELEASES.map((r) => {
+                    {releases.map((r) => {
                         const isVisible = r.id === active || r.id === prevActive;
                         if (!isVisible) return null;
                         return (
@@ -827,7 +847,7 @@ export default function LatestReleasePage() {
             </section>
 
             {/* Upcoming Releases Section */}
-            {RELEASES.some((r) => r.upcoming) && (
+            {releases.some((r) => r.upcoming) && (
                 <div className="border-b border-white/5 py-12 px-6 md:px-16 lg:px-24 bg-zinc-950/40">
                     <div className="max-w-screen-2xl mx-auto">
                         <p className="font-barlow text-[10px] tracking-[0.4em] text-red-600 uppercase mb-6 font-bold flex items-center gap-2">
@@ -835,7 +855,7 @@ export default function LatestReleasePage() {
                             COMING SOON
                         </p>
                         <div className="flex flex-col gap-6">
-                            {RELEASES.filter((r) => r.upcoming).map((release) => (
+                            {releases.filter((r) => r.upcoming).map((release) => (
                                 <div key={release.id} className="flex flex-col md:flex-row items-stretch gap-8 p-6 md:p-8 bg-zinc-900/20 border border-white/5 hover:border-red-600/20 transition-all duration-500">
                                     {/* Left Side: Cover Image */}
                                     <div className="relative w-full md:w-64 h-64 md:h-64 shrink-0 overflow-hidden border border-white/10 shadow-2xl">

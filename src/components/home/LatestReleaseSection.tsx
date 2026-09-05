@@ -1,28 +1,45 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
-import { RELEASES } from "@/constants/releases";
+import { useState, useEffect, useRef, useMemo } from "react";
+import { RELEASES, type Release } from "@/constants/releases";
 import InfiniteMenu from "../InfiniteMenu";
 import { ReleaseTitle } from "@/components/ReleaseTitle";
-
-const menuItems = RELEASES.filter(r => !r.upcoming).map((release) => {
-    const imageSrc = typeof release.cover === "string" ? release.cover : release.cover.src;
-    return {
-        image: encodeURI(imageSrc),
-        link: release.link ?? "#",
-        title: release.title,
-        description: release.artist,
-    };
-});
-
-
+import { mediaSrc } from "@/lib/media";
 
 export function LatestReleaseSection() {
+    const [releases, setReleases] = useState<Release[]>(RELEASES.filter((r) => !r.upcoming));
     const [activeIndex, setActiveIndex] = useState(0);
     const [isMoving, setIsMoving] = useState(false);
     const [hasIntersected, setHasIntersected] = useState(false);
+    const [ready, setReady] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        fetch("/api/catalogues")
+            .then((res) => res.json())
+            .then((data) => {
+                if (Array.isArray(data.items) && data.items.length) {
+                    setReleases(data.items);
+                }
+            })
+            .catch(() => {})
+            .finally(() => setReady(true));
+    }, []);
+
+    const menuItems = useMemo(
+        () =>
+            releases.map((release) => {
+                const imageSrc = mediaSrc(release.cover);
+                return {
+                    image: encodeURI(imageSrc),
+                    link: release.link ?? "#",
+                    title: release.title,
+                    description: release.artist,
+                };
+            }),
+        [releases]
+    );
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -40,8 +57,8 @@ export function LatestReleaseSection() {
         return () => observer.disconnect();
     }, []);
 
-    const activeReleases = RELEASES.filter(r => !r.upcoming);
-    const active = activeReleases[activeIndex % activeReleases.length];
+    const activeReleases = releases;
+    const active = activeReleases[activeIndex % Math.max(activeReleases.length, 1)];
 
     
 
@@ -83,7 +100,7 @@ export function LatestReleaseSection() {
 
                 {/* Sphere + Info Panel */}
                 <div ref={sectionRef} className="relative w-full h-[450px] md:h-[600px] mt-4 md:mt-0">
-                    {hasIntersected && (
+                    {hasIntersected && ready && menuItems.length > 0 && (
                         <InfiniteMenu
                             items={menuItems}
                             scale={2}

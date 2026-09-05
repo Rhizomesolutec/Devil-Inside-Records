@@ -19,6 +19,7 @@ export interface Release {
     loading?: "lazy" | "eager";
     youtubeLink?: string;
     appleMusicLink?: string;
+    createdAt?: string;
 }
 
 export const RELEASES: Release[] = [

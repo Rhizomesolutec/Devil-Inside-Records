@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
@@ -36,6 +37,11 @@ const SOCIAL_LINKS = [
 ];
 
 export function Footer() {
+    const path = usePathname();
+    if (path.startsWith("/admin")) {
+        return null;
+    }
+
     return (
         <footer className="bg-black border-t border-white/5 pt-20 pb-10 px-6 md:px-16 lg:px-24">
             <div className="max-w-screen-2xl mx-auto">

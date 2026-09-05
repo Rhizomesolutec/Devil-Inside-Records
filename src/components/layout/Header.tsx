@@ -10,6 +10,10 @@ export function Header() {
     const path = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    if (path.startsWith("/admin")) {
+        return null;
+    }
+
     const getLinkClass = (href: string) => {
         return path === href
             ? "px-5 py-2 bg-red-700 text-black text-sm rounded-full transition-transform"
@@ -77,9 +81,6 @@ export function Header() {
                     </Link>
                     <Link href="/merch" className={getLinkClass("/merch")}>
                         Merch
-                    </Link>
-                    <Link href="/events" className={getLinkClass("/events")}>
-                        Events
                     </Link>
                     <a
                         href="https://boombap.in/"
@@ -197,13 +198,6 @@ export function Header() {
                             onClick={() => setIsMenuOpen(false)}
                         >
                             Merch
-                        </Link>
-                        <Link
-                            href="/events"
-                            className={`text-[1.75rem] tracking-wide font-medium transition-colors flex items-center justify-between ${path === '/events' ? 'text-red-700' : 'text-gray-400 hover:text-white'}`}
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Events
                         </Link>
                         <a href="https://boombap.in/" target="_blank">
                             <span className={`text-[1.75rem] tracking-wide font-medium transition-colors text-gray-400 hover:text-white`}>

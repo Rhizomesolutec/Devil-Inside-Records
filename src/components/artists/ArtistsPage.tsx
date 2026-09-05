@@ -7,10 +7,22 @@ import { ARTISTS, Artist } from "@/constants/artists";
 import { fadeUp, staggerContainer, staggerItem, slideLeft } from "@/lib/animations";
 
 export default function ArtistsPage() {
+    const [artists, setArtists] = useState<Artist[]>(ARTISTS);
     const [hovered, setHovered] = useState<Artist | null>(null);
     const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        fetch("/api/artists")
+            .then((res) => res.json())
+            .then((data) => {
+                if (Array.isArray(data.items) && data.items.length) {
+                    setArtists(data.items);
+                }
+            })
+            .catch(() => {});
+    }, []);
 
     const handleMouseMove = (e: React.MouseEvent) => {
         setMousePos({ x: e.clientX, y: e.clientY });
@@ -40,7 +52,7 @@ export default function ArtistsPage() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
                 >
-                    {ARTISTS.length.toString().padStart(2, "0")}
+                    {artists.length.toString().padStart(2, "0")}
                 </motion.span>
 
                 <motion.div
@@ -133,7 +145,7 @@ export default function ArtistsPage() {
                     whileInView="visible"
                     viewport={{ once: true, margin: "-60px" }}
                 >
-                    {[...ARTISTS].sort((a, b) => a.name.localeCompare(b.name)).map((artist, i) => (
+                    {[...artists].sort((a, b) => a.name.localeCompare(b.name)).map((artist, i) => (
                         <ArtistRow
                             key={artist.id}
                             artist={artist}

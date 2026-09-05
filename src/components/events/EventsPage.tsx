@@ -1,19 +1,47 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { EVENTS, type EventItem } from "@/constants/events";
 import { fadeUp, staggerContainer, scaleIn } from "@/lib/animations";
 
 const FEATURED_IDS = ["mhr-friends-india-tour", "fake-tattoos"];
 
-const FEATURED_EVENTS = FEATURED_IDS
-    .map((id) => EVENTS.find((event) => event.id === id))
-    .filter((event): event is EventItem => Boolean(event));
+type ListedEvent = EventItem & { placement?: "featured" | "mhr-sub" };
 
-const MHR_SUB_EVENTS = EVENTS.filter((event) => !FEATURED_IDS.includes(event.id));
+function splitEvents(events: ListedEvent[]) {
+    const hasPlacement = events.some((event) => event.placement);
+    if (hasPlacement) {
+        return {
+            featured: events.filter((event) => event.placement === "featured"),
+            sub: events.filter((event) => event.placement !== "featured"),
+        };
+    }
+
+    return {
+        featured: FEATURED_IDS
+            .map((id) => events.find((event) => event.id === id))
+            .filter((event): event is ListedEvent => Boolean(event)),
+        sub: events.filter((event) => !FEATURED_IDS.includes(event.id)),
+    };
+}
 
 export default function EventsPage() {
+    const [events, setEvents] = useState<ListedEvent[]>(EVENTS);
+
+    useEffect(() => {
+        fetch("/api/events")
+            .then((res) => res.json())
+            .then((data) => {
+                if (Array.isArray(data.items) && data.items.length) {
+                    setEvents(data.items);
+                }
+            })
+            .catch(() => {});
+    }, []);
+
+    const { featured: featuredEvents, sub: subEvents } = splitEvents(events);
     return (
         <div className="min-h-screen bg-black text-white overflow-x-hidden">
             <section className="relative pt-40 pb-16 px-6 md:px-16 lg:px-24 overflow-hidden">
@@ -68,14 +96,14 @@ export default function EventsPage() {
                         whileInView="visible"
                         viewport={{ once: true, margin: "-60px" }}
                     >
-                        {FEATURED_EVENTS.map((event) => (
+                        {featuredEvents.map((event) => (
                             <motion.div key={event.id} variants={scaleIn}>
                                 <EventCard event={event} />
                             </motion.div>
                         ))}
                     </motion.div>
 
-                    {MHR_SUB_EVENTS.length > 0 && (
+                    {subEvents.length > 0 && (
                         <motion.div
                             className="mt-12 md:mt-16"
                             variants={staggerContainer(0.1, 0.1)}
@@ -91,7 +119,7 @@ export default function EventsPage() {
                                 MHR & FRIENDS
                             </motion.p>
                             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-                                {MHR_SUB_EVENTS.map((event) => (
+                                {subEvents.map((event) => (
                                     <motion.div key={event.id} variants={scaleIn}>
                                         <EventCard event={event} compact />
                                     </motion.div>

@@ -3,13 +3,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import { RELEASES } from "@/constants/releases";
 import { fadeUp, staggerContainer, fadeIn } from "@/lib/animations";
+import { toSpotifyEmbed } from "@/lib/media";
 
 
 export function HomeHeroSection() {
-  const orma = RELEASES.find((release) => release.id === "orma");
-  const mostlyOwh = RELEASES.find((release) => release.id === "mostly-owh");
+  const [latestDrops, setLatestDrops] = useState(RELEASES.slice(-2).reverse());
+
+  useEffect(() => {
+    fetch("/api/catalogues?latest=2")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data.items) && data.items.length) {
+          setLatestDrops(data.items.slice(0, 2));
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
@@ -130,33 +142,26 @@ export function HomeHeroSection() {
               </span>
             </div>
             <div className="mt-4 flex flex-col gap-4 w-full max-w-full">
-              {orma && (
-                <iframe
-                  style={{ borderRadius: "10px" }}
-                  src="https://open.spotify.com/embed/album/1TCPhJgB0X3x9kqbZeMM5h?utm_source=generator&theme=0"
-                  width="100%"
-                  height="152"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  title={`${orma.title} Spotify preview`}
-                />
-              )}
-
-              {mostlyOwh && (
-                <iframe
-                  style={{ borderRadius: "10px" }}
-                  src="https://open.spotify.com/embed/album/5Ft9cfmWcIeuEakJEpKtPg?utm_source=generator&theme=0"
-                  width="100%"
-                  height="152"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  title={`${mostlyOwh.title} Spotify preview`}
-                />
-              )}
+              {latestDrops.slice(0, 2).map((release) => {
+                const src =
+                  ("embedUrl" in release && typeof release.embedUrl === "string" && release.embedUrl) ||
+                  toSpotifyEmbed(release.link);
+                if (!src) return null;
+                return (
+                  <iframe
+                    key={release.id}
+                    style={{ borderRadius: "10px" }}
+                    src={src}
+                    width="100%"
+                    height="152"
+                    frameBorder="0"
+                    allowFullScreen
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                    title={`${release.title} Spotify preview`}
+                  />
+                );
+              })}
             </div>
           </motion.div>
         </div>
