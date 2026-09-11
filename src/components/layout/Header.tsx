@@ -82,50 +82,6 @@ export function Header() {
                     <Link href="/merch" className={getLinkClass("/merch")}>
                         Merch
                     </Link>
-                    <a
-                        href="https://boombap.in/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="relative px-5 py-2 text-sm font-medium rounded-full transition-all duration-300 flex items-center gap-1.5 group overflow-hidden"
-                        style={{
-                            background: "linear-gradient(135deg, rgba(160,239,70,0.12), rgba(114,70,193,0.12))",
-                            border: "1px solid transparent",
-                            backgroundClip: "padding-box",
-                            boxShadow: "0 0 0 1px rgba(160,239,70,0.35), inset 0 0 12px rgba(114,70,193,0.08)",
-                        }}
-                    >
-                        <span
-                            style={{
-                                background: "linear-gradient(90deg, #A0EF46, #7246C1)",
-                                WebkitBackgroundClip: "text",
-                                WebkitTextFillColor: "transparent",
-                                backgroundClip: "text",
-                            }}
-                            className="font-semibold tracking-wide"
-                        >
-                            Boombap
-                        </span>
-                        {/* tiny external arrow */}
-                        <svg
-                            className="w-3 h-3 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                            fill="none"
-                            stroke="url(#bbGrad)"
-                            viewBox="0 0 24 24"
-                        >
-                            <defs>
-                                <linearGradient id="bbGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stopColor="#A0EF46" />
-                                    <stop offset="100%" stopColor="#7246C1" />
-                                </linearGradient>
-                            </defs>
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 17L17 7M17 7H7M17 7v10" />
-                        </svg>
-                        {/* hover glow */}
-                        <span
-                            className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                            style={{ background: "linear-gradient(135deg, rgba(160,239,70,0.08), rgba(114,70,193,0.15))" }}
-                        />
-                    </a>
                     <Link href="/about" className={getLinkClass("/about")}>
                         About
                     </Link>
@@ -199,11 +155,6 @@ export function Header() {
                         >
                             Merch
                         </Link>
-                        <a href="https://boombap.in/" target="_blank">
-                            <span className={`text-[1.75rem] tracking-wide font-medium transition-colors text-gray-400 hover:text-white`}>
-                                BoomBap
-                            </span>
-                        </a>
                         <Link
                             href="/about"
                             className={`text-[1.75rem] tracking-wide font-medium transition-colors ${path === '/about' ? 'text-red-700' : 'text-gray-400 hover:text-white'}`}
