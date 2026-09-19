@@ -101,10 +101,11 @@ export function Footer() {
 
                         <p className="font-barlow text-[9px] tracking-[0.45em] uppercase text-gray-600 mb-6">CONTACT</p>
                         <div className="space-y-3">
-                            <div>
+                            {/* Temporarily removed contact number */}
+                            {/* <div>
                                 <p className="font-barlow text-[9px] tracking-[0.35em] uppercase text-gray-700 mb-0.5">PHONE</p>
                                 <p className="font-grotesk text-gray-400 text-sm">+91 81290 70856</p>
-                            </div>
+                            </div> */}
                             <div>
                                 <p className="font-barlow text-[9px] tracking-[0.35em] uppercase text-gray-700 mb-0.5">GENERAL</p>
                                 <a href="mailto:info@devilinsiderecords.in" className="font-serif tracking-wide text-gray-400 text-sm hover:text-[#780606] transition-colors block lowercase">info@devilinsiderecords.in</a>
