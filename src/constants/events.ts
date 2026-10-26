@@ -15,6 +15,8 @@ export interface EventItem {
     ticketLabel: string;
     /** Marks demo/placeholder events that still need final details. */
     placeholder?: boolean;
+    /** Past event — tickets closed. */
+    over?: boolean;
 }
 
 const MHR_TICKET_URL = "https://www.skillboxes.com/events/business/mhr-friends";
@@ -45,6 +47,7 @@ export const EVENTS: EventItem[] = [
         image: "/event/MHR & FRIENDS.webp",
         ticketUrl: MHR_TICKET_URL,
         ticketLabel: "GET TICKETS",
+        over: true,
     },
     {
         id: "fake-tattoos",
@@ -55,6 +58,7 @@ export const EVENTS: EventItem[] = [
         image: "/event/FAKE TATTOOS.webp",
         ticketUrl: "https://www.skillboxes.com/events/the-backstage-kochi-edition-sbywbysu",
         ticketLabel: "GET TICKETS",
+        over: true,
     },
     {
         id: "shreyas-and-vedang",
@@ -64,6 +68,7 @@ export const EVENTS: EventItem[] = [
         image: "/event/Shreyas and Vedang.webp",
         ticketUrl: MHR_TICKET_URL,
         ticketLabel: "GET TICKETS",
+        over: true,
     },
     {
         id: "joker390p",
@@ -73,6 +78,7 @@ export const EVENTS: EventItem[] = [
         image: "/event/Joker390p.webp",
         ticketUrl: MHR_TICKET_URL,
         ticketLabel: "GET TICKETS",
+        over: true,
     },
     {
         id: "efy",
@@ -82,6 +88,7 @@ export const EVENTS: EventItem[] = [
         image: "/event/EFY.webp",
         ticketUrl: MHR_TICKET_URL,
         ticketLabel: "GET TICKETS",
+        over: true,
     },
     {
         id: "amani-and-wraith",
@@ -91,6 +98,7 @@ export const EVENTS: EventItem[] = [
         image: "/event/Amani and Wraith.webp",
         ticketUrl: MHR_TICKET_URL,
         ticketLabel: "GET TICKETS",
+        over: true,
     },
     {
         id: "aksomaniac",
@@ -100,5 +108,6 @@ export const EVENTS: EventItem[] = [
         image: "/event/Aksomaniac.webp",
         ticketUrl: MHR_TICKET_URL,
         ticketLabel: "GET TICKETS",
+        over: true,
     },
 ];

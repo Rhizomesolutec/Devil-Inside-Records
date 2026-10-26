@@ -60,6 +60,7 @@ function eventDoc(event: (typeof EVENTS)[number]) {
         ticketUrl: event.ticketUrl || "",
         ticketLabel: event.ticketLabel || "GET TICKETS",
         placeholder: Boolean(event.placeholder),
+        over: Boolean(event.over),
         placement: FEATURED_EVENT_IDS.includes(event.id) ? "featured" : "mhr-sub",
     };
 }
@@ -135,5 +136,14 @@ export async function ensureSeeded() {
 
     if (eventCount === 0) {
         await EventModel.insertMany(EVENTS.map((event) => eventDoc(event)));
+    }
+
+    try {
+        await EventModel.updateMany(
+            { over: { $exists: false } },
+            { $set: { over: true } }
+        );
+    } catch {
+        // Older documents without this field can stay as-is until the next save.
     }
 }

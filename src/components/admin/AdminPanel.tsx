@@ -45,6 +45,7 @@ type EventItem = {
     ticketUrl?: string;
     ticketLabel?: string;
     placement?: "featured" | "mhr-sub";
+    over?: boolean;
 };
 
 const emptyCatalogue: CatalogueItem = {
@@ -86,14 +87,35 @@ const emptyEvent: EventItem = {
     ticketUrl: "",
     ticketLabel: "GET TICKETS",
     placement: "mhr-sub",
+    over: false,
 };
+
+async function readJson(res: Response) {
+    const text = await res.text();
+    if (!text) {
+        if (res.status === 401) {
+            window.location.href = "/admin/login";
+        }
+        return { ok: false, items: [], error: `Empty response (${res.status})` };
+    }
+    try {
+        return JSON.parse(text);
+    } catch {
+        return { ok: false, items: [], error: "Invalid server response" };
+    }
+}
+
+async function fetchAdminJson(url: string) {
+    const res = await fetch(url, { credentials: "same-origin" });
+    return readJson(res);
+}
 
 async function uploadFile(file: File, folder: string) {
     const data = new FormData();
     data.append("file", file);
     data.append("folder", folder);
-    const res = await fetch("/api/admin/upload", { method: "POST", body: data });
-    const json = await res.json();
+    const res = await fetch("/api/admin/upload", { method: "POST", body: data, credentials: "same-origin" });
+    const json = await readJson(res);
     if (!res.ok) throw new Error(json.error || "Upload failed");
     return json.url as string;
 }
@@ -110,27 +132,35 @@ export default function AdminPanel() {
 
     async function loadAll() {
         const [c, a, e] = await Promise.all([
-            fetch("/api/admin/catalogues").then((r) => r.json()),
-            fetch("/api/admin/artists").then((r) => r.json()),
-            fetch("/api/admin/events").then((r) => r.json()),
+            fetchAdminJson("/api/admin/catalogues"),
+            fetchAdminJson("/api/admin/artists"),
+            fetchAdminJson("/api/admin/events"),
         ]);
         setCatalogues(c.items || []);
         setArtists(a.items || []);
         setEvents(e.items || []);
+        const error = [c, a, e].map((item) => item.error).find(Boolean);
+        if (error) setMessage(error);
     }
 
     useEffect(() => {
         let active = true;
         Promise.all([
-            fetch("/api/admin/catalogues").then((r) => r.json()),
-            fetch("/api/admin/artists").then((r) => r.json()),
-            fetch("/api/admin/events").then((r) => r.json()),
-        ]).then(([c, a, e]) => {
-            if (!active) return;
-            setCatalogues(c.items || []);
-            setArtists(a.items || []);
-            setEvents(e.items || []);
-        });
+            fetchAdminJson("/api/admin/catalogues"),
+            fetchAdminJson("/api/admin/artists"),
+            fetchAdminJson("/api/admin/events"),
+        ])
+            .then(([c, a, e]) => {
+                if (!active) return;
+                setCatalogues(c.items || []);
+                setArtists(a.items || []);
+                setEvents(e.items || []);
+                const error = [c, a, e].map((item) => item.error).find(Boolean);
+                if (error) setMessage(error);
+            })
+            .catch(() => {
+                if (active) setMessage("Failed to load admin data.");
+            });
         return () => {
             active = false;
         };
@@ -295,6 +325,39 @@ function ImageField({
     );
 }
 
+function ListActions({
+    onEdit,
+    onDelete,
+}: {
+    onEdit: () => void;
+    onDelete: () => void;
+}) {
+    return (
+        <div className="flex shrink-0 gap-2">
+            <button
+                type="button"
+                onClick={onEdit}
+                className="font-barlow text-[10px] tracking-[0.3em] uppercase border border-white/20 px-3 py-2 hover:border-white"
+            >
+                Edit
+            </button>
+            <button
+                type="button"
+                onClick={onDelete}
+                className="font-barlow text-[10px] tracking-[0.3em] uppercase border border-red-500/60 text-red-500 px-3 py-2 hover:bg-red-500/10"
+            >
+                Delete
+            </button>
+        </div>
+    );
+}
+
+async function deleteItem(url: string) {
+    const res = await fetch(url, { method: "DELETE", credentials: "same-origin" });
+    const data = await readJson(res);
+    if (!res.ok) throw new Error(data.error || "Delete failed");
+}
+
 function CatalogueTab({
     items,
     editing,
@@ -311,13 +374,14 @@ function CatalogueTab({
 
     async function save(event: FormEvent) {
         event.preventDefault();
-        const url = isEdit ? `/api/admin/catalogues/${form.id}` : "/api/admin/catalogues";
+        const url = isEdit ? `/api/admin/catalogues/${encodeURIComponent(form.id)}` : "/api/admin/catalogues";
         const res = await fetch(url, {
             method: isEdit ? "PUT" : "POST",
             headers: { "Content-Type": "application/json" },
+            credentials: "same-origin",
             body: JSON.stringify(form),
         });
-        const data = await res.json();
+        const data = await readJson(res);
         if (!res.ok) return onSaved(data.error || "Save failed");
         setEditing(null);
         await onSaved(isEdit ? "Catalogue updated." : "Catalogue added. Latest Drop now shows the 2 newest releases.");
@@ -368,25 +432,30 @@ function CatalogueTab({
                 </div>
             </form>
             <div className="space-y-3">
+                <h2 className="font-cinzel text-xl font-black">Existing catalogues</h2>
+                {items.length === 0 && (
+                    <p className="text-sm text-gray-500">No catalogues yet. Add one on the left.</p>
+                )}
                 {items.map((item) => (
-                    <div key={item.id} className="border border-white/10 p-4 flex gap-4 items-center">
+                    <div key={item.id} className="border border-white/10 p-4 flex flex-col sm:flex-row gap-4 sm:items-center">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={item.cover} alt="" className="w-14 h-14 object-cover" />
                         <div className="min-w-0 flex-1">
                             <p className="font-cinzel font-black truncate">{item.title}</p>
                             <p className="text-gray-500 text-xs truncate">{item.artist}</p>
                         </div>
-                        <button onClick={() => setEditing(item)} className="text-[10px] tracking-widest uppercase text-gray-300">Edit</button>
-                        <button
-                            onClick={async () => {
+                        <ListActions
+                            onEdit={() => setEditing(item)}
+                            onDelete={async () => {
                                 if (!confirm(`Delete ${item.title}?`)) return;
-                                await fetch(`/api/admin/catalogues/${item.id}`, { method: "DELETE" });
-                                await onSaved("Catalogue deleted.");
+                                try {
+                                    await deleteItem(`/api/admin/catalogues/${encodeURIComponent(item.id)}`);
+                                    await onSaved("Catalogue deleted.");
+                                } catch (error) {
+                                    await onSaved(error instanceof Error ? error.message : "Delete failed");
+                                }
                             }}
-                            className="text-[10px] tracking-widest uppercase text-red-500"
-                        >
-                            Delete
-                        </button>
+                        />
                     </div>
                 ))}
             </div>
@@ -416,13 +485,14 @@ function ArtistTab({
             spotify: form.socials?.spotify || "",
             youtube: form.socials?.youtube || "",
         };
-        const url = isEdit ? `/api/admin/artists/${form.id}` : "/api/admin/artists";
+        const url = isEdit ? `/api/admin/artists/${encodeURIComponent(form.id)}` : "/api/admin/artists";
         const res = await fetch(url, {
             method: isEdit ? "PUT" : "POST",
             headers: { "Content-Type": "application/json" },
+            credentials: "same-origin",
             body: JSON.stringify(payload),
         });
-        const data = await res.json();
+        const data = await readJson(res);
         if (!res.ok) return onSaved(data.error || "Save failed");
         setEditing(null);
         await onSaved(isEdit ? "Artist updated." : "Artist added.");
@@ -458,25 +528,30 @@ function ArtistTab({
                 </div>
             </form>
             <div className="space-y-3">
+                <h2 className="font-cinzel text-xl font-black">Existing artists</h2>
+                {items.length === 0 && (
+                    <p className="text-sm text-gray-500">No artists yet. Add one on the left.</p>
+                )}
                 {items.map((item) => (
-                    <div key={item.id} className="border border-white/10 p-4 flex gap-4 items-center">
+                    <div key={item.id} className="border border-white/10 p-4 flex flex-col sm:flex-row gap-4 sm:items-center">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={item.image} alt="" className="w-14 h-14 object-cover grayscale" />
                         <div className="min-w-0 flex-1">
                             <p className="font-cinzel font-black truncate">{item.name}</p>
                             <p className="text-gray-500 text-xs truncate">{item.genre}</p>
                         </div>
-                        <button onClick={() => setEditing(item)} className="text-[10px] tracking-widest uppercase text-gray-300">Edit</button>
-                        <button
-                            onClick={async () => {
+                        <ListActions
+                            onEdit={() => setEditing(item)}
+                            onDelete={async () => {
                                 if (!confirm(`Delete ${item.name}?`)) return;
-                                await fetch(`/api/admin/artists/${item.id}`, { method: "DELETE" });
-                                await onSaved("Artist deleted.");
+                                try {
+                                    await deleteItem(`/api/admin/artists/${encodeURIComponent(item.id)}`);
+                                    await onSaved("Artist deleted.");
+                                } catch (error) {
+                                    await onSaved(error instanceof Error ? error.message : "Delete failed");
+                                }
                             }}
-                            className="text-[10px] tracking-widest uppercase text-red-500"
-                        >
-                            Delete
-                        </button>
+                        />
                     </div>
                 ))}
             </div>
@@ -500,16 +575,17 @@ function EventTab({
 
     async function save(event: FormEvent) {
         event.preventDefault();
-        const url = isEdit ? `/api/admin/events/${form.id}` : "/api/admin/events";
+        const url = isEdit ? `/api/admin/events/${encodeURIComponent(form.id)}` : "/api/admin/events";
         const res = await fetch(url, {
             method: isEdit ? "PUT" : "POST",
             headers: { "Content-Type": "application/json" },
+            credentials: "same-origin",
             body: JSON.stringify({
                 ...form,
                 dates: Array.isArray(form.dates) ? form.dates.join("\n") : form.dates,
             }),
         });
-        const data = await res.json();
+        const data = await readJson(res);
         if (!res.ok) return onSaved(data.error || "Save failed");
         setEditing(null);
         await onSaved(isEdit ? "Event updated." : "Event added.");
@@ -532,6 +608,14 @@ function EventTab({
                 <Field label="Venue"><input className={inputClass} value={form.venue || ""} onChange={(e) => setEditing({ ...form, venue: e.target.value })} /></Field>
                 <Field label="Ticket URL"><input className={inputClass} value={form.ticketUrl || ""} onChange={(e) => setEditing({ ...form, ticketUrl: e.target.value })} /></Field>
                 <Field label="Ticket label"><input className={inputClass} value={form.ticketLabel || "GET TICKETS"} onChange={(e) => setEditing({ ...form, ticketLabel: e.target.value })} /></Field>
+                <label className="flex items-center gap-3 text-sm text-gray-300">
+                    <input
+                        type="checkbox"
+                        checked={Boolean(form.over)}
+                        onChange={(e) => setEditing({ ...form, over: e.target.checked })}
+                    />
+                    Event is over
+                </label>
                 <Field label="Placement">
                     <select
                         className={inputClass}
@@ -554,25 +638,30 @@ function EventTab({
                 </div>
             </form>
             <div className="space-y-3">
+                <h2 className="font-cinzel text-xl font-black">Existing events</h2>
+                {items.length === 0 && (
+                    <p className="text-sm text-gray-500">No events yet. Add one on the left.</p>
+                )}
                 {items.map((item) => (
-                    <div key={item.id} className="border border-white/10 p-4 flex gap-4 items-center">
+                    <div key={item.id} className="border border-white/10 p-4 flex flex-col sm:flex-row gap-4 sm:items-center">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         {item.image ? <img src={item.image} alt="" className="w-14 h-16 object-cover" /> : <div className="w-14 h-16 bg-white/5" />}
                         <div className="min-w-0 flex-1">
                             <p className="font-cinzel font-black truncate">{item.title}</p>
-                            <p className="text-gray-500 text-xs truncate">{item.placement}</p>
+                            <p className="text-gray-500 text-xs truncate">{item.over ? "over" : item.placement}</p>
                         </div>
-                        <button onClick={() => setEditing(item)} className="text-[10px] tracking-widest uppercase text-gray-300">Edit</button>
-                        <button
-                            onClick={async () => {
+                        <ListActions
+                            onEdit={() => setEditing(item)}
+                            onDelete={async () => {
                                 if (!confirm(`Delete ${item.title}?`)) return;
-                                await fetch(`/api/admin/events/${item.id}`, { method: "DELETE" });
-                                await onSaved("Event deleted.");
+                                try {
+                                    await deleteItem(`/api/admin/events/${encodeURIComponent(item.id)}`);
+                                    await onSaved("Event deleted.");
+                                } catch (error) {
+                                    await onSaved(error instanceof Error ? error.message : "Delete failed");
+                                }
                             }}
-                            className="text-[10px] tracking-widest uppercase text-red-500"
-                        >
-                            Delete
-                        </button>
+                        />
                     </div>
                 ))}
             </div>

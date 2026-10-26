@@ -82,6 +82,9 @@ export function Header() {
                     <Link href="/merch" className={getLinkClass("/merch")}>
                         Merch
                     </Link>
+                    <Link href="/events" className={getLinkClass("/events")}>
+                        Events
+                    </Link>
                     <Link href="/about" className={getLinkClass("/about")}>
                         About
                     </Link>
@@ -154,6 +157,13 @@ export function Header() {
                             onClick={() => setIsMenuOpen(false)}
                         >
                             Merch
+                        </Link>
+                        <Link
+                            href="/events"
+                            className={`text-[1.75rem] tracking-wide font-medium transition-colors flex items-center justify-between ${path === '/events' ? 'text-red-700' : 'text-gray-400 hover:text-white'}`}
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Events
                         </Link>
                         <Link
                             href="/about"

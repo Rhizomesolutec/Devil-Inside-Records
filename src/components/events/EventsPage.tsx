@@ -77,7 +77,7 @@ export default function EventsPage() {
                         variants={fadeUp}
                         className="font-grotesk text-gray-500 text-sm md:text-base mt-8 max-w-md leading-relaxed"
                     >
-                        Live nights. Tour dates. The underground, on stage.
+                        These dates have passed. New shows will land here when they drop.
                     </motion.p>
                 </motion.div>
             </section>
@@ -133,8 +133,16 @@ export default function EventsPage() {
     );
 }
 
+const PAST_EVENT_IDS = new Set(EVENTS.map((event) => event.id));
+
+function isEventOver(event: EventItem) {
+    if (event.over === false) return false;
+    return event.over === true || PAST_EVENT_IDS.has(event.id);
+}
+
 function EventCard({ event, compact = false }: { event: EventItem; compact?: boolean }) {
-    const hasTickets = Boolean(event.ticketUrl);
+    const over = isEventOver(event);
+    const hasTickets = Boolean(event.ticketUrl) && !over;
     const dateLines = event.dates ?? (event.date ? [event.date] : []);
 
     return (
@@ -148,7 +156,7 @@ function EventCard({ event, compact = false }: { event: EventItem; compact?: boo
                         sizes={compact
                             ? "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                             : "(max-width: 640px) 50vw, 50vw"}
-                        className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+                        className={`object-cover object-center transition-transform duration-700 group-hover:scale-[1.03] ${over ? "grayscale opacity-70" : ""}`}
                         priority={!compact}
                     />
                 ) : (
@@ -170,6 +178,13 @@ function EventCard({ event, compact = false }: { event: EventItem; compact?: boo
                     </div>
                 )}
                 <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
+                {over && (
+                    <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/35">
+                        <span className={`font-cinzel font-black uppercase tracking-[0.25em] text-white border border-white/40 bg-black/70 ${compact ? "text-xs px-3 py-1.5" : "text-sm sm:text-base px-5 py-2"}`}>
+                            OVER
+                        </span>
+                    </div>
+                )}
             </div>
 
             <div className={`flex flex-col flex-1 ${compact ? "px-3 py-4" : "px-3 sm:px-6 py-4 sm:py-6"}`}>
@@ -210,8 +225,12 @@ function EventCard({ event, compact = false }: { event: EventItem; compact?: boo
                             {event.ticketLabel}
                         </a>
                     ) : (
-                        <span className="inline-flex items-center justify-center w-full font-barlow border border-white/15 text-white/40 text-[10px] tracking-[0.3em] uppercase px-4 py-3 min-h-11 cursor-not-allowed">
-                            {event.ticketLabel}
+                        <span className={`inline-flex items-center justify-center w-full font-barlow border tracking-[0.3em] uppercase cursor-not-allowed ${
+                            over
+                                ? "border-white/20 text-white/50"
+                                : "border-white/15 text-white/40"
+                        } ${compact ? "text-[9px] px-3 py-2.5 min-h-10" : "text-[10px] sm:text-xs px-4 py-3 min-h-11"}`}>
+                            {over ? "OVER" : event.ticketLabel}
                         </span>
                     )}
                 </div>

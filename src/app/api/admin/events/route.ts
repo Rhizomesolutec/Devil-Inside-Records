@@ -5,6 +5,8 @@ import { ensureSeeded } from "@/lib/seed";
 import { EventModel } from "@/models/Event";
 import { slugify } from "@/lib/media";
 
+export const dynamic = "force-dynamic";
+
 async function unauthorized() {
     return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
 }
@@ -18,11 +20,16 @@ function parseDates(value: unknown) {
 }
 
 export async function GET() {
-    if (!(await isAdminAuthenticated())) return unauthorized();
-    await connectDB();
-    await ensureSeeded();
-    const items = await EventModel.find().sort({ createdAt: -1 }).lean();
-    return NextResponse.json({ ok: true, items: items.map((doc) => ({ ...doc, _id: String(doc._id) })) });
+    try {
+        if (!(await isAdminAuthenticated())) return unauthorized();
+        await connectDB();
+        await ensureSeeded();
+        const items = await EventModel.find().sort({ createdAt: -1 }).lean();
+        return NextResponse.json({ ok: true, items: items.map((doc) => ({ ...doc, _id: String(doc._id) })) });
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "Failed to load events";
+        return NextResponse.json({ ok: false, error: message, items: [] }, { status: 500 });
+    }
 }
 
 export async function POST(request: Request) {
@@ -45,6 +52,7 @@ export async function POST(request: Request) {
             ticketUrl: body.ticketUrl || "",
             ticketLabel: body.ticketLabel || "GET TICKETS",
             placeholder: Boolean(body.placeholder),
+            over: Boolean(body.over),
             placement: body.placement === "featured" ? "featured" : "mhr-sub",
         });
         return NextResponse.json({ ok: true, item: created });

@@ -12,6 +12,7 @@ const EventSchema = new Schema(
         ticketUrl: { type: String, default: "" },
         ticketLabel: { type: String, default: "GET TICKETS" },
         placeholder: { type: Boolean, default: false },
+        over: { type: Boolean, default: false },
         placement: { type: String, enum: ["featured", "mhr-sub"], default: "mhr-sub" },
     },
     { timestamps: true }

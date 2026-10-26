@@ -5,16 +5,23 @@ import { ensureSeeded } from "@/lib/seed";
 import { Catalogue } from "@/models/Catalogue";
 import { slugify } from "@/lib/media";
 
+export const dynamic = "force-dynamic";
+
 async function unauthorized() {
     return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
 }
 
 export async function GET() {
-    if (!(await isAdminAuthenticated())) return unauthorized();
-    await connectDB();
-    await ensureSeeded();
-    const items = await Catalogue.find().sort({ createdAt: -1 }).lean();
-    return NextResponse.json({ ok: true, items: items.map((doc) => ({ ...doc, _id: String(doc._id) })) });
+    try {
+        if (!(await isAdminAuthenticated())) return unauthorized();
+        await connectDB();
+        await ensureSeeded();
+        const items = await Catalogue.find().sort({ createdAt: -1 }).lean();
+        return NextResponse.json({ ok: true, items: items.map((doc) => ({ ...doc, _id: String(doc._id) })) });
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "Failed to load catalogues";
+        return NextResponse.json({ ok: false, error: message, items: [] }, { status: 500 });
+    }
 }
 
 export async function POST(request: Request) {
